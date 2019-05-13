@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Build",
+            "type": "node",
+            "request": "launch",
+            "protocol": "legacy",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "npm",
+            "args": ["start"],
+            "runtimeArgs": ["--debug", "--inspect"],
+            "preLaunchTask": "Gulp watch"
+        }
+    ]
+}
