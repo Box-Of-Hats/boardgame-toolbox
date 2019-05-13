@@ -1,4 +1,5 @@
 import React from "react";
+import "./style/css/main.css";
 
 export type GameListingProps = {
     title: string;

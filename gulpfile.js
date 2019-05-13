@@ -7,7 +7,7 @@ const style = () => {
         .src("./src/style/main.scss")
         .pipe(sass())
         .pipe(cleanCss())
-        .pipe(gulp.dest("build/static/css/"));
+        .pipe(gulp.dest("./src/style/css/"));
 };
 
 const watch = () => {
