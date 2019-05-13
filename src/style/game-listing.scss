@@ -1,7 +1,16 @@
+@import "./mixins.scss";
+
 .game-listing {
+    @include card;
+    margin: 6px;
+    padding: 6px;
     &__button {
+        @include button;
+        display: inline-block;
     }
     &__description {
+        font-size: 1em;
+        font-style: italic;
     }
     &__title {
         font-weight: bold;

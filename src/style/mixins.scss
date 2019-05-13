@@ -1,0 +1,15 @@
+@import "./base.scss";
+
+@mixin card {
+    background-color: $white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19);
+}
+
+@mixin button {
+    border: 2px solid $white;
+    background-color: aquamarine;
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: $borderRadius--standard;
+    cursor: pointer;
+}
