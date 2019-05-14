@@ -1,7 +1,7 @@
 import React from "react";
 import GameListing from "./GameListing";
 import Dice from "./Dice";
-
+import Counter from "./Counter";
 interface Game {
     id: number;
     title: string;
@@ -42,5 +42,7 @@ export const GamePage = () => {
     ));
 
     out.push(<Dice />);
+    out.push(<Dice maximumRoll={100} />);
+    out.push(<Counter />);
     return <div>{out}</div>;
 };

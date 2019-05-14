@@ -1,0 +1,31 @@
+@import "./base.scss";
+@import "./mixins.scss";
+
+.counter {
+    @include card;
+    display: grid;
+    grid-template-columns: 33% 34% 33%;
+    grid-template-rows: 50% 50%;
+    grid-template-areas: "title title title" "btn-inc val btn-dec";
+    &__button {
+        @include button;
+        font-weight: bold;
+        &--dec {
+            grid-area: btn-inc;
+            background-color: $red;
+        }
+        &--inc {
+            grid-area: btn-dec;
+            background-color: $green;
+        }
+    }
+    &__title {
+        @include title;
+        grid-area: title;
+    }
+    &__value {
+        grid-area: val;
+        font-size: 1.6em;
+        text-align: center;
+    }
+}
