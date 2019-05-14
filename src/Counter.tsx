@@ -17,7 +17,7 @@ export default class Counter extends React.Component<
     constructor(props: ICounterProps) {
         super(props);
         this.state = {
-            value: 0
+            value: props.value ? props.value : 0
         };
     }
 

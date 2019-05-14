@@ -44,5 +44,7 @@ export const GamePage = () => {
     out.push(<Dice />);
     out.push(<Dice maximumRoll={100} />);
     out.push(<Counter />);
+    out.push(<Counter value={10} />);
+    out.push(<Counter value={100} />);
     return <div>{out}</div>;
 };
