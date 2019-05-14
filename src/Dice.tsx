@@ -6,17 +6,20 @@ interface IDiceState {
 }
 
 interface IDiceProps {
+    title?: string;
     currentRoll?: number;
     maximumRoll?: number;
 }
 
 export default class Dice extends Component<IDiceProps, IDiceState> {
-    constructor(props: any) {
+    constructor(props: IDiceProps) {
         super(props);
         this.state = {
             currentRoll: props.currentRoll
                 ? props.currentRoll
-                : this.getRandomNumber(6),
+                : this.getRandomNumber(
+                      this.props.maximumRoll ? this.props.maximumRoll : 6
+                  ),
             isAnimating: false
         };
     }
@@ -38,7 +41,9 @@ export default class Dice extends Component<IDiceProps, IDiceState> {
     render() {
         return (
             <div className="dice-tool">
-                <div className="dice-tool__title">Dice</div>
+                <div className="dice-tool__title">
+                    {this.props.title ? this.props.title : "Dice"}
+                </div>
                 <div className="dice-tool__dice-container">
                     <div
                         className={`dice-tool__dice ${
@@ -52,7 +57,7 @@ export default class Dice extends Component<IDiceProps, IDiceState> {
                 </div>
                 <div
                     className="dice-tool__button"
-                    onClick={() => this.randomiseRoll()}
+                    onClick={() => this.randomiseRoll(this.props.maximumRoll)}
                 >
                     Roll
                 </div>
