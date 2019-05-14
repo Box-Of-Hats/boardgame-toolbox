@@ -1,23 +1,62 @@
 import React, { Component } from "react";
-import { Interface } from "readline";
-
+import "./style/dice.scss";
 interface IDiceState {
     currentRoll: number;
+    isAnimating: boolean;
 }
 
 interface IDiceProps {
-    currentRoll: number;
+    currentRoll?: number;
+    maximumRoll?: number;
 }
 
 export default class Dice extends Component<IDiceProps, IDiceState> {
     constructor(props: any) {
         super(props);
         this.state = {
-            currentRoll: props.currentRoll ? props.currentRoll : 8
+            currentRoll: props.currentRoll
+                ? props.currentRoll
+                : this.getRandomNumber(6),
+            isAnimating: false
         };
     }
 
+    getRandomNumber = (maximum: number): number => {
+        return Math.floor(Math.random() * maximum) + 1;
+    };
+
+    randomiseRoll = (maximum?: number): void => {
+        this.setState({ isAnimating: true });
+        setTimeout(() => {
+            this.setState({ isAnimating: false });
+            this.setState({
+                currentRoll: this.getRandomNumber(maximum ? maximum : 6)
+            });
+        }, 600);
+    };
+
     render() {
-        return <div>You rolled: {this.state.currentRoll}</div>;
+        return (
+            <div className="dice-tool">
+                <div className="dice-tool__title">Dice</div>
+                <div className="dice-tool__dice-container">
+                    <div
+                        className={`dice-tool__dice ${
+                            this.state.isAnimating
+                                ? "dice-tool__dice--roll"
+                                : ""
+                        }`}
+                    >
+                        {this.state.isAnimating ? "?" : this.state.currentRoll}
+                    </div>
+                </div>
+                <div
+                    className="dice-tool__button"
+                    onClick={() => this.randomiseRoll()}
+                >
+                    Roll
+                </div>
+            </div>
+        );
     }
 }

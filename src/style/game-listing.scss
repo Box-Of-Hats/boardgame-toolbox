@@ -1,19 +1,18 @@
 @import "./mixins.scss";
-
+@import "./base.scss";
 .game-listing {
     @include card;
-    margin: 6px;
-    padding: 6px;
     &__button {
         @include button;
         display: inline-block;
+        user-select: none;
     }
     &__description {
         font-size: 1em;
         font-style: italic;
+        margin: $padding-base 0;
     }
     &__title {
-        font-weight: bold;
-        font-size: 1.4em;
+        @include title;
     }
 }

@@ -1,0 +1,44 @@
+@import "./mixins.scss";
+
+@keyframes example {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.dice-tool {
+    @include card;
+    $dice-height: 70px;
+    &__title {
+        @include title;
+    }
+    &__button {
+        @include button;
+    }
+    &__dice {
+        height: $dice-height;
+        width: $dice-height;
+        line-height: $dice-height;
+        display: inline-block;
+        font-size: 2em;
+        text-align: center;
+        border: 3px solid $white;
+        border-radius: 10px;
+        background-color: brown;
+        color: $white;
+        margin-left: $padding-base;
+        margin-bottom: 4px;
+        &--roll {
+            animation: linear;
+            animation-name: example;
+            animation-duration: 0.6s;
+        }
+    }
+    &__dice-container {
+        display: flex;
+        justify-content: space-evenly;
+    }
+}

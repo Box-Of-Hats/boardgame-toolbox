@@ -1,15 +1,32 @@
 @import "./base.scss";
 
+@mixin title {
+    font-weight: 400;
+    font-size: 1.4em;
+    margin-bottom: $padding-base;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 @mixin card {
     background-color: $white;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19);
+    padding: $padding-base * 2;
+    margin: $padding-base 0;
 }
 
 @mixin button {
+    $button-height: 30px;
     border: 2px solid $white;
     background-color: aquamarine;
-    padding: 4px 8px;
+    color: $black;
+    border: 2px solid rgba(0, 0, 0, 0.05);
+    font-family: "Roboto";
     text-align: center;
     border-radius: $borderRadius--standard;
+    padding-left: $padding-base * 2;
+    padding-right: $padding-base * 2;
     cursor: pointer;
+    user-select: none;
+    height: $button-height;
+    line-height: $button-height;
 }
