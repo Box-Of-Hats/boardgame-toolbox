@@ -1,0 +1,33 @@
+@import "./mixins.scss";
+
+.spinner {
+    @include card;
+    min-height: 50vh;
+    &__title {
+        @include title;
+    }
+    &__arrow {
+        background-color: $blue;
+        height: 90vw;
+        width: 34px;
+        border-radius: $borderRadius--standard;
+        font-size: 16pt;
+        text-align: center;
+        color: $white;
+        transition: 0s;
+    }
+    &__tip {
+        background-color: $red;
+        color: $red;
+        border-radius: $borderRadius--standard $borderRadius--standard 0 0;
+    }
+    &__body {
+        display: flex;
+        justify-content: space-around;
+        padding: 40px 0;
+        height: 100%;
+    }
+    &__button {
+        @include button;
+    }
+}

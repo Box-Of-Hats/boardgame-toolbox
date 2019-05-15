@@ -2,6 +2,7 @@ import React from "react";
 import GameListing from "./GameListing";
 import Dice from "./Dice";
 import Counter from "./Counter";
+import Spinner from "./Spinner";
 interface Game {
     id: number;
     title: string;
@@ -46,5 +47,6 @@ export const GamePage = () => {
     out.push(<Counter />);
     out.push(<Counter value={10} />);
     out.push(<Counter value={100} />);
+    out.push(<Spinner />);
     return <div>{out}</div>;
 };
