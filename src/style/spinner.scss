@@ -15,11 +15,20 @@
         text-align: center;
         color: $white;
         transition: 0s;
+        &--burny {
+            background-color: rgb(216, 216, 216);
+        }
     }
     &__tip {
         background-color: $red;
         color: $red;
+        height: 40px;
         border-radius: $borderRadius--standard $borderRadius--standard 0 0;
+        &--burny {
+            background-color: rgb(184, 131, 72);
+            color: rgb(184, 131, 72);
+            height: 80px;
+        }
     }
     &__body {
         display: flex;
