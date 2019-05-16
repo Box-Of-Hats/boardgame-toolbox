@@ -61,7 +61,13 @@ export const GamePage = () => {
                 typeId: 3,
                 title: "ScoreTable",
                 playerNames: ["Jake", "Alena", "Person"],
-                scoreNames: ["cols", "rows", "bonus", "pen"]
+                scoreNames: [
+                    "Round 1",
+                    "Round 2",
+                    "Round 3",
+                    "Penalties",
+                    "Bonuses"
+                ]
             }
         ];
     };

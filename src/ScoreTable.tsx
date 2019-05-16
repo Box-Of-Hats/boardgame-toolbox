@@ -7,9 +7,7 @@ interface IScoreTableProps {
     scoreNames: string[];
 }
 
-interface IScoreTableState {
-    //scores: any;
-}
+interface IScoreTableState {}
 
 export default class ScoreTable extends Component<
     IScoreTableProps,
@@ -17,24 +15,32 @@ export default class ScoreTable extends Component<
 > {
     constructor(props: any) {
         super(props);
-        this.state = {
-            //scores: {}
-        };
-        // this.props.playerNames.forEach(name => {
-        //     this.state.scores[name] = Array(this.props.scoreNames.length).fill(
-        //         0
-        //     );
-        // });
-        // console.log(this.state.scores);
+        this.state = {};
     }
 
     getTotalForPlayer(playerName: string): number {
         let inputs = document.querySelectorAll<HTMLInputElement>(
             `.scoretable__input--${playerName}`
         );
+        let values: number[] = [];
+        inputs.forEach(i => {
+            values.push(parseInt(i.value));
+        });
+        return values.reduce(function(a, b) {
+            return (isNaN(a) ? 0 : a) + (isNaN(b) ? 0 : b);
+        }, 0);
+    }
 
-        console.log(inputs);
-        return 0;
+    updateTotals() {
+        this.props.playerNames.forEach(playerName => {
+            let score: number = this.getTotalForPlayer(playerName);
+            let totalElement: HTMLElement | null = document.querySelector(
+                `.scoretable__cell--total-${playerName}`
+            );
+            if (totalElement) {
+                totalElement.innerText = score.toString();
+            }
+        });
     }
 
     render() {
@@ -57,6 +63,9 @@ export default class ScoreTable extends Component<
                                 {this.props.playerNames.map(playerName => (
                                     <td className="scoretable__cell">
                                         <input
+                                            onChange={() => {
+                                                this.updateTotals();
+                                            }}
                                             className={`scoretable__input scoretable__input--${playerName}`}
                                             type="number"
                                             max={10000}
@@ -74,7 +83,11 @@ export default class ScoreTable extends Component<
                         </td>
                         {this.props.playerNames.map(playerName => {
                             return (
-                                <td>{this.getTotalForPlayer(playerName)}</td>
+                                <td
+                                    className={`scoretable__cell--total-${playerName}`}
+                                >
+                                    0
+                                </td>
                             );
                         })}
                     </tr>
