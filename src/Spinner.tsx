@@ -14,7 +14,7 @@ export default class Spinner extends Component<ISpinnerProps, ISpinnerState> {
     constructor(props: ISpinnerProps) {
         super(props);
         this.state = {
-            rotation: 0,
+            rotation: -10,
             rotationDuration: 2
         };
     }

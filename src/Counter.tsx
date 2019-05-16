@@ -1,19 +1,16 @@
 import React from "react";
 import "./style/counter.scss";
 
-interface ICounterProps {
+export interface ICounterProps {
     title?: string;
     value?: number;
 }
 
-interface ICounterState {
+export interface ICounterState {
     value: number;
 }
 
-export default class Counter extends React.Component<
-    ICounterProps,
-    ICounterState
-> {
+export class Counter extends React.Component<ICounterProps, ICounterState> {
     constructor(props: ICounterProps) {
         super(props);
         this.state = {

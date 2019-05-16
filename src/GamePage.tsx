@@ -1,8 +1,9 @@
 import React from "react";
 import GameListing from "./GameListing";
 import Dice from "./Dice";
-import Counter from "./Counter";
+import { Counter } from "./Counter";
 import Spinner from "./Spinner";
+import ScoreTable from "./ScoreTable";
 interface Game {
     id: number;
     title: string;
@@ -38,15 +39,66 @@ export const GamePage = () => {
             }
         ];
     };
+
+    const getToolData = (): any[] => {
+        return [
+            {
+                typeId: 0,
+                title: "Dice",
+                maximumRoll: 10,
+                diceCount: 2
+            },
+            {
+                typeId: 1,
+                value: 10,
+                title: "Counter"
+            },
+            {
+                typeId: 2,
+                title: "Spinner"
+            },
+            {
+                typeId: 3,
+                title: "ScoreTable",
+                playerNames: ["Jake", "Alena", "Person"],
+                scoreNames: ["cols", "rows", "bonus", "pen"]
+            }
+        ];
+    };
+
     let out = getGames().map(x => (
         <GameListing title={x.title} description={x.description} />
     ));
 
-    out.push(<Dice />);
-    out.push(<Dice maximumRoll={100} />);
-    out.push(<Counter />);
-    out.push(<Counter value={10} />);
-    out.push(<Counter value={100} />);
-    out.push(<Spinner />);
+    getToolData().forEach(toolConfig => {
+        switch (toolConfig.typeId) {
+            case 0:
+                out.push(
+                    <Dice
+                        diceCount={toolConfig.diceCount}
+                        maximumRoll={6}
+                        title={toolConfig.title}
+                    />
+                );
+                break;
+            case 1:
+                out.push(<Counter title={toolConfig.title} />);
+                break;
+            case 2:
+                out.push(<Spinner title={toolConfig.title} />);
+                break;
+            case 3:
+                out.push(
+                    <ScoreTable
+                        title={toolConfig.title}
+                        playerNames={toolConfig.playerNames}
+                        scoreNames={toolConfig.scoreNames}
+                    />
+                );
+                break;
+            default:
+                break;
+        }
+    });
     return <div>{out}</div>;
 };

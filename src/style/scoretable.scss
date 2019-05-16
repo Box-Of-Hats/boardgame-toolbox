@@ -1,0 +1,21 @@
+@import "./mixins.scss";
+
+.scoretable {
+    @include card;
+    &__input {
+    }
+    &__row {
+    }
+    &__cell {
+        &--sum {
+            font-weight: bold;
+        }
+    }
+    &__table {
+        width: 100%;
+        text-align: center;
+    }
+    &__title {
+        @include title;
+    }
+}
