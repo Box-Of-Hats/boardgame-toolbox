@@ -4,12 +4,8 @@ import Dice from "./Dice";
 import { Counter } from "./Counter";
 import Spinner from "./Spinner";
 import ScoreTable from "./ScoreTable";
-interface Game {
-    id: number;
-    name: string;
-    description: string;
-    tools: Array<any>;
-}
+import { getGames } from "../dataManager";
+import { Game } from "../types/Game.interface";
 
 interface IGamePageProps {}
 
@@ -17,29 +13,11 @@ interface IGamePageState {
     games: Array<Game>;
 }
 
-const getConfigData = (): Array<Game> => {
-    return [
-        {
-            id: 0,
-            name: "Sushi GO!",
-            description: "A fast paced sushi making game.",
-            tools: [
-                {
-                    typeId: 3,
-                    title: "ScoreTable",
-                    playerNames: ["Jake", "Alena"],
-                    scoreNames: ["Round 1", "Round 2", "Round 3", "Dessert"]
-                }
-            ]
-        }
-    ];
-};
-
 export class GamePage extends Component<IGamePageProps, IGamePageState> {
     constructor(props: IGamePageProps) {
         super(props);
         this.state = {
-            games: getConfigData()
+            games: getGames()
         };
     }
 
