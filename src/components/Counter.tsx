@@ -1,5 +1,5 @@
 import React from "react";
-import "./style/counter.scss";
+import "../style/counter.scss";
 
 export interface ICounterProps {
     title?: string;

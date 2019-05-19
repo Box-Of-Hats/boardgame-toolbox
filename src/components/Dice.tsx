@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./style/dice.scss";
+import "../style/dice.scss";
 interface IDiceState {
     rollValues: number[];
     isAnimating: boolean;

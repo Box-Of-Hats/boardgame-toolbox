@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./style/scoretable.scss";
+import "../style/scoretable.scss";
 
 interface IScoreTableProps {
     title?: string;

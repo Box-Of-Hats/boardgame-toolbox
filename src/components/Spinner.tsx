@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./style/spinner.scss";
+import "../style/spinner.scss";
 
 interface ISpinnerState {
     rotation: number;
