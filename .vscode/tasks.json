@@ -4,12 +4,12 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Gulp default",
+            "label": "gulp default",
             "type": "shell",
             "command": "gulp"
         },
         {
-            "label": "Gulp watch",
+            "label": "gulp watch",
             "type": "shell",
             "command": "gulp watch"
         }

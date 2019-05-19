@@ -5,12 +5,19 @@
             "name": "Build",
             "type": "node",
             "request": "launch",
-            "protocol": "legacy",
             "cwd": "${workspaceFolder}",
             "runtimeExecutable": "npm",
             "args": ["start"],
             "runtimeArgs": ["--debug", "--inspect"],
-            "preLaunchTask": "Gulp watch"
+            "preLaunchTask": "gulp default"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:3000",
+            "preLaunchTask": "gulp",
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }
