@@ -1,5 +1,4 @@
 {
-    "short_name": "Board Game Toolkit",
     "name": "Board Game Toolkit",
     "icons": [
         {
@@ -9,7 +8,8 @@
         }
     ],
     "start_url": ".",
+    "scope": "/",
     "display": "standalone",
     "theme_color": "#ca6098",
-    "background_color": "#ffffff"
+    "background_color": "#eeeeee"
 }
