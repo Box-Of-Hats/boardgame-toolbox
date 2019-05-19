@@ -50,47 +50,49 @@ export default class ScoreTable extends Component<
                     {this.props.title ? this.props.title : "Scoretable"}
                 </div>
                 <table className="scoretable__table">
-                    <tr>
-                        <th />
-                        {this.props.playerNames.map(name => (
-                            <th>{name}</th>
-                        ))}
-                    </tr>
-                    {this.props.scoreNames.map(scoreName => {
-                        return (
-                            <tr className="scoretable__row">
-                                <td>{scoreName}</td>
-                                {this.props.playerNames.map(playerName => (
-                                    <td className="scoretable__cell">
-                                        <input
-                                            onChange={() => {
-                                                this.updateTotals();
-                                            }}
-                                            className={`scoretable__input scoretable__input--${playerName}`}
-                                            type="number"
-                                            max={10000}
-                                            min={-10000}
-                                            size={3}
-                                        />
-                                    </td>
-                                ))}
-                            </tr>
-                        );
-                    })}
-                    <tr>
-                        <td className="scoretable__cell scoretable__cell--sum">
-                            Sum
-                        </td>
-                        {this.props.playerNames.map(playerName => {
+                    <tbody>
+                        <tr>
+                            <th />
+                            {this.props.playerNames.map(name => (
+                                <th>{name}</th>
+                            ))}
+                        </tr>
+                        {this.props.scoreNames.map(scoreName => {
                             return (
-                                <td
-                                    className={`scoretable__cell--total-${playerName}`}
-                                >
-                                    0
-                                </td>
+                                <tr className="scoretable__row">
+                                    <td>{scoreName}</td>
+                                    {this.props.playerNames.map(playerName => (
+                                        <td className="scoretable__cell">
+                                            <input
+                                                onChange={() => {
+                                                    this.updateTotals();
+                                                }}
+                                                className={`scoretable__input scoretable__input--${playerName}`}
+                                                type="number"
+                                                max={10000}
+                                                min={-10000}
+                                                size={3}
+                                            />
+                                        </td>
+                                    ))}
+                                </tr>
                             );
                         })}
-                    </tr>
+                        <tr>
+                            <td className="scoretable__cell scoretable__cell--sum">
+                                Sum
+                            </td>
+                            {this.props.playerNames.map(playerName => {
+                                return (
+                                    <td
+                                        className={`scoretable__cell--total-${playerName}`}
+                                    >
+                                        0
+                                    </td>
+                                );
+                            })}
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         );
