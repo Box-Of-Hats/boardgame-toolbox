@@ -83,21 +83,24 @@ export default class GameManagement extends Component<
                                 id: 2,
                                 name: "Spinner",
                                 settingsSchema: {
-                                    name: "string"
+                                    id: 2,
+                                    name: "Spinner"
                                 }
                             },
                             {
                                 id: 1,
                                 name: "Counter",
                                 settingsSchema: {
-                                    name: "string"
+                                    id: 1,
+                                    name: "Counter"
                                 }
                             },
                             {
                                 id: 3,
                                 name: "ScoreTable",
                                 settingsSchema: {
-                                    name: "string",
+                                    id: 3,
+                                    name: "ScoreTable",
                                     names: ["person-1", "person-2", "..."]
                                 }
                             },
@@ -105,7 +108,8 @@ export default class GameManagement extends Component<
                                 id: 0,
                                 name: "Dice",
                                 settingsSchema: {
-                                    name: "string"
+                                    id: 0,
+                                    name: "Dice"
                                 }
                             }
                         ]}

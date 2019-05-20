@@ -14,6 +14,7 @@ interface IToolManagementProps {
 
 interface IToolManagementState {
     selectedConfig: IToolConfig | undefined;
+    configOptions: object;
 }
 
 export default class ToolManagement extends Component<
@@ -23,21 +24,35 @@ export default class ToolManagement extends Component<
     constructor(props: IToolManagementProps) {
         super(props);
         this.state = {
-            selectedConfig: this.props.options[0]
+            selectedConfig: this.props.options[0],
+            configOptions: this.props.options[0].settingsSchema
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleSelectedToolChange = this.handleSelectedToolChange.bind(
+            this
+        );
     }
 
-    handleChange(event) {
+    handleSelectedToolChange(event) {
         event.persist();
         this.setState((prevState, props) => {
             var selectedOption = this.props.options.filter(
                 opt => event.target.value == opt.id
             )[0];
             return {
-                selectedConfig: selectedOption
+                selectedConfig: selectedOption,
+                configOptions: selectedOption.settingsSchema
             };
+        });
+    }
+
+    handleChange(event) {
+        // Generic input event change handler
+        event.persist();
+        this.setState((prevState, props) => {
+            prevState[event.target.name] = event.target.value;
+            return prevState;
         });
     }
 
@@ -46,7 +61,7 @@ export default class ToolManagement extends Component<
             <div className="tool-management">
                 <select
                     className="tool-management__select"
-                    onChange={this.handleChange}
+                    onChange={this.handleSelectedToolChange}
                 >
                     {this.props.options.map(toolConfig => {
                         return (
@@ -60,15 +75,9 @@ export default class ToolManagement extends Component<
 
                 <textarea
                     className="tool-management__description"
-                    value={
-                        this.state.selectedConfig
-                            ? JSON.stringify(
-                                  this.state.selectedConfig.settingsSchema,
-                                  null,
-                                  2
-                              )
-                            : ""
-                    }
+                    name="configOptions"
+                    value={JSON.stringify(this.state.configOptions, null, 2)}
+                    onChange={this.handleChange}
                 />
             </div>
         );
