@@ -6,6 +6,7 @@ import Spinner from "./Spinner";
 import ScoreTable from "./ScoreTable";
 import { GamesDatabase } from "../GamesDatabase";
 import { Game } from "../types/Game.interface";
+import GameManagement from "./GameManagement";
 
 interface IGamePageProps {}
 
@@ -52,6 +53,8 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
             .catch(f => {
                 //Error
             });
+
+        out.push(<GameManagement />);
 
         this.state.games.forEach(gameConfig => {
             console.log(`Found game: ${gameConfig.name}`);

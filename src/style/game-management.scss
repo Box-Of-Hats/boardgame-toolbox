@@ -1,0 +1,28 @@
+@import "./mixins.scss";
+@import "./base.scss";
+
+.game-management {
+    @include card;
+    &__group {
+        min-height: 30px;
+        line-height: 30px;
+        display: flex;
+        justify-content: space-between;
+        margin: $padding-base 0;
+    }
+    &__input {
+        border: 1px solid darken($white, 10%);
+        border-radius: $borderRadius--standard;
+        &:focus {
+            border: 1px solid $blue;
+        }
+        width: 70%;
+    }
+    &__label {
+        font-size: 0.9em;
+        font-weight: 800;
+    }
+    &__button {
+        @include button;
+    }
+}

@@ -1,0 +1,18 @@
+@import "./base.scss";
+.tool-management {
+    width: 100%;
+    &__select {
+        height: 30px;
+        border-radius: $borderRadius--standard;
+        width: 100%;
+        font-size: 0.9em;
+    }
+    &__description {
+        font-size: 0.8em;
+        max-width: 98%;
+        min-width: 98%;
+        min-height: 10ch;
+        margin: $padding-base 0;
+        border-radius: $borderRadius--standard;
+    }
+}
