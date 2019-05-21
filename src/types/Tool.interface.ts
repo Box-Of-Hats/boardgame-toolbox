@@ -1,5 +1,5 @@
 export interface Tool {
-    typeId: number;
+    id: number;
     name: string;
     [other: string]: any;
 }

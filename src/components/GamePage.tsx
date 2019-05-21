@@ -57,7 +57,6 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
         out.push(<GameManagement />);
 
         this.state.games.forEach(gameConfig => {
-            console.log(`Found game: ${gameConfig.name}`);
             out.push(
                 <GameListing
                     title={gameConfig.name}
@@ -65,7 +64,7 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
                 />
             );
             gameConfig.tools.forEach(toolConfig => {
-                switch (toolConfig.typeId) {
+                switch (toolConfig.id) {
                     case 0:
                         out.push(
                             <Dice

@@ -37,34 +37,34 @@ export class GamesDatabase extends Dexie {
 
     addSeedGames(): Game[] {
         const seedGames = [
-            {
-                id: 0,
-                name: "Sushi GO!",
-                description: "A fast paced sushi making game.",
-                tools: [
-                    {
-                        typeId: 3,
-                        name: "ScoreTable",
-                        playerNames: ["Jake", "Alena"],
-                        scoreNames: ["Round 1", "Round 2", "Round 3", "Dessert"]
-                    }
-                ]
-            },
-            {
-                id: 1,
-                name: "Monopoly",
-                description: "Seriously, why does anyone play this game?",
-                tools: [
-                    {
-                        typeId: 0,
-                        name: "Dicey Dice"
-                    },
-                    {
-                        typeId: 2,
-                        name: "Spinny Spinner"
-                    }
-                ]
-            }
+            // {
+            //     id: 0,
+            //     name: "Sushi GO!",
+            //     description: "A fast paced sushi making game.",
+            //     tools: [
+            //         {
+            //             id: 3,
+            //             name: "ScoreTable",
+            //             playerNames: ["Jake", "Alena"],
+            //             scoreNames: ["Round 1", "Round 2", "Round 3", "Dessert"]
+            //         }
+            //     ]
+            // },
+            // {
+            //     id: 1,
+            //     name: "Monopoly",
+            //     description: "Seriously, why does anyone play this game?",
+            //     tools: [
+            //         {
+            //             id: 0,
+            //             name: "Dicey Dice"
+            //         },
+            //         {
+            //             id: 2,
+            //             name: "Spinny Spinner"
+            //         }
+            //     ]
+            // }
         ];
         this.games.bulkPut(seedGames);
         return seedGames;

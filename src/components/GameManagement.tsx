@@ -25,6 +25,7 @@ export default class GameManagement extends Component<
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.setTools = this.setTools.bind(this);
     }
 
     handleChange(event) {
@@ -32,6 +33,12 @@ export default class GameManagement extends Component<
         this.setState((prevState, props) => {
             prevState[event.target.name] = event.target.value;
             return prevState;
+        });
+    }
+
+    setTools(tools: any[]) {
+        this.setState({
+            tools: tools
         });
     }
 
@@ -90,14 +97,15 @@ export default class GameManagement extends Component<
                             {
                                 id: 3,
                                 name: "ScoreTable",
-                                names: ["person-1", "person-2"],
-                                scores: ["Round 1", "Round 2", "Round 3"]
+                                playerNames: ["person-1", "person-2"],
+                                scoreNames: ["Round 1", "Round 2", "Round 3"]
                             },
                             {
                                 id: 0,
                                 name: "Dice"
                             }
                         ]}
+                        handleChange={this.setTools}
                     />
                 </div>
                 <div

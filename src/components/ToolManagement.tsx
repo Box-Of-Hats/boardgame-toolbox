@@ -9,10 +9,12 @@ interface IToolConfig {
 
 interface IToolManagementProps {
     options: IToolConfig[];
+    handleChange: Function;
 }
 
 interface IToolManagementState {
     selectedConfig: IToolConfig | undefined;
+    toolConfigString: string;
 }
 
 export default class ToolManagement extends Component<
@@ -22,18 +24,16 @@ export default class ToolManagement extends Component<
     constructor(props: IToolManagementProps) {
         super(props);
         this.state = {
-            selectedConfig: this.props.options[0]
+            selectedConfig: this.props.options[0],
+            toolConfigString: JSON.stringify([], null, 2)
         };
 
-        this.handleChange = this.handleChange.bind(this);
         this.handleSelectedToolChange = this.handleSelectedToolChange.bind(
             this
         );
-        this.getSelectedTool = this.getSelectedTool.bind(this);
-    }
-
-    getSelectedTool() {
-        return this.state.selectedConfig;
+        this.addTool = this.addTool.bind(this);
+        this.handleConfigChange = this.handleConfigChange.bind(this);
+        this.isValidJson = this.isValidJson.bind(this);
     }
 
     handleSelectedToolChange(event) {
@@ -48,12 +48,43 @@ export default class ToolManagement extends Component<
         });
     }
 
-    handleChange(event) {
-        // Generic input event change handler
+    isValidJson() {
+        //Check if the current toolConfigString is valid json
+        try {
+            JSON.parse(this.state.toolConfigString);
+            return true;
+        } catch {
+            return false;
+        }
+    }
+
+    handleConfigChange(event) {
+        // Config text box was changed
         event.persist();
         this.setState((prevState, props) => {
-            prevState[event.target.name] = event.target.value;
-            return prevState;
+            return {
+                toolConfigString: event.target.value
+            };
+        });
+        if (this.isValidJson()) {
+            this.props.handleChange(JSON.parse(this.state.toolConfigString));
+        }
+    }
+
+    addTool() {
+        // Add a tool to the config
+        if (!this.isValidJson()) {
+            return false;
+        }
+        this.setState((prevstate, props) => {
+            let toolConfig = JSON.parse(prevstate.toolConfigString);
+            toolConfig.push(this.state.selectedConfig);
+
+            this.props.handleChange(toolConfig);
+
+            return {
+                toolConfigString: JSON.stringify(toolConfig, null, 2)
+            };
         });
     }
 
@@ -73,12 +104,21 @@ export default class ToolManagement extends Component<
                     })}
                     )}
                 </select>
-
+                <div
+                    className={`tool-management__button  ${
+                        this.isValidJson()
+                            ? ""
+                            : "tool-management__button--disabled"
+                    }`}
+                    onClick={this.addTool}
+                >
+                    Add +
+                </div>
                 <textarea
                     className="tool-management__description"
                     name="configOptions"
-                    value={JSON.stringify(this.state.selectedConfig, null, 2)}
-                    onChange={this.handleChange}
+                    value={this.state.toolConfigString}
+                    onChange={this.handleConfigChange}
                 />
             </div>
         );

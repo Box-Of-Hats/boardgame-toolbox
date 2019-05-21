@@ -11,7 +11,7 @@ const GameListing = ({ title, description }: GameListingProps) => {
         <div className="game-listing">
             <div className="game-listing__title">{title}</div>
             <div className="game-listing__description">{description}</div>
-            <div className="game-listing__button">Add +</div>
+            {/* <div className="game-listing__button">Add +</div> */}
         </div>
     );
 };
