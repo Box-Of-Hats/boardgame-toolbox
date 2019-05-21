@@ -4,7 +4,6 @@ import "../style/tool-management.scss";
 interface IToolConfig {
     id: number;
     name: string;
-    settingsSchema: object;
     [key: string]: any;
 }
 
@@ -14,7 +13,6 @@ interface IToolManagementProps {
 
 interface IToolManagementState {
     selectedConfig: IToolConfig | undefined;
-    configOptions: object;
 }
 
 export default class ToolManagement extends Component<
@@ -24,25 +22,28 @@ export default class ToolManagement extends Component<
     constructor(props: IToolManagementProps) {
         super(props);
         this.state = {
-            selectedConfig: this.props.options[0],
-            configOptions: this.props.options[0].settingsSchema
+            selectedConfig: this.props.options[0]
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSelectedToolChange = this.handleSelectedToolChange.bind(
             this
         );
+        this.getSelectedTool = this.getSelectedTool.bind(this);
+    }
+
+    getSelectedTool() {
+        return this.state.selectedConfig;
     }
 
     handleSelectedToolChange(event) {
         event.persist();
         this.setState((prevState, props) => {
             var selectedOption = this.props.options.filter(
-                opt => event.target.value == opt.id
+                opt => event.target.value === opt.id.toString()
             )[0];
             return {
-                selectedConfig: selectedOption,
-                configOptions: selectedOption.settingsSchema
+                selectedConfig: selectedOption
             };
         });
     }
@@ -76,7 +77,7 @@ export default class ToolManagement extends Component<
                 <textarea
                     className="tool-management__description"
                     name="configOptions"
-                    value={JSON.stringify(this.state.configOptions, null, 2)}
+                    value={JSON.stringify(this.state.selectedConfig, null, 2)}
                     onChange={this.handleChange}
                 />
             </div>

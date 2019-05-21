@@ -40,7 +40,7 @@ export default class GameManagement extends Component<
         db.addGame({
             name: this.state.name,
             description: this.state.description,
-            tools: []
+            tools: this.state.tools
         });
     }
 
@@ -81,36 +81,21 @@ export default class GameManagement extends Component<
                         options={[
                             {
                                 id: 2,
-                                name: "Spinner",
-                                settingsSchema: {
-                                    id: 2,
-                                    name: "Spinner"
-                                }
+                                name: "Spinner"
                             },
                             {
                                 id: 1,
-                                name: "Counter",
-                                settingsSchema: {
-                                    id: 1,
-                                    name: "Counter"
-                                }
+                                name: "Counter"
                             },
                             {
                                 id: 3,
                                 name: "ScoreTable",
-                                settingsSchema: {
-                                    id: 3,
-                                    name: "ScoreTable",
-                                    names: ["person-1", "person-2", "..."]
-                                }
+                                names: ["person-1", "person-2"],
+                                scores: ["Round 1", "Round 2", "Round 3"]
                             },
                             {
                                 id: 0,
-                                name: "Dice",
-                                settingsSchema: {
-                                    id: 0,
-                                    name: "Dice"
-                                }
+                                name: "Dice"
                             }
                         ]}
                     />
