@@ -10,6 +10,8 @@ interface IToolConfig {
 interface IToolManagementProps {
     options: IToolConfig[];
     handleChange: Function;
+    toolJson: string;
+    onToolJsonChange: Function;
 }
 
 interface IToolManagementState {
@@ -117,8 +119,8 @@ export default class ToolManagement extends Component<
                 <textarea
                     className="tool-management__description"
                     name="configOptions"
-                    value={this.state.toolConfigString}
-                    onChange={this.handleConfigChange}
+                    value={this.props.toolJson}
+                    onChange={this.props.onToolJsonChange}
                 />
             </div>
         );

@@ -10,6 +10,7 @@ interface IGameManagementState {
     name: string;
     description: string;
     tools: Tool[];
+    toolJson: "";
 }
 
 export default class GameManagement extends Component<
@@ -21,7 +22,8 @@ export default class GameManagement extends Component<
         this.state = {
             name: "",
             description: "",
-            tools: []
+            tools: [],
+            toolJson: ""
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -106,6 +108,8 @@ export default class GameManagement extends Component<
                             }
                         ]}
                         handleChange={this.setTools}
+                        toolJson={this.state.toolJson}
+                        onToolJsonChange={}
                     />
                 </div>
                 <div
