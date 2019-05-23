@@ -54,7 +54,30 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
                 //Error
             });
 
-        out.push(<GameManagement />);
+        out.push(
+            <GameManagement
+                toolOptions={[
+                    {
+                        id: 2,
+                        name: "Spinner"
+                    },
+                    {
+                        id: 1,
+                        name: "Counter"
+                    },
+                    {
+                        id: 3,
+                        name: "ScoreTable",
+                        playerNames: ["person-1", "person-2"],
+                        scoreNames: ["Round 1", "Round 2", "Round 3"]
+                    },
+                    {
+                        id: 0,
+                        name: "Dice"
+                    }
+                ]}
+            />
+        );
 
         this.state.games.forEach(gameConfig => {
             out.push(

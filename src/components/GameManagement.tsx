@@ -2,15 +2,24 @@ import React, { Component } from "react";
 import "../style/game-management.scss";
 import { Tool } from "../types/Tool.interface";
 import { GamesDatabase } from "../GamesDatabase";
-import ToolManagement from "./ToolManagement";
 
-interface IGameManagementProps {}
+interface IToolConfig {
+    id: number;
+    name: string;
+    [key: string]: any;
+}
+
+interface IGameManagementProps {
+    toolOptions: IToolConfig[];
+}
 
 interface IGameManagementState {
     name: string;
     description: string;
-    tools: Tool[];
-    toolJson: "";
+    //tools: Tool[];
+    options: IToolConfig[];
+    toolJson: string;
+    selectedTool: IToolConfig | undefined;
 }
 
 export default class GameManagement extends Component<
@@ -22,12 +31,15 @@ export default class GameManagement extends Component<
         this.state = {
             name: "",
             description: "",
-            tools: [],
-            toolJson: ""
+            toolJson: "[]",
+            options: this.props.toolOptions,
+            selectedTool: this.props.toolOptions[0]
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.setTools = this.setTools.bind(this);
+        this.handleToolSelectChange = this.handleToolSelectChange.bind(this);
+        this.addTool = this.addTool.bind(this);
+        this.handleConfigJsonChange = this.handleConfigJsonChange.bind(this);
     }
 
     handleChange(event) {
@@ -38,9 +50,45 @@ export default class GameManagement extends Component<
         });
     }
 
-    setTools(tools: any[]) {
+    isValidJson() {
+        //Check if the current toolJson is valid json
+        try {
+            JSON.parse(this.state.toolJson);
+            return true;
+        } catch {
+            return false;
+        }
+    }
+
+    addTool() {
+        // Add the currently selected tool to the tool list json
+        if (!this.isValidJson) {
+            return false;
+        }
+        this.setState((prevstate, props) => {
+            let toolConfig = JSON.parse(prevstate.toolJson);
+            toolConfig.push(this.state.selectedTool);
+
+            return {
+                toolJson: JSON.stringify(toolConfig, null, 2)
+            };
+        });
+    }
+
+    handleToolSelectChange(event) {
+        event.persist();
         this.setState({
-            tools: tools
+            selectedTool: this.state.options.filter(
+                opt => event.target.value === opt.id.toString()
+            )[0]
+        });
+    }
+
+    handleConfigJsonChange(event) {
+        // Config text box was changed
+        event.persist();
+        this.setState({
+            toolJson: event.target.value
         });
     }
 
@@ -49,11 +97,15 @@ export default class GameManagement extends Component<
         db.addGame({
             name: this.state.name,
             description: this.state.description,
-            tools: this.state.tools
+            tools: JSON.parse(this.state.toolJson)
         });
     }
 
     render() {
+        let options = this.state.options.map(o => {
+            return <option value={o.id}>{o.name}</option>;
+        });
+
         let fields = ["name", "description"].map(x => {
             return (
                 <div className="game-management__group">
@@ -86,34 +138,46 @@ export default class GameManagement extends Component<
                     />
                 </div>
                 <div className="game-management__group">
-                    <ToolManagement
-                        options={[
-                            {
-                                id: 2,
-                                name: "Spinner"
-                            },
-                            {
-                                id: 1,
-                                name: "Counter"
-                            },
-                            {
-                                id: 3,
-                                name: "ScoreTable",
-                                playerNames: ["person-1", "person-2"],
-                                scoreNames: ["Round 1", "Round 2", "Round 3"]
-                            },
-                            {
-                                id: 0,
-                                name: "Dice"
-                            }
-                        ]}
-                        handleChange={this.setTools}
-                        toolJson={this.state.toolJson}
-                        onToolJsonChange={}
+                    <select
+                        className="game-management__input"
+                        onChange={this.handleToolSelectChange}
+                    >
+                        {options}
+                    </select>
+                    <div
+                        className={`game-management__button  ${
+                            this.isValidJson()
+                                ? ""
+                                : "game-management__button--disabled"
+                        }`}
+                        onClick={this.addTool}
+                    >
+                        Add +
+                    </div>
+                </div>
+                <div className="game-management__group">
+                    <textarea
+                        className="game-management__textarea"
+                        name="configOptions"
+                        value={this.state.toolJson}
+                        onChange={this.handleConfigJsonChange}
                     />
                 </div>
+                {!this.isValidJson() && (
+                    <div
+                        className={
+                            "game-management__message game-management__message--error"
+                        }
+                    >
+                        Invalid JSON
+                    </div>
+                )}
                 <div
-                    className="game-management__button"
+                    className={`game-management__button ${
+                        this.isValidJson()
+                            ? ""
+                            : "game-management__button--disabled"
+                    }`}
                     onClick={this.handleSubmit}
                 >
                     Save

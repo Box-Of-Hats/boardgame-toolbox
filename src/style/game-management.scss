@@ -24,5 +24,23 @@
     }
     &__button {
         @include button;
+        width: 17%;
+    }
+    &__textarea {
+        box-sizing: border-box;
+        font-size: 0.8em;
+        max-width: 100%;
+        min-width: 100%;
+        min-height: 10ch;
+        margin: $padding-base 0;
+        border-radius: $borderRadius--standard;
+    }
+    &__message {
+        text-align: center;
+        font-size: 0.8em;
+        font-weight: 800;
+        &--error {
+            color: $red;
+        }
     }
 }
