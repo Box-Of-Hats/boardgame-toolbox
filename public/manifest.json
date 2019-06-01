@@ -1,5 +1,6 @@
 {
-    "name": "Board Game Toolkit",
+    "name": "Board Game Toolbox",
+    "short_name": "BG Toolbox",
     "icons": [
         {
             "src": "favicon.ico",

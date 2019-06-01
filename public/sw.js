@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-globals */
 self.oninstall = () => {
     caches
-        .open("boardGameToolkit")
+        .open("boardgame-toolbox")
         .then(cache => {
             cache.addAll([
                 "/",
