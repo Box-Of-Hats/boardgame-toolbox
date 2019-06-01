@@ -14,7 +14,9 @@ type Config = {
 };
 
 export function register(config?: Config) {
-    if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
+    const isInProd = process.env.NODE_ENV === "production";
+    //Service worker registration usually checks if we're in prod for some reason
+    if ("serviceWorker" in navigator) {
         // The URL constructor is available in all browsers that support SW.
         const publicUrl = new URL(
             (process as { env: { [key: string]: string } }).env.PUBLIC_URL,
@@ -25,7 +27,7 @@ export function register(config?: Config) {
         }
 
         window.addEventListener("load", () => {
-            const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+            const swUrl = `${process.env.PUBLIC_URL}/sw.js`;
 
             if (isLocalhost) {
                 // This is running on localhost. Let's check if a service worker still exists or not.
