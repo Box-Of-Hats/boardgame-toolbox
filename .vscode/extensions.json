@@ -1,0 +1,15 @@
+{
+    "recommendations": [
+        "robinbentley.sass-indented",
+        "glen-84.sass-lint",
+        "mrmlnc.vscode-scss",
+        "ms-vscode.vscode-typescript-tslint-plugin",
+        "planbcoding.vscode-react-refactor",
+        "esbenp.prettier-vscode",
+        "christian-kohler.path-intellisense",
+        "joshuapoehls.json-escaper",
+        "vincaslt.highlight-matching-tag",
+        "msjsdiag.debugger-for-chrome",
+        "box-of-hats.bemhelper"
+    ]
+}
