@@ -8,15 +8,13 @@
             "cwd": "${workspaceFolder}",
             "runtimeExecutable": "npm",
             "args": ["start"],
-            "runtimeArgs": ["--debug", "--inspect"],
-            "preLaunchTask": "gulp default"
+            "runtimeArgs": ["--debug", "--inspect"]
         },
         {
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
             "url": "http://localhost:3000",
-            "preLaunchTask": "gulp default",
             "webRoot": "${workspaceFolder}"
         }
     ]
