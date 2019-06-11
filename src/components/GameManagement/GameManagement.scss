@@ -1,5 +1,4 @@
-@import "./mixins.scss";
-@import "./base.scss";
+@import "style/mixins.scss";
 
 .game-management {
     @include card;

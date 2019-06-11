@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import "../style/spinner.scss";
+import React, { Component } from 'react';
+import './Spinner.scss';
 
 interface ISpinnerState {
     rotation: number;
@@ -49,28 +49,28 @@ export default class Spinner extends Component<ISpinnerProps, ISpinnerState> {
 
     render() {
         return (
-            <div className="spinner">
-                <div className="spinner__title">
-                    {this.props.title ? this.props.title : "Spinner"}
+            <div className='spinner'>
+                <div className='spinner__title'>
+                    {this.props.title ? this.props.title : 'Spinner'}
                 </div>
                 <div
-                    className="spinner__body"
+                    className='spinner__body'
                     onClick={() => {
                         this.spin(720, 1440, 4);
                     }}
                 >
                     <div
-                        className="spinner__arrow"
+                        className='spinner__arrow'
                         style={{
                             transform: `rotate(${this.state.rotation}deg)`,
                             transition: `${this.state.rotationDuration}s`
                         }}
                     >
-                        <div className="spinner__tip">^</div>
+                        <div className='spinner__tip'>^</div>
                     </div>
                 </div>
                 <div
-                    className="spinner__button"
+                    className='spinner__button'
                     onClick={() => {
                         this.spin(720, 1440, 4);
                     }}

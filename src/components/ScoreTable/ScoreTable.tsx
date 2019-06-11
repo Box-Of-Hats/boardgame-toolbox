@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import "../style/scoretable.scss";
+import React, { Component } from 'react';
+import './ScoreTable.scss';
 
 interface IScoreTableProps {
     title?: string;
@@ -45,11 +45,11 @@ export default class ScoreTable extends Component<
 
     render() {
         return (
-            <div className="scoretable">
-                <div className="scoretable__title">
-                    {this.props.title ? this.props.title : "Scoretable"}
+            <div className='scoretable'>
+                <div className='scoretable__title'>
+                    {this.props.title ? this.props.title : 'Scoretable'}
                 </div>
-                <table className="scoretable__table">
+                <table className='scoretable__table'>
                     <tbody>
                         <tr>
                             <th />
@@ -59,16 +59,16 @@ export default class ScoreTable extends Component<
                         </tr>
                         {this.props.scoreNames.map(scoreName => {
                             return (
-                                <tr className="scoretable__row">
+                                <tr className='scoretable__row'>
                                     <td>{scoreName}</td>
                                     {this.props.playerNames.map(playerName => (
-                                        <td className="scoretable__cell">
+                                        <td className='scoretable__cell'>
                                             <input
                                                 onChange={() => {
                                                     this.updateTotals();
                                                 }}
                                                 className={`scoretable__input scoretable__input--${playerName}`}
-                                                type="number"
+                                                type='number'
                                                 max={10000}
                                                 min={-10000}
                                                 size={3}
@@ -79,7 +79,7 @@ export default class ScoreTable extends Component<
                             );
                         })}
                         <tr>
-                            <td className="scoretable__cell scoretable__cell--sum">
+                            <td className='scoretable__cell scoretable__cell--sum'>
                                 Sum
                             </td>
                             {this.props.playerNames.map(playerName => {

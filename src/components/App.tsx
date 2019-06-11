@@ -1,6 +1,6 @@
 import React from "react";
 
-import { GamePage } from "./GamePage";
+import { GamePage } from "./GamePage/GamePage";
 
 const App: React.FC = () => {
     return (

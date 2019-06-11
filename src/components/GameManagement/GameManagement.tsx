@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import "../style/game-management.scss";
-import { Tool } from "../types/Tool.interface";
-import { GamesDatabase } from "../GamesDatabase";
+import React, { Component } from 'react';
+import './GameManagement.scss';
+//import { Tool } from "../../types/Tool.interface";
+import { GamesDatabase } from 'GamesDatabase';
 
 interface IToolConfig {
     id: number;
@@ -29,9 +29,9 @@ export default class GameManagement extends Component<
     constructor(props) {
         super(props);
         this.state = {
-            name: "",
-            description: "",
-            toolJson: "[]",
+            name: '',
+            description: '',
+            toolJson: '[]',
             options: this.props.toolOptions,
             selectedTool: this.props.toolOptions[0]
         };
@@ -106,40 +106,40 @@ export default class GameManagement extends Component<
             return <option value={o.id}>{o.name}</option>;
         });
 
-        let fields = ["name", "description"].map(x => {
+        let fields = ['name', 'description'].map(x => {
             return (
-                <div className="game-management__group">
-                    <div className="game-management__label">{x}</div>
-                    <input className="game-management__input" type="text" />
+                <div className='game-management__group'>
+                    <div className='game-management__label'>{x}</div>
+                    <input className='game-management__input' type='text' />
                 </div>
             );
         });
 
         return (
-            <div className="game-management">
-                <div className="game-management__group">
-                    <div className="game-management__label">name</div>
+            <div className='game-management'>
+                <div className='game-management__group'>
+                    <div className='game-management__label'>name</div>
                     <input
-                        className="game-management__input"
-                        name="name"
-                        type="text"
+                        className='game-management__input'
+                        name='name'
+                        type='text'
                         onChange={this.handleChange}
                         value={this.state.name}
                     />
                 </div>
-                <div className="game-management__group">
-                    <div className="game-management__label">description</div>
+                <div className='game-management__group'>
+                    <div className='game-management__label'>description</div>
                     <input
-                        className="game-management__input"
-                        name="description"
-                        type="text"
+                        className='game-management__input'
+                        name='description'
+                        type='text'
                         onChange={this.handleChange}
                         value={this.state.description}
                     />
                 </div>
-                <div className="game-management__group">
+                <div className='game-management__group'>
                     <select
-                        className="game-management__input"
+                        className='game-management__input'
                         onChange={this.handleToolSelectChange}
                     >
                         {options}
@@ -147,18 +147,18 @@ export default class GameManagement extends Component<
                     <div
                         className={`game-management__button  ${
                             this.isValidJson()
-                                ? ""
-                                : "game-management__button--disabled"
+                                ? ''
+                                : 'game-management__button--disabled'
                         }`}
                         onClick={this.addTool}
                     >
                         Add +
                     </div>
                 </div>
-                <div className="game-management__group">
+                <div className='game-management__group'>
                     <textarea
-                        className="game-management__textarea"
-                        name="configOptions"
+                        className='game-management__textarea'
+                        name='configOptions'
                         value={this.state.toolJson}
                         onChange={this.handleConfigJsonChange}
                     />
@@ -166,7 +166,7 @@ export default class GameManagement extends Component<
                 {!this.isValidJson() && (
                     <div
                         className={
-                            "game-management__message game-management__message--error"
+                            'game-management__message game-management__message--error'
                         }
                     >
                         Invalid JSON
@@ -175,8 +175,8 @@ export default class GameManagement extends Component<
                 <div
                     className={`game-management__button ${
                         this.isValidJson()
-                            ? ""
-                            : "game-management__button--disabled"
+                            ? ''
+                            : 'game-management__button--disabled'
                     }`}
                     onClick={this.handleSubmit}
                 >

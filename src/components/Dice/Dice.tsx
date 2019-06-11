@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import "../style/dice.scss";
+import React, { Component } from 'react';
+import './Dice.scss';
 interface IDiceState {
     rollValues: number[];
     isAnimating: boolean;
@@ -42,21 +42,21 @@ export default class Dice extends Component<IDiceProps, IDiceState> {
             dice.push(
                 <div
                     className={`dice-tool__dice ${
-                        this.state.isAnimating ? "dice-tool__dice--roll" : ""
+                        this.state.isAnimating ? 'dice-tool__dice--roll' : ''
                     }`}
                 >
-                    {this.state.isAnimating ? "?" : this.state.rollValues[i]}
+                    {this.state.isAnimating ? '?' : this.state.rollValues[i]}
                 </div>
             );
         }
         return (
-            <div className="dice-tool">
-                <div className="dice-tool__title">
-                    {this.props.title ? this.props.title : "Dice"}
+            <div className='dice-tool'>
+                <div className='dice-tool__title'>
+                    {this.props.title ? this.props.title : 'Dice'}
                 </div>
-                <div className="dice-tool__dice-container">{dice}</div>
+                <div className='dice-tool__dice-container'>{dice}</div>
                 <div
-                    className="dice-tool__button"
+                    className='dice-tool__button'
                     onClick={() => this.randomiseRoll(this.props.maximumRoll)}
                 >
                     Roll
