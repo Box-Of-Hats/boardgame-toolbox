@@ -1,5 +1,5 @@
-@import "./mixins.scss";
-@import "./base.scss";
+@import "style/mixins.scss";
+
 .game-listing {
     @include card;
     &__button {

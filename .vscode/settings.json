@@ -1,0 +1,14 @@
+{
+    "editor.formatOnSave": true,
+    "prettier.tabWidth": 4,
+    "prettier.singleQuote": true,
+    "prettier.printWidth": 80,
+    "prettier.bracketSpacing": false,
+    "prettier.semi": true,
+    "prettier.useTabs": false,
+    "prettier.trailingComma": "none",
+    "prettier.jsxBracketSameLine": true,
+    "files.exclude": {
+        "**/node_modules": true
+    }
+}

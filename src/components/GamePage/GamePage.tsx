@@ -1,12 +1,13 @@
-import React, { Component } from "react";
-import GameListing from "./GameListing";
-import Dice from "./Dice";
-import { Counter } from "./Counter";
-import Spinner from "./Spinner";
-import ScoreTable from "./ScoreTable";
-import { GamesDatabase } from "../GamesDatabase";
-import { Game } from "../types/Game.interface";
-import GameManagement from "./GameManagement";
+import { Counter } from 'components/Counter/Counter';
+import { Game } from 'types/Game.interface';
+import { GamesDatabase } from 'GamesDatabase';
+
+import Dice from 'components/Dice/Dice';
+import GameListing from 'components/GameListing/GameListing';
+import GameManagement from 'components/GameManagement/GameManagement';
+import React, { Component } from 'react';
+import ScoreTable from 'components/ScoreTable/ScoreTable';
+import Spinner from 'components/Spinner/Spinner';
 
 interface IGamePageProps {}
 
@@ -59,21 +60,21 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
                 toolOptions={[
                     {
                         id: 2,
-                        name: "Spinner"
+                        name: 'Spinner'
                     },
                     {
                         id: 1,
-                        name: "Counter"
+                        name: 'Counter'
                     },
                     {
                         id: 3,
-                        name: "ScoreTable",
-                        playerNames: ["person-1", "person-2"],
-                        scoreNames: ["Round 1", "Round 2", "Round 3"]
+                        name: 'ScoreTable',
+                        playerNames: ['person-1', 'person-2'],
+                        scoreNames: ['Round 1', 'Round 2', 'Round 3']
                     },
                     {
                         id: 0,
-                        name: "Dice"
+                        name: 'Dice'
                     }
                 ]}
             />

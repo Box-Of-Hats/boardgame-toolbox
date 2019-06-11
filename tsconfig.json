@@ -14,7 +14,8 @@
         "isolatedModules": true,
         "noImplicitAny": false,
         "noEmit": true,
-        "jsx": "preserve"
+        "jsx": "preserve",
+        "baseUrl": "src"
     },
     "include": ["src"],
     "exclude": ["**/*.js"]

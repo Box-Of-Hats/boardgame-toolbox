@@ -1,5 +1,5 @@
-import React from "react";
-import "../style/counter.scss";
+import React from 'react';
+import './Counter.scss';
 
 export interface ICounterProps {
     title?: string;
@@ -26,20 +26,20 @@ export class Counter extends React.Component<ICounterProps, ICounterState> {
 
     render() {
         return (
-            <div className="counter">
-                <div className="counter__title">
-                    {this.props.title ? this.props.title : "Counter"}
+            <div className='counter'>
+                <div className='counter__title'>
+                    {this.props.title ? this.props.title : 'Counter'}
                 </div>
                 <div
-                    className="counter__button counter__button--inc"
+                    className='counter__button counter__button--inc'
                     onClick={() => this.modCounter(1)}
                 >
                     ++
                 </div>
-                <div className="counter__value">{this.state.value}</div>
+                <div className='counter__value'>{this.state.value}</div>
 
                 <div
-                    className="counter__button counter__button--dec"
+                    className='counter__button counter__button--dec'
                     onClick={() => this.modCounter(-1)}
                 >
                     --
