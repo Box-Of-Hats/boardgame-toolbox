@@ -169,15 +169,17 @@ export default class GameManagement extends Component<
                         Invalid JSON
                     </div>
                 )}
-                <div
-                    className={`game-management__button ${
-                        this.isValidJson()
-                            ? ''
-                            : 'game-management__button--disabled'
-                    }`}
-                    onClick={this.handleSubmit}>
-                    Save
-                </div>
+                <a href='/'>
+                    <div
+                        className={`game-management__button ${
+                            this.isValidJson()
+                                ? ''
+                                : 'game-management__button--disabled'
+                        }`}
+                        onClick={this.handleSubmit}>
+                        Save
+                    </div>
+                </a>
             </div>
         );
     }

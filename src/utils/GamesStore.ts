@@ -45,7 +45,7 @@ export default class GamesStore {
         } else {
             let gamesList = this.getGames();
             gamesList = gamesList.filter(game => {
-                return game.id !== gameId;
+                return game.id != gameId;
             });
             localStorage.setItem(
                 this.localStorageName,

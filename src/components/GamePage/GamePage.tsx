@@ -7,6 +7,8 @@ import Dice from 'components/Dice/Dice';
 import ScoreTable from 'components/ScoreTable/ScoreTable';
 import Spinner from 'components/Spinner/Spinner';
 
+import './GamePage.scss';
+
 interface IGamePageProps {
     match: any;
 }
@@ -34,17 +36,38 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
     render() {
         var out: any[] = [];
 
-        out.push(<h3>This is a game page!</h3>);
-        out.push(<a href='/'>BACK</a>);
+        out.push(
+            <a href='/'>
+                <div className='game-page__button'>back</div>
+            </a>
+        );
+
+        out.push(
+            <a href='/'>
+                <div
+                    className='game-page__button'
+                    onClick={() =>
+                        this.state.gamesStore.deleteGame(this.state.gameId)
+                    }>
+                    delete
+                </div>
+            </a>
+        );
 
         let game = this.state.gamesStore.getGame(this.state.gameId);
 
         if (!game) {
+            out.push(<div className='game-page__title'>Game Page</div>);
             out.push(
                 <p>We couldnt find a game with ID: '{this.state.gameId}'</p>
             );
             return out;
         }
+
+        out.push(<div className='game-page__title'>{game.name}</div>);
+        out.push(
+            <div className='game-page__description'>{game.description}</div>
+        );
 
         game.tools.forEach(toolConfig => {
             switch (toolConfig.id) {
@@ -77,6 +100,6 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
             }
         });
 
-        return <div>{out}</div>;
+        return <div className='game-page'>{out}</div>;
     }
 }

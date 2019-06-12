@@ -1,11 +1,12 @@
 import React, {SFC} from 'react';
 import GameManagement from 'components/GameManagement/GameManagement';
+import './GameManagementForm.scss';
 
 const GameManagementForm: SFC = () => {
     return (
-        <div>
-            <h2>Game Management Page</h2>
-            <a href='/'>BACK</a>
+        <div className='game-management-form'>
+            <div className='game-management-form__title'>Add new game</div>
+
             <GameManagement
                 toolOptions={[
                     {
@@ -28,6 +29,9 @@ const GameManagementForm: SFC = () => {
                     }
                 ]}
             />
+            <a className='game-management-form__button' href='/'>
+                BACK
+            </a>
         </div>
     );
 };

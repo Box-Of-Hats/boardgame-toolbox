@@ -16,8 +16,10 @@ export class GamesList extends Component<GamesListProps, GamesListState> {
     render() {
         return (
             <div className='games-list'>
-                <div className='games-list__title'>Games List is here</div>
-                <a href='/add'>ADD NEW</a>
+                <div className='games-list__title'>My Games</div>
+                <a href='/add'>
+                    <div className='games-list__button'>ADD NEW</div>
+                </a>
                 {this.gamesStore.getGames().map(game => {
                     return (
                         <a href={`/game/${game.id}`}>

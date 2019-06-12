@@ -1,0 +1,10 @@
+@import 'src/style/base.scss';
+
+.game-page {
+    &__title {
+        @include title;
+    }
+    &__button {
+        @include button;
+    }
+}

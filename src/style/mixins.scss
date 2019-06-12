@@ -15,6 +15,9 @@
     margin: $padding-base 0;
     font-family: $font--main;
     transition: 0.4s;
+}
+
+@mixin link {
     &:hover {
         transform: translate(0, -2px);
     }

@@ -3,6 +3,7 @@
 .games-list {
     &__item {
         @include card;
+        @include link;
     }
     &__game-name {
         @include title;

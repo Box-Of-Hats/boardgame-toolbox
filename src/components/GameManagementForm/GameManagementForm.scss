@@ -1,0 +1,10 @@
+@import 'style/mixins.scss';
+
+.game-management-form {
+    &__button {
+        @include button;
+    }
+    &__title {
+        @include title;
+    }
+}
