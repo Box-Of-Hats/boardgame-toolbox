@@ -1,5 +1,5 @@
-import { Game } from "./types/Game.interface";
-import Dexie from "dexie";
+import {Game} from '../types/Game.interface';
+import Dexie from 'dexie';
 
 interface IGame {
     id?: number;
@@ -12,12 +12,12 @@ export class GamesDatabase extends Dexie {
     games: Dexie.Table<Game, number>;
 
     constructor() {
-        super("GamesDatabase");
+        super('GamesDatabase');
         this.version(1).stores({
-            games: "++id, name, description, tools"
+            games: '++id, name, description, tools'
         });
 
-        this.games = this.table("games");
+        this.games = this.table('games');
     }
 
     async loadGames(): Promise<Array<Game>> {
