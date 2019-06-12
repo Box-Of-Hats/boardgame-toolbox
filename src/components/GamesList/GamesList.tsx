@@ -2,7 +2,9 @@ import * as React from 'react';
 import {Component} from 'react';
 import {Game} from 'types/Game.interface';
 import GamesStore from 'utils/GamesStore';
+import {Link} from 'react-router-dom';
 import './GamesList.scss';
+
 interface GamesListProps {
     games: Array<Game>;
 }
@@ -17,12 +19,12 @@ export class GamesList extends Component<GamesListProps, GamesListState> {
         return (
             <div className='games-list'>
                 <div className='games-list__title'>My Games</div>
-                <a href='/add'>
+                <Link to='/add'>
                     <div className='games-list__button'>ADD NEW</div>
-                </a>
+                </Link>
                 {this.gamesStore.getGames().map(game => {
                     return (
-                        <a href={`/game/${game.id}`}>
+                        <Link to={`/game/${game.id}`}>
                             <div className='games-list__item'>
                                 <div className='games-list__game-name'>
                                     {game.name}
@@ -31,7 +33,7 @@ export class GamesList extends Component<GamesListProps, GamesListState> {
                                     {game.description}
                                 </div>
                             </div>
-                        </a>
+                        </Link>
                     );
                 })}
             </div>

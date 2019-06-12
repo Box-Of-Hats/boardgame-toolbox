@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
-
 import {Counter} from 'components/Counter/Counter';
 import GamesStore from 'utils/GamesStore';
-
 import Dice from 'components/Dice/Dice';
 import ScoreTable from 'components/ScoreTable/ScoreTable';
 import Spinner from 'components/Spinner/Spinner';
-
+import {Link} from 'react-router-dom';
 import './GamePage.scss';
 
 interface IGamePageProps {
@@ -37,13 +35,13 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
         var out: any[] = [];
 
         out.push(
-            <a href='/'>
+            <Link to='/'>
                 <div className='game-page__button'>back</div>
-            </a>
+            </Link>
         );
 
         out.push(
-            <a href='/'>
+            <Link to='/'>
                 <div
                     className='game-page__button'
                     onClick={() =>
@@ -51,7 +49,7 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
                     }>
                     delete
                 </div>
-            </a>
+            </Link>
         );
 
         let game = this.state.gamesStore.getGame(this.state.gameId);

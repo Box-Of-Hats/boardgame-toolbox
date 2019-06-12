@@ -1,6 +1,7 @@
 import React, {SFC} from 'react';
 import GameManagement from 'components/GameManagement/GameManagement';
 import './GameManagementForm.scss';
+import {Link} from 'react-router-dom';
 
 const GameManagementForm: SFC = () => {
     return (
@@ -29,9 +30,9 @@ const GameManagementForm: SFC = () => {
                     }
                 ]}
             />
-            <a className='game-management-form__button' href='/'>
+            <Link className='game-management-form__button' to='/'>
                 BACK
-            </a>
+            </Link>
         </div>
     );
 };

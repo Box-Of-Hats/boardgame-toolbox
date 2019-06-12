@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './GameManagement.scss';
-//import { Tool } from "../../types/Tool.interface";
+import {Link} from 'react-router-dom';
 import GamesStore from 'utils/GamesStore';
 
 interface IToolConfig {
@@ -106,14 +106,14 @@ export default class GameManagement extends Component<
             return <option value={o.id}>{o.name}</option>;
         });
 
-        let fields = ['name', 'description'].map(x => {
-            return (
-                <div className='game-management__group'>
-                    <div className='game-management__label'>{x}</div>
-                    <input className='game-management__input' type='text' />
-                </div>
-            );
-        });
+        // let fields = ['name', 'description'].map(x => {
+        //     return (
+        //         <div className='game-management__group'>
+        //             <div className='game-management__label'>{x}</div>
+        //             <input className='game-management__input' type='text' />
+        //         </div>
+        //     );
+        // });
 
         return (
             <div className='game-management'>
@@ -169,7 +169,7 @@ export default class GameManagement extends Component<
                         Invalid JSON
                     </div>
                 )}
-                <a href='/'>
+                <Link to='/'>
                     <div
                         className={`game-management__button ${
                             this.isValidJson()
@@ -179,7 +179,7 @@ export default class GameManagement extends Component<
                         onClick={this.handleSubmit}>
                         Save
                     </div>
-                </a>
+                </Link>
             </div>
         );
     }
