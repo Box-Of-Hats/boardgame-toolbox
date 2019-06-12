@@ -1,29 +1,30 @@
 /* eslint-disable no-restricted-globals */
 self.oninstall = () => {
     caches
-        .open("boardgame-toolbox")
+        .open('boardgame-toolbox')
         .then(cache => {
             cache.addAll([
-                "/",
-                "/index.html",
-                "/static/js/bundle.js",
-                "/favicon.ico",
-                "/static/css/main.css",
-                "/manifest.json",
-                "/static/js/1.chunk.js",
-                "/static/js/main.chunk.js"
+                '/',
+                '/index.html',
+                '/static/js/bundle.js',
+                '/favicon.ico',
+                '/static/css/main.css',
+                '/manifest.json',
+                '/static/js/0.chunk.js',
+                '/static/js/1.chunk.js',
+                '/static/js/main.chunk.js'
             ]);
         })
         .then(() => {
-            console.log("Cached everything okay");
+            console.log('Cached everything okay');
         })
         .catch(error => {
-            console.log("error:", error);
+            console.log('error:', error);
         });
 };
 
 self.onactivate = () => {
-    console.log("Activated!");
+    console.log('Activated!');
 };
 
 self.onfetch = event => {
@@ -34,7 +35,7 @@ self.onfetch = event => {
 
                 return response;
             } else {
-                console.log("Serving from request");
+                console.log('Serving from request');
                 return fetch(event.request);
             }
         })
