@@ -1,0 +1,23 @@
+@import 'style/mixins.scss';
+
+.games-list {
+    &__item {
+        @include card;
+    }
+    &__game-name {
+        @include title;
+    }
+    &__button {
+        @include button;
+        display: inline-block;
+        user-select: none;
+    }
+    &__game-description {
+        font-size: 1em;
+        font-style: italic;
+        margin: $padding-base 0;
+    }
+    &__title {
+        @include title;
+    }
+}

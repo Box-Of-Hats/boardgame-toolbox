@@ -1,4 +1,4 @@
-import { Tool } from "./Tool.interface";
+import {Tool} from './Tool.interface';
 
 export interface Game {
     id?: number;

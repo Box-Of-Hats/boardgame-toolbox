@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './GameManagement.scss';
 //import { Tool } from "../../types/Tool.interface";
-import { GamesDatabase } from 'GamesDatabase';
+import GamesStore from 'utils/GamesStore';
 
 interface IToolConfig {
     id: number;
@@ -93,7 +93,7 @@ export default class GameManagement extends Component<
     }
 
     handleSubmit(event) {
-        let db = new GamesDatabase();
+        let db = new GamesStore();
         db.addGame({
             name: this.state.name,
             description: this.state.description,
@@ -140,8 +140,7 @@ export default class GameManagement extends Component<
                 <div className='game-management__group'>
                     <select
                         className='game-management__input'
-                        onChange={this.handleToolSelectChange}
-                    >
+                        onChange={this.handleToolSelectChange}>
                         {options}
                     </select>
                     <div
@@ -150,8 +149,7 @@ export default class GameManagement extends Component<
                                 ? ''
                                 : 'game-management__button--disabled'
                         }`}
-                        onClick={this.addTool}
-                    >
+                        onClick={this.addTool}>
                         Add +
                     </div>
                 </div>
@@ -167,8 +165,7 @@ export default class GameManagement extends Component<
                     <div
                         className={
                             'game-management__message game-management__message--error'
-                        }
-                    >
+                        }>
                         Invalid JSON
                     </div>
                 )}
@@ -178,8 +175,7 @@ export default class GameManagement extends Component<
                             ? ''
                             : 'game-management__button--disabled'
                     }`}
-                    onClick={this.handleSubmit}
-                >
+                    onClick={this.handleSubmit}>
                     Save
                 </div>
             </div>

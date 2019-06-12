@@ -1,4 +1,4 @@
-@import "./variables";
+@import './variables';
 
 @mixin title {
     font-weight: 400;
@@ -10,10 +10,14 @@
 
 @mixin card {
     background-color: $white;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.19);
     padding: $padding-base * 2;
     margin: $padding-base 0;
     font-family: $font--main;
+    transition: 0.4s;
+    &:hover {
+        transform: translate(0, -2px);
+    }
 }
 
 @mixin button {

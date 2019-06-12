@@ -1,122 +1,80 @@
-import { Counter } from 'components/Counter/Counter';
-import { Game } from 'types/Game.interface';
-import { GamesDatabase } from 'GamesDatabase';
+import React, {Component} from 'react';
+
+import {Counter} from 'components/Counter/Counter';
+import GamesStore from 'utils/GamesStore';
 
 import Dice from 'components/Dice/Dice';
-import GameListing from 'components/GameListing/GameListing';
-import GameManagement from 'components/GameManagement/GameManagement';
-import React, { Component } from 'react';
 import ScoreTable from 'components/ScoreTable/ScoreTable';
 import Spinner from 'components/Spinner/Spinner';
 
-interface IGamePageProps {}
+interface IGamePageProps {
+    match: any;
+}
 
 interface IGamePageState {
-    gamesDb: GamesDatabase;
-    games: Game[];
+    gameId: number;
+    gamesStore: GamesStore;
 }
 
 export class GamePage extends Component<IGamePageProps, IGamePageState> {
     constructor(props: IGamePageProps) {
         super(props);
         this.state = {
-            gamesDb: new GamesDatabase(),
-            games: []
+            gameId: undefined,
+            gamesStore: new GamesStore()
         };
+    }
+
+    componentDidMount() {
+        this.setState({
+            gameId: this.props.match.params.id
+        });
     }
 
     render() {
         var out: any[] = [];
 
-        this.state.gamesDb
-            .loadGames()
-            .then(
-                g => {
-                    if (g.length === 0) {
-                        // No games in local indexDB
-                        let seedGames = this.state.gamesDb.addSeedGames();
-                        this.setState({
-                            games: seedGames
-                        });
-                    } else if (this.state.games.length !== g.length) {
-                        // Number of games in local indexDB is more than currently loaded
-                        this.setState({
-                            games: g
-                        });
-                    } else {
-                        // Dont set state and cause re-render
-                    }
-                },
-                f => {
-                    //Reject
-                }
-            )
-            .catch(f => {
-                //Error
-            });
+        out.push(<h3>This is a game page!</h3>);
+        out.push(<a href='/'>BACK</a>);
 
-        out.push(
-            <GameManagement
-                toolOptions={[
-                    {
-                        id: 2,
-                        name: 'Spinner'
-                    },
-                    {
-                        id: 1,
-                        name: 'Counter'
-                    },
-                    {
-                        id: 3,
-                        name: 'ScoreTable',
-                        playerNames: ['person-1', 'person-2'],
-                        scoreNames: ['Round 1', 'Round 2', 'Round 3']
-                    },
-                    {
-                        id: 0,
-                        name: 'Dice'
-                    }
-                ]}
-            />
-        );
+        let game = this.state.gamesStore.getGame(this.state.gameId);
 
-        this.state.games.forEach(gameConfig => {
+        if (!game) {
             out.push(
-                <GameListing
-                    title={gameConfig.name}
-                    description={gameConfig.description}
-                />
+                <p>We couldnt find a game with ID: '{this.state.gameId}'</p>
             );
-            gameConfig.tools.forEach(toolConfig => {
-                switch (toolConfig.id) {
-                    case 0:
-                        out.push(
-                            <Dice
-                                diceCount={1}
-                                maximumRoll={6}
-                                title={toolConfig.name}
-                            />
-                        );
-                        break;
-                    case 1:
-                        out.push(<Counter title={toolConfig.title} />);
-                        break;
-                    case 2:
-                        out.push(<Spinner title={toolConfig.title} />);
-                        break;
-                    case 3:
-                        out.push(
-                            <ScoreTable
-                                title={toolConfig.title}
-                                playerNames={toolConfig.playerNames}
-                                scoreNames={toolConfig.scoreNames}
-                            />
-                        );
-                        break;
-                    default:
-                        break;
-                }
-            });
+            return out;
+        }
+
+        game.tools.forEach(toolConfig => {
+            switch (toolConfig.id) {
+                case 0:
+                    out.push(
+                        <Dice
+                            diceCount={1}
+                            maximumRoll={6}
+                            title={toolConfig.name}
+                        />
+                    );
+                    break;
+                case 1:
+                    out.push(<Counter title={toolConfig.title} />);
+                    break;
+                case 2:
+                    out.push(<Spinner title={toolConfig.title} />);
+                    break;
+                case 3:
+                    out.push(
+                        <ScoreTable
+                            title={toolConfig.title}
+                            playerNames={toolConfig.playerNames}
+                            scoreNames={toolConfig.scoreNames}
+                        />
+                    );
+                    break;
+                default:
+                    break;
+            }
         });
 
         return <div>{out}</div>;
