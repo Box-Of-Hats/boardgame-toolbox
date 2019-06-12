@@ -1,6 +1,5 @@
 [
     "scss",
-    "stories",
-    "jsx",
+    "tsx",
     "typescript"
 ]
