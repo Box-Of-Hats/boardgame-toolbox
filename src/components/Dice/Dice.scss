@@ -1,4 +1,4 @@
-@import "style/base.scss";
+@import 'style/base.scss';
 
 @keyframes example {
     from {
@@ -25,10 +25,10 @@
         display: inline-block;
         font-size: 2em;
         text-align: center;
-        border: 3px solid $white;
+        border: 3px solid $color--white;
         border-radius: 10px;
-        background-color: brown;
-        color: $white;
+        background-color: $color--red;
+        color: $color--white;
         margin-left: $padding-base;
         margin-bottom: 4px;
         &--roll {

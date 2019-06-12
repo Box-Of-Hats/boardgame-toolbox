@@ -1,4 +1,4 @@
-@import "style/base.scss";
+@import 'style/base.scss';
 
 .spinner {
     @include card;
@@ -7,23 +7,23 @@
         @include title;
     }
     &__arrow {
-        background-color: $blue;
+        background-color: $color--blue;
         height: 90vw;
         width: 34px;
-        border-radius: $borderRadius--standard;
+        border-radius: $borderRadius--large;
         font-size: 16pt;
         text-align: center;
-        color: $white;
+        color: $color--white;
         transition: 0s;
         &--burny {
             background-color: rgb(216, 216, 216);
         }
     }
     &__tip {
-        background-color: $red;
-        color: $red;
+        background-color: $color--red;
+        color: $color--red;
         height: 40px;
-        border-radius: $borderRadius--standard $borderRadius--standard 0 0;
+        border-radius: $borderRadius--large $borderRadius--large 0 0;
         &--burny {
             background-color: rgb(184, 131, 72);
             color: rgb(184, 131, 72);

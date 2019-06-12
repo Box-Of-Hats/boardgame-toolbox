@@ -1,4 +1,4 @@
-@import "style/mixins.scss";
+@import 'style/mixins.scss';
 
 .game-management {
     @include card;
@@ -10,10 +10,10 @@
         margin: $padding-base 0;
     }
     &__input {
-        border: 1px solid darken($white, 10%);
-        border-radius: $borderRadius--standard;
+        border: 1px solid darken($color--white, 10%);
+        border-radius: $borderRadius--large;
         &:focus {
-            border: 1px solid $blue;
+            border: 1px solid $color--blue;
         }
         width: 70%;
     }
@@ -32,14 +32,14 @@
         min-width: 100%;
         min-height: 10ch;
         margin: $padding-base 0;
-        border-radius: $borderRadius--standard;
+        border-radius: $borderRadius--large;
     }
     &__message {
         text-align: center;
         font-size: 0.8em;
         font-weight: 800;
         &--error {
-            color: $red;
+            color: $color--red;
         }
     }
 }

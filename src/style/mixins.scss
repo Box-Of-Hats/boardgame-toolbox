@@ -9,8 +9,8 @@
 }
 
 @mixin card {
-    background-color: $white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.19);
+    background-color: $color--white;
+    box-shadow: $box-shadow--heavy;
     padding: $padding-base * 2;
     margin: $padding-base 0;
     font-family: $font--main;
@@ -25,22 +25,21 @@
 
 @mixin button {
     $button-height: 30px;
-    border: 2px solid $white;
-    background-color: $blue;
-    color: $black;
+    border: 2px solid $color--white;
+    background-color: $color--white;
+    color: $color--black;
     border: 2px solid rgba(0, 0, 0, 0.05);
     font-family: $font--main;
     text-align: center;
-    border-radius: $borderRadius--standard;
+    border-radius: $borderRadius--small;
     padding-left: $padding-base * 2;
     padding-right: $padding-base * 2;
     cursor: pointer;
-    color: $white;
     user-select: none;
     height: $button-height;
     line-height: $button-height;
     &--disabled {
         pointer-events: none;
-        background-color: desaturate($blue, 90%);
+        background-color: desaturate($color--blue, 90%);
     }
 }

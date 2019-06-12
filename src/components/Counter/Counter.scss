@@ -1,21 +1,21 @@
-@import "style/base.scss";
+@import 'style/base.scss';
 
 .counter {
     @include card;
     display: grid;
     grid-template-columns: 33% 34% 33%;
     grid-template-rows: 50% 50%;
-    grid-template-areas: "title title title" "btn-inc val btn-dec";
+    grid-template-areas: 'title title title' 'btn-inc val btn-dec';
     &__button {
         @include button;
         font-weight: bold;
         &--dec {
             grid-area: btn-inc;
-            background-color: $red;
+            background-color: $color--red;
         }
         &--inc {
             grid-area: btn-dec;
-            background-color: $green;
+            background-color: $color--green;
         }
     }
     &__title {

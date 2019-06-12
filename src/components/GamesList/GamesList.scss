@@ -9,9 +9,21 @@
         @include title;
     }
     &__button {
-        @include button;
+        $size: 80px;
         display: inline-block;
         user-select: none;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        height: $size;
+        width: $size;
+        border-radius: 100%;
+        background-color: $color--blue;
+        color: $color--black;
+        text-align: center;
+        line-height: $size;
+        font-size: 3em;
+        box-shadow: $box-shadow--heavy;
     }
     &__game-description {
         font-size: 1em;

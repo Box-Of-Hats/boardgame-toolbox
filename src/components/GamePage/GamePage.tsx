@@ -32,72 +32,71 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
     }
 
     render() {
-        var out: any[] = [];
-
-        out.push(
-            <Link to='/'>
-                <div className='game-page__button'>back</div>
-            </Link>
-        );
-
-        out.push(
-            <Link to='/'>
-                <div
-                    className='game-page__button'
-                    onClick={() =>
-                        this.state.gamesStore.deleteGame(this.state.gameId)
-                    }>
-                    delete
-                </div>
-            </Link>
-        );
-
         let game = this.state.gamesStore.getGame(this.state.gameId);
 
         if (!game) {
-            out.push(<div className='game-page__title'>Game Page</div>);
-            out.push(
-                <p>We couldnt find a game with ID: '{this.state.gameId}'</p>
+            return (
+                <div className='game-page'>
+                    <div className='game-page__title'>Game Page</div>
+                    <div className='game-page__error'>
+                        We couldnt find a game with ID: '{this.state.gameId}'
+                    </div>
+                    <Link to='/'>
+                        <div className='game-page__button'>back</div>
+                    </Link>
+                </div>
             );
-            return out;
         }
 
-        out.push(<div className='game-page__title'>{game.name}</div>);
-        out.push(
-            <div className='game-page__description'>{game.description}</div>
+        return (
+            <div className='game-page'>
+                <Link to='/'>
+                    <div className='game-page__button'>back</div>
+                </Link>
+                <Link to='/'>
+                    <div
+                        className='game-page__button'
+                        onClick={() =>
+                            this.state.gamesStore.deleteGame(this.state.gameId)
+                        }>
+                        delete
+                    </div>
+                </Link>
+                <div className='game-page__title'>{game.name}</div>
+                <div className='game-page__description'>{game.description}</div>
+                <div>
+                    {game.tools.map(toolConfig => {
+                        switch (toolConfig.id) {
+                            case 0:
+                                return (
+                                    <Dice
+                                        diceCount={1}
+                                        maximumRoll={6}
+                                        title={toolConfig.name}
+                                    />
+                                );
+                                break;
+                            case 1:
+                                return <Counter title={toolConfig.title} />;
+                                break;
+                            case 2:
+                                return <Spinner title={toolConfig.title} />;
+                                break;
+                            case 3:
+                                return (
+                                    <ScoreTable
+                                        title={toolConfig.title}
+                                        playerNames={toolConfig.playerNames}
+                                        scoreNames={toolConfig.scoreNames}
+                                    />
+                                );
+                                break;
+                            default:
+                                break;
+                        }
+                    })}
+                </div>
+            </div>
         );
-
-        game.tools.forEach(toolConfig => {
-            switch (toolConfig.id) {
-                case 0:
-                    out.push(
-                        <Dice
-                            diceCount={1}
-                            maximumRoll={6}
-                            title={toolConfig.name}
-                        />
-                    );
-                    break;
-                case 1:
-                    out.push(<Counter title={toolConfig.title} />);
-                    break;
-                case 2:
-                    out.push(<Spinner title={toolConfig.title} />);
-                    break;
-                case 3:
-                    out.push(
-                        <ScoreTable
-                            title={toolConfig.title}
-                            playerNames={toolConfig.playerNames}
-                            scoreNames={toolConfig.scoreNames}
-                        />
-                    );
-                    break;
-                default:
-                    break;
-            }
-        });
-
-        return <div className='game-page'>{out}</div>;
     }
 }

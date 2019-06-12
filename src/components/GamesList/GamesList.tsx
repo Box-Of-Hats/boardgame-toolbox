@@ -19,9 +19,7 @@ export class GamesList extends Component<GamesListProps, GamesListState> {
         return (
             <div className='games-list'>
                 <div className='games-list__title'>My Games</div>
-                <Link to='/add'>
-                    <div className='games-list__button'>ADD NEW</div>
-                </Link>
+
                 {this.gamesStore.getGames().map(game => {
                     return (
                         <Link to={`/game/${game.id}`}>
@@ -36,6 +34,9 @@ export class GamesList extends Component<GamesListProps, GamesListState> {
                         </Link>
                     );
                 })}
+                <Link to='/add'>
+                    <div className='games-list__button'>+</div>
+                </Link>
             </div>
         );
     }
