@@ -75,13 +75,13 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
                                         title={toolConfig.name}
                                     />
                                 );
-                                break;
+
                             case 1:
                                 return <Counter title={toolConfig.title} />;
-                                break;
+
                             case 2:
                                 return <Spinner title={toolConfig.title} />;
-                                break;
+
                             case 3:
                                 return (
                                     <ScoreTable
@@ -90,7 +90,7 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
                                         scoreNames={toolConfig.scoreNames}
                                     />
                                 );
-                                break;
+
                             default:
                                 break;
                         }
