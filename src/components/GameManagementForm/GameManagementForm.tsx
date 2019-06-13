@@ -17,7 +17,8 @@ const GameManagementForm: SFC = () => {
                         },
                         {
                             id: 1,
-                            name: 'Counter'
+                            name: 'Counter',
+                            value: 0
                         },
                         {
                             id: 3,
@@ -27,7 +28,9 @@ const GameManagementForm: SFC = () => {
                         },
                         {
                             id: 0,
-                            name: 'Dice'
+                            name: 'Dice',
+                            maximumRoll: 6,
+                            diceCount: 2
                         }
                     ]}
                 />

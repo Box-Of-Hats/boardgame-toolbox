@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './Dice.scss';
 interface IDiceState {
     rollValues: number[];
@@ -6,7 +6,7 @@ interface IDiceState {
 }
 
 interface IDiceProps {
-    title?: string;
+    name?: string;
     currentRoll?: number;
     maximumRoll: number;
     diceCount: number;
@@ -26,9 +26,9 @@ export default class Dice extends Component<IDiceProps, IDiceState> {
     };
 
     randomiseRoll = (maximum?: number): void => {
-        this.setState({ isAnimating: true });
+        this.setState({isAnimating: true});
         setTimeout(() => {
-            this.setState({ isAnimating: false });
+            this.setState({isAnimating: false});
             this.setState({});
         }, 600);
     };
@@ -43,8 +43,7 @@ export default class Dice extends Component<IDiceProps, IDiceState> {
                 <div
                     className={`dice-tool__dice ${
                         this.state.isAnimating ? 'dice-tool__dice--roll' : ''
-                    }`}
-                >
+                    }`}>
                     {this.state.isAnimating ? '?' : this.state.rollValues[i]}
                 </div>
             );
@@ -52,13 +51,12 @@ export default class Dice extends Component<IDiceProps, IDiceState> {
         return (
             <div className='dice-tool'>
                 <div className='dice-tool__title'>
-                    {this.props.title ? this.props.title : 'Dice'}
+                    {this.props.name ? this.props.name : 'Dice'}
                 </div>
                 <div className='dice-tool__dice-container'>{dice}</div>
                 <div
                     className='dice-tool__button'
-                    onClick={() => this.randomiseRoll(this.props.maximumRoll)}
-                >
+                    onClick={() => this.randomiseRoll(this.props.maximumRoll)}>
                     Roll
                 </div>
             </div>

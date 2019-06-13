@@ -68,22 +68,22 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
                                 case 0:
                                     return (
                                         <Dice
-                                            diceCount={1}
-                                            maximumRoll={6}
-                                            title={toolConfig.name}
+                                            diceCount={toolConfig.diceCount}
+                                            maximumRoll={toolConfig.maximumRoll}
+                                            name={toolConfig.name}
                                         />
                                     );
 
                                 case 1:
-                                    return <Counter title={toolConfig.title} />;
+                                    return <Counter title={toolConfig.name} />;
 
                                 case 2:
-                                    return <Spinner title={toolConfig.title} />;
+                                    return <Spinner title={toolConfig.name} />;
 
                                 case 3:
                                     return (
                                         <ScoreTable
-                                            title={toolConfig.title}
+                                            title={toolConfig.name}
                                             playerNames={toolConfig.playerNames}
                                             scoreNames={toolConfig.scoreNames}
                                         />
