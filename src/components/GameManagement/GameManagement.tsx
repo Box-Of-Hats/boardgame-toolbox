@@ -103,7 +103,7 @@ export default class GameManagement extends Component<
 
     render() {
         let options = this.state.options.map(o => {
-            return <option value={o.id}>{o.name}</option>;
+            return <option value={o.id} key={`${o.id}${o.name}`}>{o.name}</option>;
         });
 
         // let fields = ['name', 'description'].map(x => {
