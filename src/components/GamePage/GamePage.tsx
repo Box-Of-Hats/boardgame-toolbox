@@ -92,7 +92,7 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
                                 );
 
                             default:
-                                break;
+                                return;
                         }
                     })}
                 </div>
