@@ -2,6 +2,7 @@
 
 .game-management {
     @include card;
+
     &__group {
         min-height: 30px;
         line-height: 30px;
@@ -19,7 +20,6 @@
     }
     &__label {
         font-size: 0.9em;
-        font-weight: 800;
     }
     &__button {
         @include button;
@@ -27,7 +27,8 @@
     }
     &__textarea {
         box-sizing: border-box;
-        font-size: 0.8em;
+        font-family: $font--code;
+        font-size: 0.9em;
         max-width: 100%;
         min-width: 100%;
         min-height: 10ch;

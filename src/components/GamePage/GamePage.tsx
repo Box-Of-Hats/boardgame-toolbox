@@ -6,6 +6,7 @@ import ScoreTable from 'components/ScoreTable/ScoreTable';
 import Spinner from 'components/Spinner/Spinner';
 import {Link} from 'react-router-dom';
 import './GamePage.scss';
+import Header from 'components/Header/Header';
 
 interface IGamePageProps {
     match: any;
@@ -49,54 +50,54 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
         }
 
         return (
-            <div className='game-page'>
-                <Link to='/'>
-                    <div className='game-page__button'>back</div>
-                </Link>
-                <Link to='/'>
-                    <div
-                        className='game-page__button'
-                        onClick={() =>
-                            this.state.gamesStore.deleteGame(this.state.gameId)
-                        }>
-                        delete
+            <>
+                <Header title={game.name} backLink={'/'} />
+                <div className='game-page'>
+                    <Link to='/'>
+                        <div
+                            className='game-page__button'
+                            onClick={() =>
+                                this.state.gamesStore.deleteGame(
+                                    this.state.gameId
+                                )
+                            }>
+                            delete
+                        </div>
+                    </Link>
+                    <div>
+                        {game.tools.map(toolConfig => {
+                            switch (toolConfig.id) {
+                                case 0:
+                                    return (
+                                        <Dice
+                                            diceCount={1}
+                                            maximumRoll={6}
+                                            title={toolConfig.name}
+                                        />
+                                    );
+
+                                case 1:
+                                    return <Counter title={toolConfig.title} />;
+
+                                case 2:
+                                    return <Spinner title={toolConfig.title} />;
+
+                                case 3:
+                                    return (
+                                        <ScoreTable
+                                            title={toolConfig.title}
+                                            playerNames={toolConfig.playerNames}
+                                            scoreNames={toolConfig.scoreNames}
+                                        />
+                                    );
+
+                                default:
+                                    return;
+                            }
+                        })}
                     </div>
-                </Link>
-                <div className='game-page__title'>{game.name}</div>
-                <div className='game-page__description'>{game.description}</div>
-                <div>
-                    {game.tools.map(toolConfig => {
-                        switch (toolConfig.id) {
-                            case 0:
-                                return (
-                                    <Dice
-                                        diceCount={1}
-                                        maximumRoll={6}
-                                        title={toolConfig.name}
-                                    />
-                                );
-
-                            case 1:
-                                return <Counter title={toolConfig.title} />;
-
-                            case 2:
-                                return <Spinner title={toolConfig.title} />;
-
-                            case 3:
-                                return (
-                                    <ScoreTable
-                                        title={toolConfig.title}
-                                        playerNames={toolConfig.playerNames}
-                                        scoreNames={toolConfig.scoreNames}
-                                    />
-                                );
-
-                            default:
-                                return;
-                        }
-                    })}
                 </div>
-            </div>
+            </>
         );
     }
 }

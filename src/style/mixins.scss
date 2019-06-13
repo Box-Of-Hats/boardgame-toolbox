@@ -8,6 +8,10 @@
     font-family: $font--main;
 }
 
+@mixin page {
+    padding: 6px 12px;
+}
+
 @mixin card {
     background-color: $color--white;
     box-shadow: $box-shadow--heavy;
@@ -18,26 +22,33 @@
 }
 
 @mixin link {
+    cursor: pointer;
+}
+@mixin link--lift-on-hover {
     &:hover {
         transform: translate(0, -2px);
     }
 }
 
 @mixin button {
-    $button-height: 30px;
-    border: 2px solid $color--white;
-    background-color: $color--white;
+    $button-height: 20px;
+    min-width: 100px;
+    font-family: $font--buttons;
+
+    border: 2px solid rgba($color--black, 0.6);
+    padding: 6px;
+    border-radius: 3px;
+    text-decoration: none;
     color: $color--black;
-    border: 2px solid rgba(0, 0, 0, 0.05);
-    font-family: $font--main;
+
     text-align: center;
-    border-radius: $borderRadius--small;
     padding-left: $padding-base * 2;
     padding-right: $padding-base * 2;
-    cursor: pointer;
     user-select: none;
     height: $button-height;
     line-height: $button-height;
+    cursor: pointer;
+
     &--disabled {
         pointer-events: none;
         background-color: desaturate($color--blue, 90%);

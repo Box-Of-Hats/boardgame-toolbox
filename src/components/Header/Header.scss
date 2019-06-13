@@ -1,0 +1,22 @@
+@import 'style/mixins.scss';
+.header {
+    $height: 6vh;
+    box-shadow: $box-shadow--heavy;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+    height: $height;
+    line-height: $height;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 18px;
+    margin: 0;
+    &__title {
+        font-size: 1.3em;
+    }
+    &__link {
+        @include link;
+        &--back {
+        }
+    }
+}

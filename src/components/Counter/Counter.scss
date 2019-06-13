@@ -8,6 +8,7 @@
     grid-template-areas: 'title title title' 'btn-inc val btn-dec';
     &__button {
         @include button;
+        color: rgba($color--black, 0.6);
         font-weight: bold;
         &--dec {
             grid-area: btn-inc;

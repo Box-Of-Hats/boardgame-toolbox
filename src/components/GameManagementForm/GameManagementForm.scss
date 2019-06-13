@@ -1,6 +1,7 @@
 @import 'style/mixins.scss';
 
 .game-management-form {
+    @include page;
     &__button {
         @include button;
     }

@@ -1,15 +1,24 @@
 // external
-@import url('https://fonts.googleapis.com/css?family=Comfortaa|Roboto+Mono|Roboto');
+@import url('https://fonts.googleapis.com/css?family=Fira+Mono|Martel+Sans&display=swap');
 
 // user
 @import './variables.scss';
 @import './mixins.scss';
 
-* {
-    font-family: 'Roboto', 'Comfortaa', cursive;
-}
-
 a {
     text-decoration: none;
     color: inherit;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 12pt;
+    font-family: $font--main;
+}
+
+i {
+    display: inline-block;
+    vertical-align: middle;
 }

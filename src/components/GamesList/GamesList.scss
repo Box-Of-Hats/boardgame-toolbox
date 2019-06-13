@@ -1,9 +1,11 @@
 @import 'style/mixins.scss';
 
 .games-list {
+    @include page;
     &__item {
         @include card;
         @include link;
+        @include link--lift-on-hover;
     }
     &__game-name {
         @include title;
