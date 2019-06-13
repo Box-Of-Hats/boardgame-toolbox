@@ -31,9 +31,6 @@ const GameManagementForm: SFC = () => {
                         }
                     ]}
                 />
-                <Link to='/'>
-                    <div className='game-management-form__button'>BACK</div>
-                </Link>
             </div>
         </>
     );
