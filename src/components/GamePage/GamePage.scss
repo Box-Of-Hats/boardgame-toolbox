@@ -6,7 +6,7 @@
         @include button;
     }
     &__error {
-        font-weight: 800;
-        color: #743030;
+        @include card;
+        color: #b10404;
     }
 }

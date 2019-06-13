@@ -40,7 +40,6 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
                 <>
                     <Header title={'Game not found'} backLink={'/'} />
                     <div className='game-page'>
-                        <div className='game-page__title'>Game Page</div>
                         <div className='game-page__error'>
                             We couldnt find a game with ID: '{this.state.gameId}
                             '
