@@ -51,19 +51,17 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
 
         return (
             <>
-                <Header title={game.name} backLink={'/'} />
+                <Header
+                    title={game.name}
+                    backLink={'/'}
+                    actionCallback={() => {
+                        this.state.gamesStore.deleteGame(this.state.gameId);
+                    }}
+                    actionCallbackRedirect='/'
+                    actionIcon='delete'
+                    actionIconStyle={{color: '#cc0000', fontSize: '2em'}}
+                />
                 <div className='game-page'>
-                    <Link to='/'>
-                        <div
-                            className='game-page__button'
-                            onClick={() =>
-                                this.state.gamesStore.deleteGame(
-                                    this.state.gameId
-                                )
-                            }>
-                            delete
-                        </div>
-                    </Link>
                     <div>
                         {game.tools.map(toolConfig => {
                             switch (toolConfig.id) {
