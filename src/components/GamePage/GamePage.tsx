@@ -37,15 +37,16 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
 
         if (!game) {
             return (
-                <div className='game-page'>
-                    <div className='game-page__title'>Game Page</div>
-                    <div className='game-page__error'>
-                        We couldnt find a game with ID: '{this.state.gameId}'
+                <>
+                    <Header title={'Game not found'} backLink={'/'} />
+                    <div className='game-page'>
+                        <div className='game-page__title'>Game Page</div>
+                        <div className='game-page__error'>
+                            We couldnt find a game with ID: '{this.state.gameId}
+                            '
+                        </div>
                     </div>
-                    <Link to='/'>
-                        <div className='game-page__button'>back</div>
-                    </Link>
-                </div>
+                </>
             );
         }
 
