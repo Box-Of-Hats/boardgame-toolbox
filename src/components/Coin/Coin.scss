@@ -19,6 +19,8 @@
         justify-content: center;
     }
     &__coin {
+        cursor: pointer;
+        margin: $padding-base 0;
         user-select: none;
         box-sizing: border-box;
         border-radius: 50%;

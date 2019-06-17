@@ -53,11 +53,10 @@ export default class Dice extends Component<IDiceProps, IDiceState> {
                 <div className='dice-tool__title'>
                     {this.props.name ? this.props.name : 'Dice'}
                 </div>
-                <div className='dice-tool__dice-container'>{dice}</div>
                 <div
-                    className='dice-tool__button'
+                    className='dice-tool__dice-container'
                     onClick={() => this.randomiseRoll(this.props.maximumRoll)}>
-                    Roll
+                    {dice}
                 </div>
             </div>
         );
