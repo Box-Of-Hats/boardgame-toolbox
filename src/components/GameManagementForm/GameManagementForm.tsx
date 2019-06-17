@@ -31,6 +31,11 @@ const GameManagementForm: SFC = () => {
                             name: 'Dice',
                             maximumRoll: 6,
                             diceCount: 2
+                        },
+                        {
+                            id: 4,
+                            name: 'Coin',
+                            icons: ['face', 'euro_symbol']
                         }
                     ]}
                 />

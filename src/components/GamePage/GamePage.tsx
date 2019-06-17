@@ -88,7 +88,12 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
                                         />
                                     );
                                 case 4:
-                                    return <Coin name={toolConfig.name} />;
+                                    return (
+                                        <Coin
+                                            name={toolConfig.name}
+                                            icons={toolConfig.icons}
+                                        />
+                                    );
 
                                 default:
                                     return;
