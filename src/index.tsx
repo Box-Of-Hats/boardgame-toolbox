@@ -18,7 +18,5 @@ window.addEventListener('beforeinstallprompt', e => {
     e.preventDefault();
     // Stash the event so it can be triggered later.
     deferredPrompt = e;
-    setTimeout(() => {
-        deferredPrompt.prompt();
-    }, 10000);
+    deferredPrompt.prompt();
 });
