@@ -76,7 +76,12 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
                                     );
 
                                 case 1:
-                                    return <Counter title={toolConfig.name} />;
+                                    return (
+                                        <Counter
+                                            title={toolConfig.name}
+                                            value={toolConfig.value}
+                                        />
+                                    );
                                 case 2:
                                     return <Spinner title={toolConfig.name} />;
                                 case 3:
