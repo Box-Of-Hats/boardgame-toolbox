@@ -1,0 +1,40 @@
+@import 'style/base.scss';
+
+@keyframes coin-flip {
+    from {
+        transform: rotateX(0deg) scale(0.8);
+    }
+    to {
+        transform: rotateX(540deg) scale(1);
+    }
+}
+.coin-tool {
+    @include card;
+    $coin-height: 40vw;
+    &__title {
+        @include title;
+    }
+    &__container {
+        display: flex;
+        justify-content: center;
+    }
+    &__coin {
+        user-select: none;
+        box-sizing: border-box;
+        border-radius: 50%;
+        border: 6px dashed rgba($color--black, 0.5);
+        height: $coin-height;
+        width: $coin-height;
+        background-color: lighten($color--grey, 50%);
+        text-align: center;
+        line-height: $coin-height;
+        i {
+            font-size: 30vw;
+        }
+        &--flip {
+            animation: linear;
+            animation-name: coin-flip;
+            animation-duration: 0.6s;
+        }
+    }
+}

@@ -1,6 +1,6 @@
 @import 'style/base.scss';
 
-@keyframes example {
+@keyframes dice-roll {
     from {
         transform: rotate(0deg);
     }
@@ -33,7 +33,7 @@
         margin-bottom: 4px;
         &--roll {
             animation: linear;
-            animation-name: example;
+            animation-name: dice-roll;
             animation-duration: 0.6s;
         }
     }

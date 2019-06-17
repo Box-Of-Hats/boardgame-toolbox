@@ -7,6 +7,7 @@ import Spinner from 'components/Spinner/Spinner';
 import {Link} from 'react-router-dom';
 import './GamePage.scss';
 import Header from 'components/Header/Header';
+import Coin from 'components/Coin/Coin';
 
 interface IGamePageProps {
     match: any;
@@ -76,10 +77,8 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
 
                                 case 1:
                                     return <Counter title={toolConfig.name} />;
-
                                 case 2:
                                     return <Spinner title={toolConfig.name} />;
-
                                 case 3:
                                     return (
                                         <ScoreTable
@@ -88,6 +87,8 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
                                             scoreNames={toolConfig.scoreNames}
                                         />
                                     );
+                                case 4:
+                                    return <Coin name={toolConfig.name} />;
 
                                 default:
                                     return;
