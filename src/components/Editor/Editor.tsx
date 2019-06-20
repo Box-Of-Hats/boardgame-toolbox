@@ -1,38 +1,107 @@
 import * as React from 'react';
 import './Editor.scss';
+import {AnyTxtRecord} from 'dns';
+import {types} from '@babel/core';
 
-interface IEditablePair {
+interface IEditableProperty {
+    propertyName: string;
     label: string;
     type: string;
+    default?: any;
 }
 
 interface IEditorProps {
-    values: Array<IEditablePair>;
-    onChange: any;
+    name: string;
+    values: Array<IEditableProperty>;
     onSubmit: any;
 }
 
-export class Editor extends React.Component<IEditorProps, any> {
+interface IEditorState {
+    properties: object;
+}
+
+export class Editor extends React.Component<IEditorProps, IEditorState> {
+    constructor(props: IEditorProps) {
+        super(props);
+        let initialProperties = {};
+        props.values.forEach(value => {
+            initialProperties[value.propertyName] = value.default;
+        });
+        this.state = {
+            properties: initialProperties
+        };
+    }
+
+    updateProperties(propertyName: string, value: any) {
+        this.setState((prevState, props) => {
+            prevState.properties[propertyName] = value;
+        });
+    }
+
+    submit() {
+        console.log('Submit!');
+        this.props.onSubmit(this.state.properties);
+    }
+
+    renderInput(editableProperty: IEditableProperty) {
+        switch (editableProperty.type) {
+            case 'disabled':
+                return <div className="editor__input editor__input--disabled">{editableProperty.default}</div>;
+            case 'number':
+                return (
+                    <input
+                        type='number'
+                        onChange={e => {
+                            this.updateProperties(
+                                editableProperty.propertyName,
+                                parseInt(e.target.value)
+                            );
+                        }}
+                        defaultValue={editableProperty.default}
+                        className='editor__input'
+                    />
+                );
+                break;
+            case 'text':
+                return (
+                    <input
+                        type='text'
+                        onChange={e => {
+                            this.updateProperties(
+                                editableProperty.propertyName,
+                                e.target.value
+                            );
+                        }}
+                        defaultValue={editableProperty.default}
+                        className='editor__input'
+                    />
+                );
+            default:
+                return <div>Unrecognised Type: {editableProperty.type}</div>;
+                break;
+        }
+    }
+
     render() {
         return (
-            <form className='editor' onSubmit={this.props.onSubmit}>
-                {this.props.values.map(value => {
+            <form className='editor'>
+                <div className='editor__title'>{this.props.name}</div>
+                {this.props.values.map(editableProp => {
                     return (
                         <div className='editor__form-group'>
-                            <div className='editor__label'>{value.label}</div>
-                            <input
-                                type={value.type}
-                                onChange={() => this.props.onChange}
-                                className='editor__input'
-                            />
+                            <div className='editor__label'>
+                                {editableProp.label}
+                            </div>
+                            {this.renderInput(editableProp)}
                         </div>
                     );
                 })}
                 <input
                     className='editor__button editor__button--submit'
-                    type='submit'>
-                    Save
-                </input>
+                    type='button'
+                    onClick={() => this.submit()}
+                    value='Save'
+                />
             </form>
         );
     }

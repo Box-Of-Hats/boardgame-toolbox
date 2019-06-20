@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './GameManagement.scss';
 import {Link} from 'react-router-dom';
 import GamesStore from 'utils/GamesStore';
+import {Editor} from 'components/Editor/Editor';
 
 interface IToolConfig {
     id: number;
@@ -20,6 +21,7 @@ interface IGameManagementState {
     options: IToolConfig[];
     toolJson: string;
     selectedTool: IToolConfig | undefined;
+    currentEditor: number;
 }
 
 export default class GameManagement extends Component<
@@ -33,7 +35,8 @@ export default class GameManagement extends Component<
             description: '',
             toolJson: '[]',
             options: this.props.toolOptions,
-            selectedTool: this.props.toolOptions[0]
+            selectedTool: this.props.toolOptions[0],
+            currentEditor: -1
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -60,6 +63,17 @@ export default class GameManagement extends Component<
         }
     }
 
+    addToolObject(tool: object) {
+        // add a tool to the tools list
+        this.setState((prevstate, props) => {
+            let toolConfig = JSON.parse(prevstate.toolJson);
+            toolConfig.push(tool);
+            return {
+                toolJson: JSON.stringify(toolConfig, null, 2)
+            };
+        });
+    }
+
     addTool() {
         // Add the currently selected tool to the tool list json
         if (!this.isValidJson) {
@@ -80,7 +94,8 @@ export default class GameManagement extends Component<
         this.setState({
             selectedTool: this.state.options.filter(
                 opt => event.target.value === opt.id.toString()
-            )[0]
+            )[0],
+            currentEditor: event.target.value
         });
     }
 
@@ -103,17 +118,50 @@ export default class GameManagement extends Component<
 
     render() {
         let options = this.state.options.map(o => {
-            return <option value={o.id} key={`${o.id}${o.name}`}>{o.name}</option>;
+            return (
+                <option value={o.id} key={`${o.id}${o.name}`}>
+                    {o.name}
+                </option>
+            );
         });
 
-        // let fields = ['name', 'description'].map(x => {
-        //     return (
-        //         <div className='game-management__group'>
-        //             <div className='game-management__label'>{x}</div>
-        //             <input className='game-management__input' type='text' />
-        //         </div>
-        //     );
-        // });
+        var editor = <div>No editor selected</div>;
+        switch (this.state.currentEditor.toString()) {
+            case '1':
+                var editor = (
+                    <Editor
+                        name={'Counter'}
+                        onSubmit={(properties: object) => {
+                            console.log(properties);
+                            this.addToolObject(properties);
+                        }}
+                        values={[
+                            {
+                                label: 'ID',
+                                type: 'disabled',
+                                default: 1,
+                                propertyName: 'id'
+                            },
+                            {
+                                label: 'Name',
+                                type: 'text',
+                                default: 'Counter',
+                                propertyName: 'name'
+                            },
+                            {
+                                label: 'Start Value',
+                                type: 'number',
+                                default: 0,
+                                propertyName: 'value'
+                            }
+                        ]}
+                    />
+                );
+                break;
+
+            default:
+                break;
+        }
 
         return (
             <div className='game-management'>
@@ -153,6 +201,8 @@ export default class GameManagement extends Component<
                         Add +
                     </div>
                 </div>
+                <div className='game-management__group'>{editor}</div>
+
                 <div className='game-management__group'>
                     <textarea
                         className='game-management__textarea'
