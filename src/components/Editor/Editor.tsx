@@ -47,7 +47,6 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
     }
 
     submit() {
-        console.log('Submit!');
         this.props.onSubmit(this.state.properties);
     }
 
@@ -132,7 +131,7 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
                     className='editor__button editor__button--submit'
                     type='button'
                     onClick={() => this.submit()}
-                    value='Save'
+                    value='Add +'
                 />
             </form>
         );
