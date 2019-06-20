@@ -75,6 +75,7 @@ export default class GameManagement extends Component<
     }
 
     addTool() {
+        //! DELETE THIS SOON - Being replaced with addToolObject(tool: Object)
         // Add the currently selected tool to the tool list json
         if (!this.isValidJson) {
             return false;
@@ -127,8 +128,39 @@ export default class GameManagement extends Component<
 
         var editor = <div>No editor selected</div>;
         switch (this.state.currentEditor.toString()) {
-            case '1':
-                var editor = (
+            case '0': //Dice
+                editor = (
+                    <Editor
+                        name={'Dice'}
+                        onSubmit={(properties: object) => {
+                            console.log(properties);
+                            this.addToolObject(properties);
+                        }}
+                        values={[
+                            {
+                                label: 'ID',
+                                type: 'disabled',
+                                default: 0,
+                                propertyName: 'id'
+                            },
+                            {
+                                label: 'Max Roll',
+                                type: 'number',
+                                default: 6,
+                                propertyName: 'maximumRoll'
+                            },
+                            {
+                                label: 'Dice Count',
+                                type: 'number',
+                                default: 1,
+                                propertyName: 'diceCount'
+                            }
+                        ]}
+                    />
+                );
+                break;
+            case '1': //Counter
+                editor = (
                     <Editor
                         name={'Counter'}
                         onSubmit={(properties: object) => {
