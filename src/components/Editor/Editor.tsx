@@ -32,12 +32,20 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
         };
     }
 
-    componentDidMount() {
+    componentDidUpdate() {
         let initialProperties = {};
+
         this.props.values.forEach(value => {
             initialProperties[value.propertyName] = value.default;
         });
-        this.setState({properties: initialProperties});
+
+        if (
+            JSON.stringify(initialProperties) !=
+            JSON.stringify(this.state.properties)
+        ) {
+            // Prevent infinite re-rendering
+            this.setState({properties: initialProperties});
+        }
     }
 
     updateProperties(propertyName: string, value: any) {
