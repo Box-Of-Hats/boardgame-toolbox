@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './ScoreTable.scss';
 
 interface IScoreTableProps {
@@ -54,15 +54,17 @@ export default class ScoreTable extends Component<
                         <tr>
                             <th />
                             {this.props.playerNames.map(name => (
-                                <th>{name}</th>
+                                <th key={name}>{name}</th>
                             ))}
                         </tr>
                         {this.props.scoreNames.map(scoreName => {
                             return (
-                                <tr className='scoretable__row'>
+                                <tr key={scoreName} className='scoretable__row'>
                                     <td>{scoreName}</td>
                                     {this.props.playerNames.map(playerName => (
-                                        <td className='scoretable__cell'>
+                                        <td
+                                            key={`${playerName}${scoreName}`}
+                                            className='scoretable__cell'>
                                             <input
                                                 onChange={() => {
                                                     this.updateTotals();
@@ -85,8 +87,8 @@ export default class ScoreTable extends Component<
                             {this.props.playerNames.map(playerName => {
                                 return (
                                     <td
-                                        className={`scoretable__cell--total-${playerName}`}
-                                    >
+                                        key={`${playerName}-total`}
+                                        className={`scoretable__cell--total-${playerName}`}>
                                         0
                                     </td>
                                 );

@@ -93,7 +93,7 @@ export default class GameManagement extends Component<
             );
         });
         options.unshift(
-            <option disabled={true} selected={true}>
+            <option key='default' disabled={true} value={-1}>
                 Select a tool
             </option>
         );
@@ -290,6 +290,7 @@ export default class GameManagement extends Component<
                 </div>
                 <div className='game-management__group'>
                     <select
+                        defaultValue={'-1'}
                         className='game-management__input'
                         onChange={this.handleToolSelectChange}>
                         {options}
