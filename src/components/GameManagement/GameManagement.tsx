@@ -140,8 +140,14 @@ export default class GameManagement extends Component<
                             {
                                 label: 'ID',
                                 type: 'disabled',
-                                default: 0,
+                                default: this.state.currentEditor,
                                 propertyName: 'id'
+                            },
+                            {
+                                label: 'Name',
+                                type: 'text',
+                                default: 'Dice',
+                                propertyName: 'name'
                             },
                             {
                                 label: 'Max Roll',
@@ -159,6 +165,7 @@ export default class GameManagement extends Component<
                     />
                 );
                 break;
+
             case '1': //Counter
                 editor = (
                     <Editor
@@ -171,7 +178,7 @@ export default class GameManagement extends Component<
                             {
                                 label: 'ID',
                                 type: 'disabled',
-                                default: 1,
+                                default: this.state.currentEditor,
                                 propertyName: 'id'
                             },
                             {
@@ -185,6 +192,103 @@ export default class GameManagement extends Component<
                                 type: 'number',
                                 default: 0,
                                 propertyName: 'value'
+                            }
+                        ]}
+                    />
+                );
+                break;
+
+            case '2': //Spinner
+                editor = (
+                    <Editor
+                        name={'Spinner'}
+                        onSubmit={(properties: object) => {
+                            console.log(properties);
+                            this.addToolObject(properties);
+                        }}
+                        values={[
+                            {
+                                label: 'ID',
+                                type: 'disabled',
+                                default: this.state.currentEditor,
+                                propertyName: 'id'
+                            },
+                            {
+                                label: 'Name',
+                                type: 'text',
+                                default: 'Spinner',
+                                propertyName: 'name'
+                            }
+                        ]}
+                    />
+                );
+                break;
+
+            case '3': //ScoreTable
+                let toolName = 'ScoreTable';
+                editor = (
+                    <Editor
+                        name={toolName}
+                        onSubmit={(properties: object) => {
+                            console.log(properties);
+                            this.addToolObject(properties);
+                        }}
+                        values={[
+                            {
+                                label: 'ID',
+                                type: 'disabled',
+                                default: this.state.currentEditor,
+                                propertyName: 'id'
+                            },
+                            {
+                                label: 'Name',
+                                type: 'text',
+                                default: toolName,
+                                propertyName: 'name'
+                            },
+                            {
+                                label: 'Players',
+                                type: 'textList',
+                                default: ['person-1', 'person-2'],
+                                propertyName: 'playerNames'
+                            },
+                            {
+                                label: 'Rounds',
+                                type: 'textList',
+                                default: ['Round 1', 'Round 2', 'Round 3'],
+                                propertyName: 'scoreNames'
+                            }
+                        ]}
+                    />
+                );
+                break;
+
+            case '4': //Coin
+                editor = (
+                    <Editor
+                        name={'Coin'}
+                        onSubmit={(properties: object) => {
+                            console.log(properties);
+                            this.addToolObject(properties);
+                        }}
+                        values={[
+                            {
+                                label: 'ID',
+                                type: 'disabled',
+                                default: this.state.currentEditor,
+                                propertyName: 'id'
+                            },
+                            {
+                                label: 'Name',
+                                type: 'text',
+                                default: 'Coin',
+                                propertyName: 'name'
+                            },
+                            {
+                                label: 'Icons',
+                                type: 'textList',
+                                default: ['face', 'euro_symbol'],
+                                propertyName: 'icons'
                             }
                         ]}
                     />
