@@ -295,7 +295,20 @@ export default class GameManagement extends Component<
                         {options}
                     </select>
                 </div>
+
                 <div className='game-management__group'>{editor}</div>
+
+                {/* TODO: Create a component to display added tools */}
+                <div className='game-management__group'>
+                    <ul className=''>
+                        {JSON.parse(this.state.toolJson).map(tool => {
+                            return (
+                                <li
+                                    key={`${tool.name}`}>{`${tool.name} ${tool.id}`}</li>
+                            );
+                        })}
+                    </ul>
+                </div>
 
                 <Link to='/' onClick={this.handleSubmit}>
                     <div className='game-management__button'> Save</div>
