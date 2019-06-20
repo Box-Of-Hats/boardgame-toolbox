@@ -53,6 +53,8 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
 
     renderInput(editableProperty: IEditableProperty) {
         switch (editableProperty.type) {
+            case 'hidden':
+                return <div></div>;
             case 'disabled':
                 return (
                     <div className='editor__input editor__input--disabled'>
@@ -116,7 +118,9 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
                 <div className='editor__title'>{this.props.name}</div>
                 {this.props.values.map(editableProp => {
                     return (
-                        <div className='editor__form-group'>
+                        <div
+                            className='editor__form-group'
+                            key={`${editableProp.label}${this.props.name}`}>
                             <div className='editor__label'>
                                 {editableProp.label}
                             </div>
