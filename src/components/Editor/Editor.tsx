@@ -32,6 +32,14 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
         };
     }
 
+    componentDidMount() {
+        let initialProperties = {};
+        this.props.values.forEach(value => {
+            initialProperties[value.propertyName] = value.default;
+        });
+        this.setState({properties: initialProperties});
+    }
+
     updateProperties(propertyName: string, value: any) {
         this.setState((prevState, props) => {
             prevState.properties[propertyName] = value;
@@ -46,7 +54,11 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
     renderInput(editableProperty: IEditableProperty) {
         switch (editableProperty.type) {
             case 'disabled':
-                return <div className="editor__input editor__input--disabled">{editableProperty.default}</div>;
+                return (
+                    <div className='editor__input editor__input--disabled'>
+                        {editableProperty.default}
+                    </div>
+                );
             case 'number':
                 return (
                     <input
@@ -70,6 +82,22 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
                             this.updateProperties(
                                 editableProperty.propertyName,
                                 e.target.value
+                            );
+                        }}
+                        defaultValue={editableProperty.default}
+                        className='editor__input'
+                    />
+                );
+            case 'textList':
+                return (
+                    <input
+                        type='text'
+                        onChange={e => {
+                            this.updateProperties(
+                                editableProperty.propertyName,
+                                e.target.value.split(',').map(str => {
+                                    return str.trim();
+                                })
                             );
                         }}
                         defaultValue={editableProperty.default}
