@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './GameManagement.scss';
 import {Link} from 'react-router-dom';
 import GamesStore from 'utils/GamesStore';
+import {Editor} from 'components/Editor/Editor';
 
 interface IToolConfig {
     id: number;
@@ -20,6 +21,7 @@ interface IGameManagementState {
     options: IToolConfig[];
     toolJson: string;
     selectedTool: IToolConfig | undefined;
+    currentEditor: number;
 }
 
 export default class GameManagement extends Component<
@@ -33,16 +35,16 @@ export default class GameManagement extends Component<
             description: '',
             toolJson: '[]',
             options: this.props.toolOptions,
-            selectedTool: this.props.toolOptions[0]
+            selectedTool: this.props.toolOptions[0],
+            currentEditor: -1
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleToolSelectChange = this.handleToolSelectChange.bind(this);
-        this.addTool = this.addTool.bind(this);
-        this.handleConfigJsonChange = this.handleConfigJsonChange.bind(this);
     }
 
     handleChange(event) {
+        // Generic input change handler
         event.persist();
         this.setState((prevState, props) => {
             prevState[event.target.name] = event.target.value;
@@ -50,25 +52,11 @@ export default class GameManagement extends Component<
         });
     }
 
-    isValidJson() {
-        //Check if the current toolJson is valid json
-        try {
-            JSON.parse(this.state.toolJson);
-            return true;
-        } catch {
-            return false;
-        }
-    }
-
-    addTool() {
-        // Add the currently selected tool to the tool list json
-        if (!this.isValidJson) {
-            return false;
-        }
+    addToolObject(tool: object) {
+        // add a tool to the tools list
         this.setState((prevstate, props) => {
             let toolConfig = JSON.parse(prevstate.toolJson);
-            toolConfig.push(this.state.selectedTool);
-
+            toolConfig.push(tool);
             return {
                 toolJson: JSON.stringify(toolConfig, null, 2)
             };
@@ -76,23 +64,18 @@ export default class GameManagement extends Component<
     }
 
     handleToolSelectChange(event) {
+        // Tool dropdown was changed
         event.persist();
         this.setState({
             selectedTool: this.state.options.filter(
                 opt => event.target.value === opt.id.toString()
-            )[0]
+            )[0],
+            currentEditor: event.target.value
         });
     }
 
-    handleConfigJsonChange(event) {
-        // Config text box was changed
-        event.persist();
-        this.setState({
-            toolJson: event.target.value
-        });
-    }
-
-    handleSubmit(event) {
+    handleSubmit() {
+        // Save the game to the local store
         let db = new GamesStore();
         db.addGame({
             name: this.state.name,
@@ -103,17 +86,185 @@ export default class GameManagement extends Component<
 
     render() {
         let options = this.state.options.map(o => {
-            return <option value={o.id} key={`${o.id}${o.name}`}>{o.name}</option>;
+            return (
+                <option value={o.id} key={`${o.id}${o.name}`}>
+                    {o.name}
+                </option>
+            );
         });
+        options.unshift(
+            <option key='default' disabled={true} value={-1}>
+                Select a tool
+            </option>
+        );
 
-        // let fields = ['name', 'description'].map(x => {
-        //     return (
-        //         <div className='game-management__group'>
-        //             <div className='game-management__label'>{x}</div>
-        //             <input className='game-management__input' type='text' />
-        //         </div>
-        //     );
-        // });
+        var editor = <div>No editor selected</div>;
+        switch (this.state.currentEditor.toString()) {
+            case '0': //Dice
+                editor = (
+                    <Editor
+                        name={'Dice'}
+                        onSubmit={(properties: object) => {
+                            this.addToolObject(properties);
+                        }}
+                        values={[
+                            {
+                                label: 'ID',
+                                type: 'disabled',
+                                default: 0,
+                                propertyName: 'id'
+                            },
+                            {
+                                label: 'Name',
+                                type: 'text',
+                                default: 'Dice',
+                                propertyName: 'name'
+                            },
+                            {
+                                label: 'Max Roll',
+                                type: 'number',
+                                default: 6,
+                                propertyName: 'maximumRoll'
+                            },
+                            {
+                                label: 'Dice Count',
+                                type: 'number',
+                                default: 1,
+                                propertyName: 'diceCount'
+                            }
+                        ]}
+                    />
+                );
+                break;
+
+            case '1': //Counter
+                editor = (
+                    <Editor
+                        name={'Counter'}
+                        onSubmit={(properties: object) => {
+                            this.addToolObject(properties);
+                        }}
+                        values={[
+                            {
+                                label: 'ID',
+                                type: 'disabled',
+                                default: 1,
+                                propertyName: 'id'
+                            },
+                            {
+                                label: 'Name',
+                                type: 'text',
+                                default: 'Counter',
+                                propertyName: 'name'
+                            },
+                            {
+                                label: 'Start Value',
+                                type: 'number',
+                                default: 0,
+                                propertyName: 'value'
+                            }
+                        ]}
+                    />
+                );
+                break;
+
+            case '2': //Spinner
+                editor = (
+                    <Editor
+                        name={'Spinner'}
+                        onSubmit={(properties: object) => {
+                            this.addToolObject(properties);
+                        }}
+                        values={[
+                            {
+                                label: 'ID',
+                                type: 'disabled',
+                                default: 2,
+                                propertyName: 'id'
+                            },
+                            {
+                                label: 'Name',
+                                type: 'text',
+                                default: 'Spinner',
+                                propertyName: 'name'
+                            }
+                        ]}
+                    />
+                );
+                break;
+
+            case '3': //ScoreTable
+                let toolName = 'ScoreTable';
+                editor = (
+                    <Editor
+                        name={toolName}
+                        onSubmit={(properties: object) => {
+                            this.addToolObject(properties);
+                        }}
+                        values={[
+                            {
+                                label: 'ID',
+                                type: 'disabled',
+                                default: 3,
+                                propertyName: 'id'
+                            },
+                            {
+                                label: 'Name',
+                                type: 'text',
+                                default: toolName,
+                                propertyName: 'name'
+                            },
+                            {
+                                label: 'Players',
+                                type: 'textList',
+                                default: ['person-1', 'person-2'],
+                                propertyName: 'playerNames'
+                            },
+                            {
+                                label: 'Rounds',
+                                type: 'textList',
+                                default: ['Round 1', 'Round 2', 'Round 3'],
+                                propertyName: 'scoreNames'
+                            }
+                        ]}
+                    />
+                );
+                break;
+
+            case '4': //Coin
+                editor = (
+                    <Editor
+                        name={'Coin'}
+                        onSubmit={(properties: object) => {
+                            this.addToolObject(properties);
+                        }}
+                        values={[
+                            {
+                                label: 'ID',
+                                type: 'disabled',
+                                default: 4,
+                                propertyName: 'id'
+                            },
+                            {
+                                label: 'Name',
+                                type: 'text',
+                                default: 'Coin',
+                                propertyName: 'name'
+                            },
+                            {
+                                label: 'Icons',
+                                type: 'textList',
+                                default: ['face', 'euro_symbol'],
+                                propertyName: 'icons'
+                            }
+                        ]}
+                    />
+                );
+                break;
+
+            default:
+                break;
+        }
 
         return (
             <div className='game-management'>
@@ -139,46 +290,29 @@ export default class GameManagement extends Component<
                 </div>
                 <div className='game-management__group'>
                     <select
+                        defaultValue={'-1'}
                         className='game-management__input'
                         onChange={this.handleToolSelectChange}>
                         {options}
                     </select>
-                    <div
-                        className={`game-management__button  ${
-                            this.isValidJson()
-                                ? ''
-                                : 'game-management__button--disabled'
-                        }`}
-                        onClick={this.addTool}>
-                        Add +
-                    </div>
                 </div>
+
+                <div className='game-management__group'>{editor}</div>
+
+                {/* TODO: Create a component to display added tools */}
                 <div className='game-management__group'>
-                    <textarea
-                        className='game-management__textarea'
-                        name='configOptions'
-                        value={this.state.toolJson}
-                        onChange={this.handleConfigJsonChange}
-                    />
+                    <ul className=''>
+                        {JSON.parse(this.state.toolJson).map(tool => {
+                            return (
+                                <li
+                                    key={`${tool.name}`}>{`${tool.name} ${tool.id}`}</li>
+                            );
+                        })}
+                    </ul>
                 </div>
-                {!this.isValidJson() && (
-                    <div
-                        className={
-                            'game-management__message game-management__message--error'
-                        }>
-                        Invalid JSON
-                    </div>
-                )}
 
                 <Link to='/' onClick={this.handleSubmit}>
-                    <div
-                        className={`game-management__button ${
-                            this.isValidJson()
-                                ? ''
-                                : 'game-management__button--disabled'
-                        }`}>
-                        Save
-                    </div>
+                    <div className='game-management__button'> Save</div>
                 </Link>
             </div>
         );

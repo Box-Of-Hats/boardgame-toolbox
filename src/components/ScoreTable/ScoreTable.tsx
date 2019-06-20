@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './ScoreTable.scss';
 
 interface IScoreTableProps {
@@ -18,9 +18,13 @@ export default class ScoreTable extends Component<
         this.state = {};
     }
 
+    sanitiseWord(word: string): string {
+        return word.replace(' ', '_');
+    }
+
     getTotalForPlayer(playerName: string): number {
         let inputs = document.querySelectorAll<HTMLInputElement>(
-            `.scoretable__input--${playerName}`
+            `.scoretable__input--${this.sanitiseWord(playerName)}`
         );
         let values: number[] = [];
         inputs.forEach(i => {
@@ -35,7 +39,7 @@ export default class ScoreTable extends Component<
         this.props.playerNames.forEach(playerName => {
             let score: number = this.getTotalForPlayer(playerName);
             let totalElement: HTMLElement | null = document.querySelector(
-                `.scoretable__cell--total-${playerName}`
+                `.scoretable__cell--total-${this.sanitiseWord(playerName)}`
             );
             if (totalElement) {
                 totalElement.innerText = score.toString();
@@ -54,20 +58,24 @@ export default class ScoreTable extends Component<
                         <tr>
                             <th />
                             {this.props.playerNames.map(name => (
-                                <th>{name}</th>
+                                <th key={name}>{name}</th>
                             ))}
                         </tr>
                         {this.props.scoreNames.map(scoreName => {
                             return (
-                                <tr className='scoretable__row'>
+                                <tr key={scoreName} className='scoretable__row'>
                                     <td>{scoreName}</td>
                                     {this.props.playerNames.map(playerName => (
-                                        <td className='scoretable__cell'>
+                                        <td
+                                            key={`${playerName}${scoreName}`}
+                                            className='scoretable__cell'>
                                             <input
                                                 onChange={() => {
                                                     this.updateTotals();
                                                 }}
-                                                className={`scoretable__input scoretable__input--${playerName}`}
+                                                className={`scoretable__input scoretable__input--${this.sanitiseWord(
+                                                    playerName
+                                                )}`}
                                                 type='number'
                                                 max={10000}
                                                 min={-10000}
@@ -85,8 +93,10 @@ export default class ScoreTable extends Component<
                             {this.props.playerNames.map(playerName => {
                                 return (
                                     <td
-                                        className={`scoretable__cell--total-${playerName}`}
-                                    >
+                                        key={`${playerName}-total`}
+                                        className={`scoretable__cell--total-${this.sanitiseWord(
+                                            playerName
+                                        )}`}>
                                         0
                                     </td>
                                 );

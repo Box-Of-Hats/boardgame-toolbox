@@ -1,0 +1,32 @@
+@import 'style/base.scss';
+
+.editor {
+    display: block;
+    width: 100%;
+    @include card;
+    &__form-group {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__label {
+        margin-right: $padding-base;
+        flex: 1;
+    }
+    &__input {
+        flex: 1;
+        &--disabled {
+            pointer-events: none;
+            user-select: none;
+        }
+    }
+    &__title {
+        @include title;
+    }
+    &__button {
+        @include button;
+        height: unset;
+        &--submit {
+            background-color: $color--green;
+        }
+    }
+}
