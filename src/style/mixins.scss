@@ -5,7 +5,7 @@
     font-size: 1.4em;
     margin-bottom: $padding-base;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    font-family: $font--main;
+    font-family: $font--title;
 }
 
 @mixin page {
@@ -57,7 +57,7 @@
     $button-height: 20px;
     min-width: 100px;
     font-family: $font--buttons;
-
+    letter-spacing: 0.3px;
     border: 2px solid rgba($color--black, 0.6);
     padding: 6px;
     border-radius: 3px;

@@ -5,9 +5,9 @@ $padding-base: 6px;
 $color--white: #fcfcfc;
 $color--grey: rgb(71, 71, 71);
 $color--black: #070707;
-$color--green: rgb(131, 221, 131);
-$color--red: rgb(216, 124, 112);
-$color--blue: rgb(121, 202, 240);
+$color--green: rgb(85, 165, 85);
+$color--red: rgb(151, 50, 36);
+$color--blue: rgb(0, 95, 139);
 $color--purple: rgb(57, 10, 63);
 
 //Box shadow
@@ -15,6 +15,7 @@ $box-shadow--light: 0 2px 4px rgba(0, 0, 0, 0.1);
 $box-shadow--heavy: 0 4px 6px rgba(0, 0, 0, 0.19);
 
 //Fonts
-$font--main: 'MartelSans', sans-serif;
+$font--main: 'Montserrat', sans-serif;
 $font--code: 'Fira Mono', monospace;
-$font--buttons: 'MartelSans', sans-serif;
+$font--buttons: 'Martel Sans', sans-serif;
+$font--title: 'Martel Sans', sans-serif;

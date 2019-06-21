@@ -24,15 +24,30 @@ interface IGameManagementState {
     currentEditor: number;
 }
 
-const ToolList = props => (
-    <div className='game-management__group'>
-        <div>
+const ToolList = props => {
+    let index = 0;
+    return (
+        <div className='game-management__tool-list'>
             {JSON.parse(props.toolJson).map(tool => {
-                return <div key={`${tool.name}`}>{`${tool.name}`}</div>;
+                index++;
+                return (
+                    <div
+                        className='game-management__tool-listing'
+                        key={`${tool.name}${index}`}>
+                        {`${tool.name}`}
+                        <div
+                            className='game-management__minus'
+                            onClick={e => {
+                                props.onDelete(tool.name);
+                            }}>
+                            -
+                        </div>
+                    </div>
+                );
             })}
         </div>
-    </div>
-);
+    );
+};
 
 export default class GameManagement extends Component<
     IGameManagementProps,
@@ -277,44 +292,66 @@ export default class GameManagement extends Component<
         }
 
         return (
-            <div className='game-management'>
-                <div className='game-management__group'>
-                    <div className='game-management__label'>name</div>
-                    <input
-                        className='game-management__input'
-                        name='name'
-                        type='text'
-                        onChange={this.handleChange}
-                        value={this.state.name}
-                    />
-                </div>
-                <div className='game-management__group'>
-                    <div className='game-management__label'>description</div>
-                    <input
-                        className='game-management__input'
-                        name='description'
-                        type='text'
-                        onChange={this.handleChange}
-                        value={this.state.description}
-                    />
-                </div>
-                <div className='game-management__group'>
-                    <select
-                        defaultValue={'-1'}
-                        className='game-management__input game-management__input--select'
-                        onChange={this.handleToolSelectChange}>
-                        {options}
-                    </select>
-                </div>
+            <>
+                <div className='game-management'>
+                    <div className='game-management__group'>
+                        <div className='game-management__label'>name</div>
+                        <input
+                            className='game-management__input'
+                            name='name'
+                            type='text'
+                            onChange={this.handleChange}
+                            value={this.state.name}
+                        />
+                    </div>
+                    <div className='game-management__group'>
+                        <div className='game-management__label'>
+                            description
+                        </div>
+                        <input
+                            className='game-management__input'
+                            name='description'
+                            type='text'
+                            onChange={this.handleChange}
+                            value={this.state.description}
+                        />
+                    </div>
+                    <div className='game-management__group'>
+                        <select
+                            defaultValue={'-1'}
+                            className='game-management__input game-management__input--select'
+                            onChange={this.handleToolSelectChange}>
+                            {options}
+                        </select>
+                    </div>
 
-                {editor}
-
-                <ToolList toolJson={this.state.toolJson}></ToolList>
-
-                <Link to='/' onClick={this.handleSubmit}>
-                    <div className='game-management__button'> Save</div>
-                </Link>
-            </div>
+                    {editor}
+                </div>
+                {JSON.parse(this.state.toolJson).length > 0 && (
+                    <ToolList
+                        toolJson={this.state.toolJson}
+                        onDelete={(name: string) => {
+                            console.log('DEL:', name);
+                            this.setState({
+                                toolJson: JSON.stringify(
+                                    JSON.parse(this.state.toolJson).filter(
+                                        tool => {
+                                            return tool.name != name;
+                                        }
+                                    )
+                                )
+                            });
+                        }}></ToolList>
+                )}
+                <div className='game-management__bottom-bar'>
+                    <Link to='/' onClick={this.handleSubmit}>
+                        <div className='game-management__button game-management__button--save'>
+                            {' '}
+                            Save
+                        </div>
+                    </Link>
+                </div>
+            </>
         );
     }
 }
