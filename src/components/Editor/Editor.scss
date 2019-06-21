@@ -3,7 +3,7 @@
 .editor {
     display: block;
     width: 100%;
-    &__form-group {
+    &__group {
         @include forms--group;
     }
     &__label {

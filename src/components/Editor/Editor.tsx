@@ -141,7 +141,7 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
 
         return (
             <div
-                className='editor__form-group'
+                className='editor__group'
                 key={`${editableProperty.label}${this.props.name}`}>
                 {editor}
             </div>
@@ -155,7 +155,7 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
                 {this.props.values.map(editableProp => {
                     return this.renderInput(editableProp);
                 })}
-                <div className='editor__form-group'>
+                <div className='editor__group'>
                     <input
                         className='editor__button editor__button--submit'
                         type='button'
