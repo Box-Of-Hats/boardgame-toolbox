@@ -9,13 +9,17 @@ Try it out online at [https://boardgame-toolbox.com/](https://boardgame-toolbox.
 -   Timer
 -   Game Icons
 -   Proper inputs for adding new games
+    -   ~~Number (Number)~~ ✔
+    -   ~~Freetext (String)~~ ✔
+    -   ~~Comma separated list (String list)~~ ✔
     -   Dropdown list (String enum)
-    -   Number (Number)
-    -   Freetext (String)
-    -   Comma separated list (String list)
     -   Icon picker (Image)
 -   Use interfaces to keep everything in sync instead of passing around IDs
--   Import / export full games list as JSON
+-   UI theming
+-   Modify existing game configs
+-   Settings page
+    -   Import / export full games list as JSON
+    -   Force cache deletion
 
 ## Credits
 
