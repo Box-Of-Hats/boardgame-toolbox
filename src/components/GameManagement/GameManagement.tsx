@@ -19,7 +19,6 @@ interface IGameManagementState {
     description: string;
     options: IToolConfig[];
     selectedTools: IToolConfig[];
-    selectedTool: IToolConfig | undefined;
     currentEditor: number;
 }
 
@@ -59,7 +58,6 @@ export default class GameManagement extends Component<
             description: '',
             options: this.props.toolOptions,
             selectedTools: [],
-            selectedTool: this.props.toolOptions[0],
             currentEditor: -1
         };
         this.handleChange = this.handleChange.bind(this);
@@ -92,9 +90,6 @@ export default class GameManagement extends Component<
         // Tool dropdown was changed
         event.persist();
         this.setState({
-            selectedTool: this.state.options.filter(
-                opt => event.target.value === opt.id.toString()
-            )[0],
             currentEditor: event.target.value
         });
     }
