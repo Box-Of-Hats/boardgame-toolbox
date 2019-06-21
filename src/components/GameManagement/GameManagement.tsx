@@ -58,7 +58,7 @@ export default class GameManagement extends Component<
             description: '',
             options: this.props.toolOptions,
             selectedTools: [],
-            currentEditor: -1
+            currentEditor: 0
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -112,13 +112,7 @@ export default class GameManagement extends Component<
                 </option>
             );
         });
-        options.unshift(
-            <option key='default' disabled={true} value={-1}>
-                Select a tool
-            </option>
-        );
-
-        var editor = <div>No editor selected</div>;
+        var editor;
         switch (this.state.currentEditor.toString()) {
             case '0': //Dice
                 editor = (
@@ -313,7 +307,7 @@ export default class GameManagement extends Component<
                     </div>
                     <div className='game-management__group'>
                         <select
-                            defaultValue={'-1'}
+                            defaultValue={'0'}
                             className='game-management__input game-management__input--select'
                             onChange={this.handleToolSelectChange}>
                             {options}
