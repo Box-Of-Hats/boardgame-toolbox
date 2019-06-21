@@ -305,6 +305,7 @@ export default class GameManagement extends Component<
                             value={this.state.description}
                         />
                     </div>
+                    <hr />
                     <div className='game-management__group'>
                         <select
                             defaultValue={'0'}
