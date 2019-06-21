@@ -64,58 +64,77 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
                 return <div></div>;
             case 'disabled':
                 return (
-                    <div className='editor__input editor__input--disabled'>
-                        {editableProperty.default}
-                    </div>
+                    <>
+                        <div className='editor__label'>
+                            {editableProperty.label}
+                        </div>
+                        <div className='editor__input editor__input--disabled'>
+                            {editableProperty.default}
+                        </div>
+                    </>
                 );
             case 'number':
                 return (
-                    <input
-                        type='number'
-                        onChange={e => {
-                            this.updateProperties(
-                                editableProperty.propertyName,
-                                parseInt(e.target.value)
-                            );
-                        }}
-                        defaultValue={editableProperty.default}
-                        className='editor__input'
-                    />
+                    <>
+                        <div className='editor__label'>
+                            {editableProperty.label}
+                        </div>
+                        <input
+                            type='number'
+                            onChange={e => {
+                                this.updateProperties(
+                                    editableProperty.propertyName,
+                                    parseInt(e.target.value)
+                                );
+                            }}
+                            defaultValue={editableProperty.default}
+                            className='editor__input'
+                        />
+                    </>
                 );
                 break;
             case 'text':
                 return (
-                    <input
-                        type='text'
-                        onChange={e => {
-                            this.updateProperties(
-                                editableProperty.propertyName,
-                                e.target.value
-                            );
-                        }}
-                        defaultValue={editableProperty.default}
-                        className='editor__input'
-                    />
+                    <>
+                        <div className='editor__label'>
+                            {editableProperty.label}
+                        </div>
+                        <input
+                            type='text'
+                            onChange={e => {
+                                this.updateProperties(
+                                    editableProperty.propertyName,
+                                    e.target.value
+                                );
+                            }}
+                            defaultValue={editableProperty.default}
+                            className='editor__input'
+                        />
+                    </>
                 );
             case 'textList':
                 return (
-                    <input
-                        type='text'
-                        onChange={e => {
-                            this.updateProperties(
-                                editableProperty.propertyName,
-                                e.target.value.split(',').map(str => {
-                                    return str.trim();
-                                })
-                            );
-                        }}
-                        defaultValue={editableProperty.default}
-                        className='editor__input'
-                    />
+                    <>
+                        <div className='editor__label'>
+                            {editableProperty.label}
+                        </div>
+                        <input
+                            type='text'
+                            onChange={e => {
+                                this.updateProperties(
+                                    editableProperty.propertyName,
+                                    e.target.value.split(',').map(str => {
+                                        return str.trim();
+                                    })
+                                );
+                            }}
+                            defaultValue={editableProperty.default}
+                            className='editor__input'
+                        />
+                    </>
                 );
             default:
                 return <div>Unrecognised Type: {editableProperty.type}</div>;
-                break;
         }
     }
 
@@ -128,9 +147,6 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
                         <div
                             className='editor__form-group'
                             key={`${editableProp.label}${this.props.name}`}>
-                            <div className='editor__label'>
-                                {editableProp.label}
-                            </div>
                             {this.renderInput(editableProp)}
                         </div>
                     );

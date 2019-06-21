@@ -110,7 +110,7 @@ export default class GameManagement extends Component<
                         values={[
                             {
                                 label: 'ID',
-                                type: 'disabled',
+                                type: 'hidden',
                                 default: 0,
                                 propertyName: 'id'
                             },
@@ -147,7 +147,7 @@ export default class GameManagement extends Component<
                         values={[
                             {
                                 label: 'ID',
-                                type: 'disabled',
+                                type: 'hidden',
                                 default: 1,
                                 propertyName: 'id'
                             },
@@ -178,7 +178,7 @@ export default class GameManagement extends Component<
                         values={[
                             {
                                 label: 'ID',
-                                type: 'disabled',
+                                type: 'hidden',
                                 default: 2,
                                 propertyName: 'id'
                             },
@@ -204,7 +204,7 @@ export default class GameManagement extends Component<
                         values={[
                             {
                                 label: 'ID',
-                                type: 'disabled',
+                                type: 'hidden',
                                 default: 3,
                                 propertyName: 'id'
                             },
@@ -241,7 +241,7 @@ export default class GameManagement extends Component<
                         values={[
                             {
                                 label: 'ID',
-                                type: 'disabled',
+                                type: 'hidden',
                                 default: 4,
                                 propertyName: 'id'
                             },
