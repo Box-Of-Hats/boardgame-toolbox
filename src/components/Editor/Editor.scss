@@ -3,6 +3,7 @@
 .editor {
     display: block;
     width: 100%;
+    min-height: 30vh;
     &__group {
         @include forms--group;
     }
