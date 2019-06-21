@@ -17,9 +17,8 @@ interface IGameManagementProps {
 interface IGameManagementState {
     name: string;
     description: string;
-    //tools: Tool[];
     options: IToolConfig[];
-    toolJson: string;
+    selectedTools: IToolConfig[];
     selectedTool: IToolConfig | undefined;
     currentEditor: number;
 }
@@ -28,7 +27,7 @@ const ToolList = props => {
     let index = 0;
     return (
         <div className='game-management__tool-list'>
-            {JSON.parse(props.toolJson).map(tool => {
+            {props.tools.map(tool => {
                 index++;
                 return (
                     <div
@@ -58,8 +57,8 @@ export default class GameManagement extends Component<
         this.state = {
             name: '',
             description: '',
-            toolJson: '[]',
             options: this.props.toolOptions,
+            selectedTools: [],
             selectedTool: this.props.toolOptions[0],
             currentEditor: -1
         };
@@ -77,13 +76,14 @@ export default class GameManagement extends Component<
         });
     }
 
-    addToolObject(tool: object) {
+    addToolObject(tool: IToolConfig) {
         // add a tool to the tools list
         this.setState((prevstate, props) => {
-            let toolConfig = JSON.parse(prevstate.toolJson);
-            toolConfig.push(tool);
+            //let toolConfig = JSON.parse(prevstate.toolJson);
+            let previouslySelectedTools = prevstate.selectedTools;
+            previouslySelectedTools.push(tool);
             return {
-                toolJson: JSON.stringify(toolConfig, null, 2)
+                selectedTools: previouslySelectedTools
             };
         });
     }
@@ -105,7 +105,7 @@ export default class GameManagement extends Component<
         db.addGame({
             name: this.state.name,
             description: this.state.description,
-            tools: JSON.parse(this.state.toolJson)
+            tools: this.state.selectedTools
         });
     }
 
@@ -129,7 +129,7 @@ export default class GameManagement extends Component<
                 editor = (
                     <Editor
                         name={'Dice'}
-                        onSubmit={(properties: object) => {
+                        onSubmit={(properties: IToolConfig) => {
                             this.addToolObject(properties);
                         }}
                         values={[
@@ -166,7 +166,7 @@ export default class GameManagement extends Component<
                 editor = (
                     <Editor
                         name={'Counter'}
-                        onSubmit={(properties: object) => {
+                        onSubmit={(properties: IToolConfig) => {
                             this.addToolObject(properties);
                         }}
                         values={[
@@ -197,7 +197,7 @@ export default class GameManagement extends Component<
                 editor = (
                     <Editor
                         name={'Spinner'}
-                        onSubmit={(properties: object) => {
+                        onSubmit={(properties: IToolConfig) => {
                             this.addToolObject(properties);
                         }}
                         values={[
@@ -223,7 +223,7 @@ export default class GameManagement extends Component<
                 editor = (
                     <Editor
                         name={toolName}
-                        onSubmit={(properties: object) => {
+                        onSubmit={(properties: IToolConfig) => {
                             this.addToolObject(properties);
                         }}
                         values={[
@@ -260,7 +260,7 @@ export default class GameManagement extends Component<
                 editor = (
                     <Editor
                         name={'Coin'}
-                        onSubmit={(properties: object) => {
+                        onSubmit={(properties: IToolConfig) => {
                             this.addToolObject(properties);
                         }}
                         values={[
@@ -327,18 +327,15 @@ export default class GameManagement extends Component<
 
                     {editor}
                 </div>
-                {JSON.parse(this.state.toolJson).length > 0 && (
+                {this.state.selectedTools.length > 0 && (
                     <ToolList
-                        toolJson={this.state.toolJson}
+                        tools={this.state.selectedTools}
                         onDelete={(name: string) => {
-                            console.log('DEL:', name);
                             this.setState({
-                                toolJson: JSON.stringify(
-                                    JSON.parse(this.state.toolJson).filter(
-                                        tool => {
-                                            return tool.name != name;
-                                        }
-                                    )
+                                selectedTools: this.state.selectedTools.filter(
+                                    tool => {
+                                        return tool.name != name;
+                                    }
                                 )
                             });
                         }}></ToolList>
