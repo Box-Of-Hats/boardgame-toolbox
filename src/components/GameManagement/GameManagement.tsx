@@ -24,6 +24,16 @@ interface IGameManagementState {
     currentEditor: number;
 }
 
+const ToolList = props => (
+    <div className='game-management__group'>
+        <div>
+            {JSON.parse(props.toolJson).map(tool => {
+                return <div key={`${tool.name}`}>{`${tool.name}`}</div>;
+            })}
+        </div>
+    </div>
+);
+
 export default class GameManagement extends Component<
     IGameManagementProps,
     IGameManagementState
@@ -299,17 +309,7 @@ export default class GameManagement extends Component<
 
                 {editor}
 
-                {/* TODO: Create a component to display added tools */}
-                <div className='game-management__group'>
-                    <ul className=''>
-                        {JSON.parse(this.state.toolJson).map(tool => {
-                            return (
-                                <li
-                                    key={`${tool.name}`}>{`${tool.name} ${tool.id}`}</li>
-                            );
-                        })}
-                    </ul>
-                </div>
+                <ToolList toolJson={this.state.toolJson}></ToolList>
 
                 <Link to='/' onClick={this.handleSubmit}>
                     <div className='game-management__button'> Save</div>
