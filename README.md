@@ -17,6 +17,8 @@ Try it out online at [https://boardgame-toolbox.com/](https://boardgame-toolbox.
 -   Use interfaces to keep everything in sync instead of passing around IDs
 -   UI theming
 -   Modify existing game configs
+-   Tool property descriptions
+    -   _e.g Players: 'Enter names separated by commas'_
 -   Settings page
     -   Import / export full games list as JSON
     -   Force cache deletion
