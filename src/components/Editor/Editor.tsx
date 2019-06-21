@@ -59,22 +59,22 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
     }
 
     renderInput(editableProperty: IEditableProperty) {
+        var editor;
+
         switch (editableProperty.type) {
             case 'hidden':
-                return <div></div>;
+                return <></>;
             case 'disabled':
-                return (
+                editor = (
                     <>
-                        <div className='editor__label'>
-                            {editableProperty.label}
-                        </div>
                         <div className='editor__input editor__input--disabled'>
                             {editableProperty.default}
                         </div>
                     </>
                 );
+                break;
             case 'number':
-                return (
+                editor = (
                     <>
                         <div className='editor__label'>
                             {editableProperty.label}
@@ -94,7 +94,7 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
                 );
                 break;
             case 'text':
-                return (
+                editor = (
                     <>
                         <div className='editor__label'>
                             {editableProperty.label}
@@ -112,8 +112,9 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
                         />
                     </>
                 );
+                break;
             case 'textList':
-                return (
+                editor = (
                     <>
                         <div className='editor__label'>
                             {editableProperty.label}
@@ -133,30 +134,35 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
                         />
                     </>
                 );
+                break;
             default:
-                return <div>Unrecognised Type: {editableProperty.type}</div>;
+                editor = <div>Unrecognised Type: {editableProperty.type}</div>;
         }
+
+        return (
+            <div
+                className='editor__form-group'
+                key={`${editableProperty.label}${this.props.name}`}>
+                {editor}
+            </div>
+        );
     }
 
     render() {
         return (
             <form className='editor'>
-                <div className='editor__title'>{this.props.name}</div>
+                {/* <div className='editor__title'>{this.props.name}</div> */}
                 {this.props.values.map(editableProp => {
-                    return (
-                        <div
-                            className='editor__form-group'
-                            key={`${editableProp.label}${this.props.name}`}>
-                            {this.renderInput(editableProp)}
-                        </div>
-                    );
+                    return this.renderInput(editableProp);
                 })}
-                <input
-                    className='editor__button editor__button--submit'
-                    type='button'
-                    onClick={() => this.submit()}
-                    value='Add +'
-                />
+                <div className='editor__form-group'>
+                    <input
+                        className='editor__button editor__button--submit'
+                        type='button'
+                        onClick={() => this.submit()}
+                        value='Add +'
+                    />
+                </div>
             </form>
         );
     }

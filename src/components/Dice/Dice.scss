@@ -16,7 +16,7 @@
         @include title;
     }
     &__button {
-        @include button;
+        @include forms--button;
     }
     &__dice {
         height: $dice-height;

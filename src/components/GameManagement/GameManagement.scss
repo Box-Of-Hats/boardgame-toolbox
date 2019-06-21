@@ -4,25 +4,25 @@
     @include card;
 
     &__group {
-        min-height: 30px;
-        line-height: 30px;
-        display: flex;
-        justify-content: space-between;
-        margin: $padding-base 0;
+        @include forms--group;
     }
     &__input {
-        border: 1px solid darken($color--white, 10%);
-        border-radius: $borderRadius--large;
+        @include forms--input;
+
+        width: 60%;
+
         &:focus {
             border: 1px solid $color--blue;
         }
-        width: 60%;
+        &--select {
+            width: 100%;
+        }
     }
     &__label {
-        font-size: 0.9em;
+        @include forms--label;
     }
     &__button {
-        @include button;
+        @include forms--button;
         width: 17%;
     }
     &__textarea {

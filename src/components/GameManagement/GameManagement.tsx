@@ -291,13 +291,13 @@ export default class GameManagement extends Component<
                 <div className='game-management__group'>
                     <select
                         defaultValue={'-1'}
-                        className='game-management__input'
+                        className='game-management__input game-management__input--select'
                         onChange={this.handleToolSelectChange}>
                         {options}
                     </select>
                 </div>
 
-                <div className='game-management__group'>{editor}</div>
+                {editor}
 
                 {/* TODO: Create a component to display added tools */}
                 <div className='game-management__group'>

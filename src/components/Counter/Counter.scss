@@ -7,7 +7,7 @@
     grid-template-rows: 50% 50%;
     grid-template-areas: 'title title title' 'btn-inc val btn-dec';
     &__button {
-        @include button;
+        @include forms--button;
         color: rgba($color--black, 0.6);
         font-weight: bold;
         &--dec {

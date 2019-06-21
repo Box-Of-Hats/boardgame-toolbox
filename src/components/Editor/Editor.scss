@@ -3,16 +3,16 @@
 .editor {
     display: block;
     width: 100%;
-    @include card;
     &__form-group {
-        display: flex;
-        justify-content: space-between;
+        @include forms--group;
     }
     &__label {
+        @include forms--label;
         margin-right: $padding-base;
         flex: 1;
     }
     &__input {
+        @include forms--input;
         flex: 1;
         &--disabled {
             pointer-events: none;
@@ -23,7 +23,7 @@
         @include title;
     }
     &__button {
-        @include button;
+        @include forms--button;
         height: unset;
         &--submit {
             background-color: $color--green;

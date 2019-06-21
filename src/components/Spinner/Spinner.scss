@@ -37,6 +37,6 @@
         height: 100%;
     }
     &__button {
-        @include button;
+        @include forms--button;
     }
 }

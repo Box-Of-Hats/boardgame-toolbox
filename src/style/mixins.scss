@@ -21,6 +21,8 @@
     transition: 0.4s;
 }
 
+// Links
+
 @mixin link {
     cursor: pointer;
 }
@@ -30,7 +32,28 @@
     }
 }
 
-@mixin button {
+// Forms
+@mixin forms--label {
+    font-size: 0.9em;
+    text-transform: lowercase;
+}
+
+@mixin forms--group {
+    min-height: 30px;
+    line-height: 30px;
+    display: flex;
+    justify-content: space-between;
+    margin: $padding-base 0;
+}
+
+@mixin forms--input {
+    padding: 3px 4px;
+    border-radius: $borderRadius--large;
+    border: 1px solid darken($color--white, 10%);
+    outline: thick;
+}
+
+@mixin forms--button {
     $button-height: 20px;
     min-width: 100px;
     font-family: $font--buttons;

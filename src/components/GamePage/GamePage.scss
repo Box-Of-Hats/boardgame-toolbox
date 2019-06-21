@@ -3,7 +3,7 @@
 .game-page {
     @include page;
     &__button {
-        @include button;
+        @include forms--button;
     }
     &__error {
         @include card;

@@ -3,7 +3,7 @@
 .game-management-form {
     @include page;
     &__button {
-        @include button;
+        @include forms--button;
     }
     &__title {
         @include title;
