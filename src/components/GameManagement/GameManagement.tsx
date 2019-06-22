@@ -80,6 +80,24 @@ export default class GameManagement extends Component<
         this.setState((prevstate, props) => {
             //let toolConfig = JSON.parse(prevstate.toolJson);
             let previouslySelectedTools = prevstate.selectedTools;
+
+            if (
+                previouslySelectedTools.findIndex(t => t.name === tool.name) !=
+                -1
+            ) {
+                // If tools already contains a tool with the chosen name, generate a new one:
+                let index = 0;
+                let newName = tool.name;
+                while (
+                    previouslySelectedTools.findIndex(
+                        t => t.name === newName
+                    ) != -1
+                ) {
+                    index++;
+                    newName = `${tool.name} (${index})`;
+                }
+                tool.name = newName;
+            }
             previouslySelectedTools.push(tool);
             return {
                 selectedTools: previouslySelectedTools
