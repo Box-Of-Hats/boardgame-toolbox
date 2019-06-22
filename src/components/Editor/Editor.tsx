@@ -155,9 +155,9 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
                 {this.props.values.map(editableProp => {
                     return this.renderInput(editableProp);
                 })}
-                <div className='editor__group'>
+                <div className='editor__group editor__group--final'>
                     <input
-                        className='editor__button editor__button--white'
+                        className='editor__button  editor__button--white'
                         type='button'
                         onClick={() => this.submit()}
                         value='Add +'
