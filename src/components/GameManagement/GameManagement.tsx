@@ -59,7 +59,7 @@ export default class GameManagement extends Component<
             description: '',
             options: this.props.toolOptions,
             selectedTools: [],
-            currentEditor: 0
+            currentEditor: -1
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -113,13 +113,22 @@ export default class GameManagement extends Component<
                 </option>
             );
         });
+        options.unshift(
+            <option value='-1' key='none-selected'>
+                Select a tool
+            </option>
+        );
         var editor;
         switch (this.state.currentEditor.toString()) {
+            case '-1':
+                editor = <div></div>;
+                break;
             case '0': //Dice
                 editor = (
                     <Editor
                         name={'Dice'}
                         onSubmit={(properties: IToolConfig) => {
+                            this.setState({currentEditor: -1});
                             this.addToolObject(properties);
                         }}
                         values={[
@@ -157,6 +166,7 @@ export default class GameManagement extends Component<
                     <Editor
                         name={'Counter'}
                         onSubmit={(properties: IToolConfig) => {
+                            this.setState({currentEditor: -1});
                             this.addToolObject(properties);
                         }}
                         values={[
@@ -188,6 +198,7 @@ export default class GameManagement extends Component<
                     <Editor
                         name={'Spinner'}
                         onSubmit={(properties: IToolConfig) => {
+                            this.setState({currentEditor: -1});
                             this.addToolObject(properties);
                         }}
                         values={[
@@ -214,6 +225,7 @@ export default class GameManagement extends Component<
                     <Editor
                         name={toolName}
                         onSubmit={(properties: IToolConfig) => {
+                            this.setState({currentEditor: -1});
                             this.addToolObject(properties);
                         }}
                         values={[
@@ -251,6 +263,7 @@ export default class GameManagement extends Component<
                     <Editor
                         name={'Coin'}
                         onSubmit={(properties: IToolConfig) => {
+                            this.setState({currentEditor: -1});
                             this.addToolObject(properties);
                         }}
                         values={[
@@ -309,7 +322,7 @@ export default class GameManagement extends Component<
                     <hr />
                     <div className='game-management__group'>
                         <select
-                            defaultValue={'0'}
+                            defaultValue={'-1'}
                             className='game-management__input game-management__input--select'
                             onChange={this.handleToolSelectChange}>
                             {options}
