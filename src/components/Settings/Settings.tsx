@@ -59,6 +59,7 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
                 });
             });
             serviceWorker.unregister();
+            serviceWorker.register();
             this.setState({message: 'Cleared cache!'});
             return;
         }
