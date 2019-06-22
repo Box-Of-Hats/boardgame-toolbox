@@ -17,7 +17,6 @@ interface IGameManagementProps {
 interface IGameManagementState {
     name: string;
     description: string;
-    options: IToolConfig[];
     selectedTools: IToolConfig[];
     currentEditor: number;
 }
@@ -57,7 +56,6 @@ export default class GameManagement extends Component<
         this.state = {
             name: '',
             description: '',
-            options: this.props.toolOptions,
             selectedTools: [],
             currentEditor: -1
         };
@@ -123,7 +121,7 @@ export default class GameManagement extends Component<
     }
 
     render() {
-        let options = this.state.options.map(o => {
+        let options = this.props.toolOptions.map(o => {
             return (
                 <option value={o.id} key={`${o.id}${o.name}`}>
                     {o.name}
@@ -306,7 +304,31 @@ export default class GameManagement extends Component<
                     />
                 );
                 break;
-
+            case '5': //Notepad
+                editor = (
+                    <Editor
+                        name={'NotePad'}
+                        onSubmit={(properties: IToolConfig) => {
+                            this.setState({currentEditor: -1});
+                            this.addToolObject(properties);
+                        }}
+                        values={[
+                            {
+                                label: 'ID',
+                                type: 'hidden',
+                                default: 5,
+                                propertyName: 'id'
+                            },
+                            {
+                                label: 'Name',
+                                type: 'text',
+                                default: 'NotePad',
+                                propertyName: 'name'
+                            }
+                        ]}
+                    />
+                );
+                break;
             default:
                 break;
         }

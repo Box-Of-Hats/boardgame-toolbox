@@ -36,6 +36,10 @@ const GameManagementForm: SFC = () => {
                             id: 4,
                             name: 'Coin',
                             icons: ['face', 'euro_symbol']
+                        },
+                        {
+                            id: 5,
+                            name: 'NotePad'
                         }
                     ]}
                 />

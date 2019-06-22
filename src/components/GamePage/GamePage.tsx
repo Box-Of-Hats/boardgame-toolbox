@@ -8,6 +8,7 @@ import {Link} from 'react-router-dom';
 import './GamePage.scss';
 import Header from 'components/Header/Header';
 import Coin from 'components/Coin/Coin';
+import NotePad from 'components/NotePad';
 
 interface IGamePageProps {
     match: any;
@@ -99,6 +100,8 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
                                             icons={toolConfig.icons}
                                         />
                                     );
+                                case 5:
+                                    return <NotePad name={toolConfig.name} />;
 
                                 default:
                                     return;

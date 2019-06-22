@@ -1,0 +1,18 @@
+@import 'style/base.scss';
+
+.notepad {
+    @include card;
+    &__title {
+        @include title;
+    }
+    &__textarea {
+        font-family: $font--code;
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+        min-height: 10ch;
+        border-radius: $borderRadius--large;
+        height: 26ch;
+        font-size: 1.2em;
+    }
+}
