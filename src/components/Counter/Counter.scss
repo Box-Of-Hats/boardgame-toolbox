@@ -8,8 +8,9 @@
     grid-template-areas: 'title title title' 'btn-inc val btn-dec';
     &__button {
         @include forms--button;
-        color: rgba($color--black, 0.6);
+        color: rgba($color--black, 0.8);
         font-weight: bold;
+        font-size: 1.2em;
         &--dec {
             grid-area: btn-inc;
             background-color: $color--red;
@@ -25,7 +26,7 @@
     }
     &__value {
         grid-area: val;
-        font-size: 1.6em;
+        font-size: 2em;
         text-align: center;
     }
 }
