@@ -19,7 +19,13 @@ export class GamesList extends Component<GamesListProps, GamesListState> {
     render() {
         return (
             <>
-                <Header title='Boardgame Toolbox' />
+                <Header
+                    title='Boardgame Toolbox'
+                    actionIcon='settings'
+                    actionCallback={() => {}}
+                    actionIconStyle={{fontSize: '1.5em'}}
+                    actionCallbackRedirect='/settings'
+                />
                 <div className='games-list'>
                     {this.gamesStore.getGames().map(game => {
                         return (

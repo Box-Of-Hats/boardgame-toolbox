@@ -1,0 +1,11 @@
+@import 'style/base.scss';
+
+.settings {
+    @include page;
+    &__region {
+        @include card;
+    }
+    &__button {
+        @include forms--button;
+    }
+}
