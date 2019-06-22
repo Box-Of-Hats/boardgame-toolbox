@@ -1,8 +1,10 @@
-@import "style/base.scss";
+@import 'style/base.scss';
 
 .scoretable {
     @include card;
     &__input {
+        @include forms--input;
+        font-size: 1em;
     }
     &__row {
     }
