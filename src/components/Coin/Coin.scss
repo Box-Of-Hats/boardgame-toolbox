@@ -5,7 +5,7 @@
         transform: rotateX(0deg) scale(0.8);
     }
     to {
-        transform: rotateX(540deg) scale(1);
+        transform: rotateX(900deg) scale(1);
     }
 }
 .coin-tool {
@@ -36,7 +36,7 @@
         &--flip {
             animation: linear;
             animation-name: coin-flip;
-            animation-duration: 0.6s;
+            animation-duration: 0.8s;
         }
     }
 }

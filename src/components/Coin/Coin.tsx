@@ -33,7 +33,7 @@ class Coin extends React.Component<ICoinProps, ICoinState> {
             this.setState({
                 value: this.getRandomValue()
             });
-        }, 550);
+        }, 800);
     };
 
     public render() {
