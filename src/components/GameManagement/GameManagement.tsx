@@ -78,7 +78,6 @@ export default class GameManagement extends Component<
     addToolObject(tool: IToolConfig) {
         // add a tool to the tools list
         this.setState((prevstate, props) => {
-            //let toolConfig = JSON.parse(prevstate.toolJson);
             let previouslySelectedTools = prevstate.selectedTools;
 
             if (
