@@ -67,6 +67,12 @@
     padding: 4px 8px;
     user-select: none;
     cursor: pointer;
+    transition: $animation--fast;
+    outline: none;
+
+    &:active {
+        transform: scale(0.95);
+    }
 
     &--disabled {
         pointer-events: none;
