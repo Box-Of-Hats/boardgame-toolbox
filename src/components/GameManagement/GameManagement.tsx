@@ -322,7 +322,7 @@ export default class GameManagement extends Component<
                     <hr />
                     <div className='game-management__group'>
                         <select
-                            defaultValue={'-1'}
+                            value={this.state.currentEditor}
                             className='game-management__input game-management__input--select'
                             onChange={this.handleToolSelectChange}>
                             {options}
@@ -331,25 +331,23 @@ export default class GameManagement extends Component<
 
                     {editor}
                 </div>
-                {this.state.selectedTools.length > 0 && (
-                    <ToolList
-                        tools={this.state.selectedTools}
-                        onDelete={(name: string) => {
-                            this.setState({
-                                selectedTools: this.state.selectedTools.filter(
-                                    tool => {
-                                        return tool.name != name;
-                                    }
-                                )
-                            });
-                        }}></ToolList>
-                )}
+
                 <div className='game-management__bottom-bar'>
+                    {
+                        <ToolList
+                            tools={this.state.selectedTools}
+                            onDelete={(name: string) => {
+                                this.setState({
+                                    selectedTools: this.state.selectedTools.filter(
+                                        tool => {
+                                            return tool.name != name;
+                                        }
+                                    )
+                                });
+                            }}></ToolList>
+                    }
                     <Link to='/' onClick={this.handleSubmit}>
-                        <div className='game-management__button game-management__button--floating'>
-                            {' '}
-                            Save
-                        </div>
+                        <div className='game-management__button '> Save</div>
                     </Link>
                 </div>
             </>
