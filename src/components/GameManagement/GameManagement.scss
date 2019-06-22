@@ -26,17 +26,6 @@
         @include forms--button;
         background-color: $color--blue;
     }
-    &__textarea {
-        box-sizing: border-box;
-        font-family: $font--code;
-        font-size: 0.9em;
-        max-width: 100%;
-        min-width: 100%;
-        min-height: 10ch;
-        height: 30ch;
-        margin: $padding-base 0;
-        border-radius: $borderRadius--large;
-    }
     &__message {
         text-align: center;
         font-size: 0.8em;

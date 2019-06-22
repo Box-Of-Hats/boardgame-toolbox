@@ -157,7 +157,7 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
                 })}
                 <div className='editor__group'>
                     <input
-                        className='editor__button editor__button--purple'
+                        className='editor__button editor__button--white'
                         type='button'
                         onClick={() => this.submit()}
                         value='Add +'
