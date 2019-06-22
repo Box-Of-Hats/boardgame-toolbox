@@ -26,8 +26,5 @@
     &__button {
         @include forms--button;
         height: unset;
-        &--submit {
-            background-color: $color--green;
-        }
     }
 }

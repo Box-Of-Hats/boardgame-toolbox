@@ -332,7 +332,7 @@ export default class GameManagement extends Component<
                 )}
                 <div className='game-management__bottom-bar'>
                     <Link to='/' onClick={this.handleSubmit}>
-                        <div className='game-management__button game-management__button--save'>
+                        <div className='game-management__button game-management__button--floating'>
                             {' '}
                             Save
                         </div>

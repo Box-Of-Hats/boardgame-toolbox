@@ -24,13 +24,7 @@
     }
     &__button {
         @include forms--button;
-
-        &--save {
-            background-color: $color--blue;
-            border: $color--white;
-            color: $color--white;
-            box-shadow: $box-shadow--light;
-        }
+        background-color: $color--blue;
     }
     &__textarea {
         box-sizing: border-box;

@@ -58,12 +58,13 @@
     min-width: 100px;
     font-family: $font--buttons;
     letter-spacing: 0.3px;
+    font-size: 16px;
     border: 2px solid rgba($color--black, 0.6);
+    border-radius: $borderRadius--large;
     padding: 6px;
-    border-radius: 3px;
     text-decoration: none;
-    color: $color--black;
-
+    color: $color--white;
+    border-color: $color--white;
     text-align: center;
     padding-left: $padding-base * 2;
     padding-right: $padding-base * 2;
@@ -75,5 +76,33 @@
     &--disabled {
         pointer-events: none;
         background-color: desaturate($color--blue, 90%);
+    }
+    &--floating {
+        box-shadow: $box-shadow--light;
+    }
+    &--blue {
+        background-color: $color--blue;
+        color: $color--white;
+        border-color: $color--white;
+    }
+    &--green {
+        background-color: $color--green;
+        color: $color--white;
+        border-color: $color--white;
+    }
+    &--red {
+        background-color: $color--red;
+        color: $color--white;
+        border-color: $color--white;
+    }
+    &--purple {
+        background-color: $color--purple;
+        color: $color--white;
+        border-color: $color--white;
+    }
+    &--white {
+        background-color: $color--white;
+        color: $color--black;
+        border-color: $color--black;
     }
 }
