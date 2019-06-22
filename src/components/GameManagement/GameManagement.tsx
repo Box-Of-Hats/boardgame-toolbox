@@ -35,6 +35,7 @@ const ToolList = props => {
                         {`${tool.name}`}
                         <div
                             className='game-management__minus'
+                            role='button'
                             onClick={e => {
                                 props.onDelete(tool.name);
                             }}>

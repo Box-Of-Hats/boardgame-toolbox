@@ -73,6 +73,7 @@
     }
     &__minus {
         $height: 1em;
+        cursor: pointer;
         width: $height;
         height: $height;
         line-height: $height;
