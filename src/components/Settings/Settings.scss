@@ -2,10 +2,30 @@
 
 .settings {
     @include page;
+    box-sizing: border-box;
     &__region {
         @include card;
     }
     &__button {
         @include forms--button;
+    }
+    &__json-editor {
+        font-family: $font--code;
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+        min-height: 30ch;
+    }
+    &__group {
+        @include forms--group;
+    }
+    &__title {
+        @include title;
+    }
+    &__warning {
+        text-align: center;
+        color: $color--red;
+        flex: 1;
+        font-size: 1.4em;
     }
 }

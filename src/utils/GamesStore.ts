@@ -54,6 +54,11 @@ export default class GamesStore {
         }
     };
 
+    deleteGames = () => {
+        // Remove all games in local storage
+        localStorage.setItem(this.localStorageName, '[]');
+    };
+
     generateNextId = (games: Game[]) => {
         // Get a unique ID for the next game to be stored
         if (games == null) {

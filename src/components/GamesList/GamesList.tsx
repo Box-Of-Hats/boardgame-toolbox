@@ -20,7 +20,7 @@ export class GamesList extends Component<GamesListProps, GamesListState> {
         return (
             <>
                 <Header
-                    title='Boardgame Toolbox (Cache test)'
+                    title='Boardgame Toolbox'
                     actionIcon='settings'
                     actionCallback={() => {}}
                     actionIconStyle={{fontSize: '1.5em'}}
