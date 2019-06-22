@@ -4,6 +4,7 @@ import Header from 'components/Header/Header';
 import GamesStore from 'utils/GamesStore';
 import {Tool} from 'types/Tool.interface';
 import {Game} from 'types/Game.interface';
+import * as serviceWorker from 'serviceWorker';
 
 interface ISettingsState {
     message: string;
@@ -52,11 +53,12 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
 
     clearCache() {
         if ('serviceWorker' in navigator) {
-            caches.keys().then(function(cacheNames) {
-                cacheNames.forEach(function(cacheName) {
+            caches.keys().then(cacheNames => {
+                cacheNames.forEach(cacheName => {
                     caches.delete(cacheName);
                 });
             });
+            serviceWorker.unregister();
             this.setState({message: 'Cleared cache!'});
             return;
         }
