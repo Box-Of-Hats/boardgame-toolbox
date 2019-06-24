@@ -155,9 +155,7 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
                             onChange={e => {
                                 this.updateProperties(
                                     editableProperty.propertyName,
-                                    e.target.value.split(',').map(str => {
-                                        return str.trim();
-                                    })
+                                    e.target.value
                                 );
                             }}
                             defaultValue={editableProperty.default}
