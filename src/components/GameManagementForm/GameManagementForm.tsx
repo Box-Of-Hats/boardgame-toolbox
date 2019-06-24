@@ -40,6 +40,11 @@ const GameManagementForm: SFC = () => {
                         {
                             id: 5,
                             name: 'NotePad'
+                        },
+                        {
+                            id: 6,
+                            name: 'Timer',
+                            startTime: 35
                         }
                     ]}
                 />

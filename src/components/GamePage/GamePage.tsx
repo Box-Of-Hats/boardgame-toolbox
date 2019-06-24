@@ -9,6 +9,7 @@ import './GamePage.scss';
 import Header from 'components/Header/Header';
 import Coin from 'components/Coin/Coin';
 import NotePad from 'components/NotePad';
+import Timer from 'components/Timer/Timer';
 
 interface IGamePageProps {
     match: any;
@@ -102,7 +103,13 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
                                     );
                                 case 5:
                                     return <NotePad name={toolConfig.name} />;
-
+                                case 6:
+                                    return (
+                                        <Timer
+                                            name={toolConfig.name}
+                                            startTime={toolConfig.startTime}
+                                        />
+                                    );
                                 default:
                                     return;
                             }

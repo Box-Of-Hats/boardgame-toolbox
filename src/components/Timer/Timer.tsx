@@ -2,6 +2,7 @@ import * as React from 'react';
 import './Timer.scss';
 
 interface ITimerProps {
+    name: string;
     startTime: number;
 }
 
@@ -61,6 +62,9 @@ class Timer extends React.Component<ITimerProps, ITimerState> {
         return (
             <>
                 <div className='timer'>
+                    <div className='timer__title'>
+                        {this.props.name ? this.props.name : 'Timer'}
+                    </div>
                     <div className='timer__clock' onClick={this.startTimer}>
                         Time left: {this.state.currentTime.toFixed(1)}
                     </div>

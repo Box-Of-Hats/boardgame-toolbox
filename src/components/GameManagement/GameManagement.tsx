@@ -329,6 +329,36 @@ export default class GameManagement extends Component<
                     />
                 );
                 break;
+            case '6':
+                editor = (
+                    <Editor
+                        name={'Timer'}
+                        onSubmit={(properties: IToolConfig) => {
+                            this.setState({currentEditor: -1});
+                            this.addToolObject(properties);
+                        }}
+                        values={[
+                            {
+                                label: 'ID',
+                                type: 'hidden',
+                                default: 6,
+                                propertyName: 'id'
+                            },
+                            {
+                                label: 'Name',
+                                type: 'text',
+                                default: 'Timer',
+                                propertyName: 'name'
+                            },
+                            {
+                                label: 'Start Time',
+                                type: 'number',
+                                default: 30,
+                                propertyName: 'startTime'
+                            }
+                        ]}
+                    />
+                );
             default:
                 break;
         }
