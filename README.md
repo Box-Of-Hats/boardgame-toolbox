@@ -6,7 +6,7 @@ Try it out online at [https://boardgame-toolbox.com/](https://boardgame-toolbox.
 
 -   Custom 'icon' dice
 -   Random picker (Pick words at random)
--   Timer
+-   ~~Timer~~
 -   Game Icons
 -   Rules
 -   Help text for score table
