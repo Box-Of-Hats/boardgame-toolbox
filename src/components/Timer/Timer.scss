@@ -1,0 +1,13 @@
+@import 'style/base.scss';
+
+.timer {
+    &__title {
+        @include title;
+    }
+    &__clock {
+        font-size: 1.3em;
+    }
+    &__button {
+        @include forms--button;
+    }
+}
