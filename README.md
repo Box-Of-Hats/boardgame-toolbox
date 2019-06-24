@@ -8,7 +8,7 @@ Try it out online at [https://boardgame-toolbox.com/](https://boardgame-toolbox.
 -   Random picker (Pick words at random)
 -   ~~Timer~~
 -   Game Icons
--   Rules
+-   ~~Rules~~
 -   Help text for score table
 -   Proper inputs for adding new games
     -   ~~Number (Number)~~ ✔

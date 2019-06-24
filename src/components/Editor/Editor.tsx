@@ -135,6 +135,27 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
                     </>
                 );
                 break;
+            case 'textarea':
+                editor = (
+                    <>
+                        <div className='editor__label'>
+                            {editableProperty.label}
+                        </div>
+                        <textarea
+                            onChange={e => {
+                                this.updateProperties(
+                                    editableProperty.propertyName,
+                                    e.target.value.split(',').map(str => {
+                                        return str.trim();
+                                    })
+                                );
+                            }}
+                            defaultValue={editableProperty.default}
+                            className='editor__input editor__input--textarea'
+                        />
+                    </>
+                );
+                break;
             case 'color':
                 editor = (
                     <>

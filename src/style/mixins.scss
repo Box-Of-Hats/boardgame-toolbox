@@ -51,6 +51,7 @@
     border-radius: $borderRadius--large;
     border: 1px solid darken($color--white, 10%);
     outline: thick;
+    min-width: 70%;
 }
 
 @mixin forms--button {

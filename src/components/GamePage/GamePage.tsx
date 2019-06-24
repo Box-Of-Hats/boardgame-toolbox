@@ -4,12 +4,12 @@ import GamesStore from 'utils/GamesStore';
 import Dice from 'components/Dice/Dice';
 import ScoreTable from 'components/ScoreTable/ScoreTable';
 import Spinner from 'components/Spinner/Spinner';
-import {Link} from 'react-router-dom';
 import './GamePage.scss';
 import Header from 'components/Header/Header';
 import Coin from 'components/Coin/Coin';
 import NotePad from 'components/NotePad';
 import Timer from 'components/Timer/Timer';
+import Rules from 'components/Rules/Rules';
 
 interface IGamePageProps {
     match: any;
@@ -109,6 +109,13 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
                                             name={toolConfig.name}
                                             startTime={toolConfig.startTime}
                                             flashColor={toolConfig.flashColor}
+                                        />
+                                    );
+                                case 7:
+                                    return (
+                                        <Rules
+                                            name={toolConfig.name}
+                                            text={toolConfig.text}
                                         />
                                     );
                                 default:

@@ -38,6 +38,10 @@ const GameManagementForm: SFC = () => {
                         {
                             id: 6,
                             name: 'Timer'
+                        },
+                        {
+                            id: 7,
+                            name: 'Rules'
                         }
                     ]}
                 />

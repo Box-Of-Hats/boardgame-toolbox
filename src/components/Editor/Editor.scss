@@ -22,6 +22,10 @@
             pointer-events: none;
             user-select: none;
         }
+        &--textarea {
+            min-height: 10ch;
+            height: 10ch;
+        }
     }
     &__title {
         @include title;

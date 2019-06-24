@@ -1,0 +1,15 @@
+@import 'style/base.scss';
+
+.rules {
+    @include card;
+    &__title {
+        @include title;
+    }
+    &__text {
+        line-height: 26px;
+        font-size: 1em;
+    }
+    &__line {
+        margin: 0.4em 0;
+    }
+}
