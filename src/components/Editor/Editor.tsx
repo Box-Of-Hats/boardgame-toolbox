@@ -135,6 +135,26 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
                     </>
                 );
                 break;
+            case 'color':
+                editor = (
+                    <>
+                        <div className='editor__label'>
+                            {editableProperty.label}
+                        </div>
+                        <input
+                            type='color'
+                            onChange={e => {
+                                this.updateProperties(
+                                    editableProperty.propertyName,
+                                    e.target.value
+                                );
+                            }}
+                            defaultValue={editableProperty.default}
+                            className='editor__input'
+                        />
+                    </>
+                );
+                break;
             default:
                 editor = <div>Unrecognised Type: {editableProperty.type}</div>;
         }

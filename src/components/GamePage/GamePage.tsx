@@ -108,6 +108,7 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
                                         <Timer
                                             name={toolConfig.name}
                                             startTime={toolConfig.startTime}
+                                            flashColor={toolConfig.flashColor}
                                         />
                                     );
                                 default:

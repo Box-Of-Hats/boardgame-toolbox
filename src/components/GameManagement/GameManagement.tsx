@@ -355,6 +355,12 @@ export default class GameManagement extends Component<
                                 type: 'number',
                                 default: 30,
                                 propertyName: 'startTime'
+                            },
+                            {
+                                label: 'Flash color',
+                                type: 'color',
+                                default: '#cc0033',
+                                propertyName: 'flashColor'
                             }
                         ]}
                     />
