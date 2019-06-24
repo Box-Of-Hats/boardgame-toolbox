@@ -76,6 +76,10 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
                         </div>
                     )}
                     <div className='settings__region'>
+                        <div className='settings__title'>About</div>
+                        Current version: 0.1
+                    </div>
+                    <div className='settings__region'>
                         <div className='settings__title'>Cache</div>
                         <div
                             onClick={this.clearCache}

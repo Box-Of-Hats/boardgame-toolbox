@@ -8,6 +8,8 @@
     }
     &__button {
         @include forms--button;
+        max-height: 40px;
+        line-height: 40px;
     }
     &__json-editor {
         font-family: $font--code;
