@@ -2,6 +2,7 @@
 
 .timer {
     @include card;
+
     &__title {
         @include title;
     }
@@ -9,7 +10,7 @@
         @include forms--group;
     }
     &__clock {
-        font-size: 4em;
+        font-size: 16vh;
         text-align: center;
         user-select: none;
         font-family: $font--code;
