@@ -1,13 +1,24 @@
 @import 'style/base.scss';
 
 .timer {
+    @include card;
     &__title {
         @include title;
     }
+    &__group {
+        @include forms--group;
+    }
     &__clock {
-        font-size: 1.3em;
+        font-size: 4em;
+        text-align: center;
+        user-select: none;
+        font-family: $font--code;
     }
     &__button {
         @include forms--button;
+        $height: 40px;
+        flex: 1;
+        height: $height;
+        line-height: $height;
     }
 }

@@ -65,28 +65,31 @@ class Timer extends React.Component<ITimerProps, ITimerState> {
                     <div className='timer__title'>
                         {this.props.name ? this.props.name : 'Timer'}
                     </div>
-                    <div className='timer__clock' onClick={this.startTimer}>
-                        Time left: {this.state.currentTime.toFixed(1)}
-                    </div>
-                    <div
-                        className='timer__button timer__button--red'
-                        onClick={this.resetTimer}>
-                        <i className='material-icons'>restore</i>
-                    </div>
-                    {!this.state.isPlaying && (
+                    <div className='timer__group'>
                         <div
-                            className='timer__button timer__button--green'
-                            onClick={this.startTimer}>
-                            <i className='material-icons'>play_arrow</i>
+                            className='timer__button timer__button--red'
+                            onClick={this.resetTimer}>
+                            <i className='material-icons'>restore</i>
                         </div>
-                    )}
-                    {this.state.isPlaying && (
-                        <div
-                            className='timer__button timer__button--green'
-                            onClick={this.stopTimer}>
-                            <i className='material-icons'>pause</i>
-                        </div>
-                    )}
+
+                        {!this.state.isPlaying && (
+                            <div
+                                className='timer__button timer__button--green'
+                                onClick={this.startTimer}>
+                                <i className='material-icons'>play_arrow</i>
+                            </div>
+                        )}
+                        {this.state.isPlaying && (
+                            <div
+                                className='timer__button timer__button--green'
+                                onClick={this.stopTimer}>
+                                <i className='material-icons'>pause</i>
+                            </div>
+                        )}
+                    </div>
+                    <div className='timer__clock'>
+                        {this.state.currentTime.toFixed(1)}
+                    </div>
                 </div>
             </>
         );
