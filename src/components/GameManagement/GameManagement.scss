@@ -51,6 +51,11 @@
         width: 100vw;
         display: flex;
         justify-content: space-between;
+        &--disabled {
+            opacity: 0.4;
+            user-select: none;
+            pointer-events: none;
+        }
     }
 
     &__tool-listing {

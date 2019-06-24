@@ -204,7 +204,6 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
     render() {
         return (
             <form className='editor'>
-                {/* <div className='editor__title'>{this.props.name}</div> */}
                 {this.props.values.map(editableProp => {
                     return this.renderInput(editableProp);
                 })}

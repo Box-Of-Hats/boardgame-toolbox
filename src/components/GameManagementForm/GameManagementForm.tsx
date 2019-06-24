@@ -1,7 +1,6 @@
 import React, {SFC} from 'react';
 import GameManagement from 'components/GameManagement/GameManagement';
 import './GameManagementForm.scss';
-import {Link} from 'react-router-dom';
 import Header from 'components/Header/Header';
 
 const GameManagementForm: SFC = () => {

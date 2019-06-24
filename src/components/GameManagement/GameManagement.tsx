@@ -440,6 +440,8 @@ export default class GameManagement extends Component<
                             name='name'
                             type='text'
                             onChange={this.handleChange}
+                            onFocus={this.handleInputFocus}
+                            onBlur={this.handleInputUnFocus}
                             value={this.state.name}
                         />
                     </div>
@@ -452,6 +454,8 @@ export default class GameManagement extends Component<
                             name='description'
                             type='text'
                             onChange={this.handleChange}
+                            onFocus={this.handleInputFocus}
+                            onBlur={this.handleInputUnFocus}
                             value={this.state.description}
                         />
                     </div>
@@ -468,7 +472,12 @@ export default class GameManagement extends Component<
                     {editor}
                 </div>
 
-                <div className='game-management__bottom-bar'>
+                <div
+                    className={`game-management__bottom-bar ${
+                        this.state.showSaveButton
+                            ? ''
+                            : 'game-management__bottom-bar--disabled'
+                    }`}>
                     {
                         <ToolList
                             tools={this.state.selectedTools}
@@ -482,11 +491,10 @@ export default class GameManagement extends Component<
                                 });
                             }}></ToolList>
                     }
-                    {this.state.showSaveButton && (
-                        <Link to='/' onClick={this.handleSubmit}>
-                            <div className='game-management__button'> Save</div>
-                        </Link>
-                    )}
+
+                    <Link to='/' onClick={this.handleSubmit}>
+                        <div className='game-management__button'>Save</div>
+                    </Link>
                 </div>
             </>
         );
