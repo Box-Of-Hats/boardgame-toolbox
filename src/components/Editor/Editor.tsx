@@ -14,6 +14,8 @@ interface IEditorProps {
     name: string;
     values: Array<IEditableProperty>;
     onSubmit: any;
+    onFocus: any;
+    onBlur: any;
 }
 
 interface IEditorState {
@@ -81,6 +83,8 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
                         </div>
                         <input
                             type='number'
+                            onFocus={this.props.onFocus}
+                            onBlur={this.props.onBlur}
                             onChange={e => {
                                 this.updateProperties(
                                     editableProperty.propertyName,
@@ -101,6 +105,8 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
                         </div>
                         <input
                             type='text'
+                            onFocus={this.props.onFocus}
+                            onBlur={this.props.onBlur}
                             onChange={e => {
                                 this.updateProperties(
                                     editableProperty.propertyName,
@@ -121,6 +127,8 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
                         </div>
                         <input
                             type='text'
+                            onFocus={this.props.onFocus}
+                            onBlur={this.props.onBlur}
                             onChange={e => {
                                 this.updateProperties(
                                     editableProperty.propertyName,
@@ -142,6 +150,8 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
                             {editableProperty.label}
                         </div>
                         <textarea
+                            onFocus={this.props.onFocus}
+                            onBlur={this.props.onBlur}
                             onChange={e => {
                                 this.updateProperties(
                                     editableProperty.propertyName,
@@ -164,6 +174,8 @@ export class Editor extends React.Component<IEditorProps, IEditorState> {
                         </div>
                         <input
                             type='color'
+                            onFocus={this.props.onFocus}
+                            onBlur={this.props.onBlur}
                             onChange={e => {
                                 this.updateProperties(
                                     editableProperty.propertyName,

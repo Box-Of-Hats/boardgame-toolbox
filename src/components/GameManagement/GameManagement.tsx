@@ -19,6 +19,7 @@ interface IGameManagementState {
     description: string;
     selectedTools: IToolConfig[];
     currentEditor: number;
+    showSaveButton: boolean;
 }
 
 const ToolList = props => {
@@ -57,11 +58,22 @@ export default class GameManagement extends Component<
             name: '',
             description: '',
             selectedTools: [],
-            currentEditor: -1
+            currentEditor: -1,
+            showSaveButton: true
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleToolSelectChange = this.handleToolSelectChange.bind(this);
+        this.handleInputFocus = this.handleInputFocus.bind(this);
+        this.handleInputUnFocus = this.handleInputUnFocus.bind(this);
+    }
+
+    handleInputFocus() {
+        this.setState({showSaveButton: false});
+    }
+
+    handleInputUnFocus() {
+        this.setState({showSaveButton: true});
     }
 
     handleChange(event) {
@@ -142,6 +154,8 @@ export default class GameManagement extends Component<
                 editor = (
                     <Editor
                         name={'Dice'}
+                        onFocus={this.handleInputFocus}
+                        onBlur={this.handleInputUnFocus}
                         onSubmit={(properties: IToolConfig) => {
                             this.setState({currentEditor: -1});
                             this.addToolObject(properties);
@@ -180,6 +194,8 @@ export default class GameManagement extends Component<
                 editor = (
                     <Editor
                         name={'Counter'}
+                        onFocus={this.handleInputFocus}
+                        onBlur={this.handleInputUnFocus}
                         onSubmit={(properties: IToolConfig) => {
                             this.setState({currentEditor: -1});
                             this.addToolObject(properties);
@@ -212,6 +228,8 @@ export default class GameManagement extends Component<
                 editor = (
                     <Editor
                         name={'Spinner'}
+                        onFocus={this.handleInputFocus}
+                        onBlur={this.handleInputUnFocus}
                         onSubmit={(properties: IToolConfig) => {
                             this.setState({currentEditor: -1});
                             this.addToolObject(properties);
@@ -239,6 +257,8 @@ export default class GameManagement extends Component<
                 editor = (
                     <Editor
                         name={toolName}
+                        onFocus={this.handleInputFocus}
+                        onBlur={this.handleInputUnFocus}
                         onSubmit={(properties: IToolConfig) => {
                             this.setState({currentEditor: -1});
                             this.addToolObject(properties);
@@ -277,6 +297,8 @@ export default class GameManagement extends Component<
                 editor = (
                     <Editor
                         name={'Coin'}
+                        onFocus={this.handleInputFocus}
+                        onBlur={this.handleInputUnFocus}
                         onSubmit={(properties: IToolConfig) => {
                             this.setState({currentEditor: -1});
                             this.addToolObject(properties);
@@ -308,6 +330,8 @@ export default class GameManagement extends Component<
                 editor = (
                     <Editor
                         name={'NotePad'}
+                        onFocus={this.handleInputFocus}
+                        onBlur={this.handleInputUnFocus}
                         onSubmit={(properties: IToolConfig) => {
                             this.setState({currentEditor: -1});
                             this.addToolObject(properties);
@@ -333,6 +357,8 @@ export default class GameManagement extends Component<
                 editor = (
                     <Editor
                         name={'Timer'}
+                        onFocus={this.handleInputFocus}
+                        onBlur={this.handleInputUnFocus}
                         onSubmit={(properties: IToolConfig) => {
                             this.setState({currentEditor: -1});
                             this.addToolObject(properties);
@@ -369,6 +395,8 @@ export default class GameManagement extends Component<
             case '7':
                 editor = (
                     <Editor
+                        onFocus={this.handleInputFocus}
+                        onBlur={this.handleInputUnFocus}
                         name={'Timer'}
                         onSubmit={(properties: IToolConfig) => {
                             this.setState({currentEditor: -1});
@@ -454,9 +482,11 @@ export default class GameManagement extends Component<
                                 });
                             }}></ToolList>
                     }
-                    <Link to='/' onClick={this.handleSubmit}>
-                        <div className='game-management__button '> Save</div>
-                    </Link>
+                    {this.state.showSaveButton && (
+                        <Link to='/' onClick={this.handleSubmit}>
+                            <div className='game-management__button'> Save</div>
+                        </Link>
+                    )}
                 </div>
             </>
         );
