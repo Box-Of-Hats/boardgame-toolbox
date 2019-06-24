@@ -12,30 +12,24 @@ const GameManagementForm: SFC = () => {
                 <GameManagement
                     toolOptions={[
                         {
+                            id: 0,
+                            name: 'Dice'
+                        },
+                        {
+                            id: 1,
+                            name: 'Counter'
+                        },
+                        {
                             id: 2,
                             name: 'Spinner'
                         },
                         {
-                            id: 1,
-                            name: 'Counter',
-                            value: 0
-                        },
-                        {
                             id: 3,
-                            name: 'ScoreTable',
-                            playerNames: ['person-1', 'person-2'],
-                            scoreNames: ['Round 1', 'Round 2', 'Round 3']
-                        },
-                        {
-                            id: 0,
-                            name: 'Dice',
-                            maximumRoll: 6,
-                            diceCount: 2
+                            name: 'ScoreTable'
                         },
                         {
                             id: 4,
-                            name: 'Coin',
-                            icons: ['face', 'euro_symbol']
+                            name: 'Coin'
                         },
                         {
                             id: 5,
@@ -43,8 +37,7 @@ const GameManagementForm: SFC = () => {
                         },
                         {
                             id: 6,
-                            name: 'Timer',
-                            startTime: 35
+                            name: 'Timer'
                         }
                     ]}
                 />
