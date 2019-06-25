@@ -69,11 +69,11 @@ export default class GameManagement extends Component<
     }
 
     handleInputFocus() {
-        this.setState({showSaveButton: false});
+        // this.setState({showSaveButton: false});
     }
 
     handleInputUnFocus() {
-        this.setState({showSaveButton: true});
+        // this.setState({showSaveButton: true});
     }
 
     handleChange(event) {
