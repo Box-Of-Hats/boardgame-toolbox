@@ -19,7 +19,6 @@ interface IGameManagementState {
     description: string;
     selectedTools: IToolConfig[];
     currentEditor: number;
-    showSaveButton: boolean;
 }
 
 const ToolList = props => {
@@ -58,8 +57,7 @@ export default class GameManagement extends Component<
             name: '',
             description: '',
             selectedTools: [],
-            currentEditor: -1,
-            showSaveButton: true
+            currentEditor: -1
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -69,11 +67,17 @@ export default class GameManagement extends Component<
     }
 
     handleInputFocus() {
-        // this.setState({showSaveButton: false});
+        //When focusing an input, we dont want to show the save button
+        document
+            .querySelector('.game-management__bottom-bar')
+            .classList.add('game-management__bottom-bar--disabled');
     }
 
     handleInputUnFocus() {
-        // this.setState({showSaveButton: true});
+        // Show save button when we arent focusing an input
+        document
+            .querySelector('.game-management__bottom-bar')
+            .classList.remove('game-management__bottom-bar--disabled');
     }
 
     handleChange(event) {
@@ -472,12 +476,7 @@ export default class GameManagement extends Component<
                     {editor}
                 </div>
 
-                <div
-                    className={`game-management__bottom-bar ${
-                        this.state.showSaveButton
-                            ? ''
-                            : 'game-management__bottom-bar--disabled'
-                    }`}>
+                <div className='game-management__bottom-bar'>
                     {
                         <ToolList
                             tools={this.state.selectedTools}

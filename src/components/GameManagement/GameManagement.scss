@@ -52,9 +52,10 @@
         display: flex;
         justify-content: space-between;
         &--disabled {
-            opacity: 0.4;
+            opacity: 0.2;
             user-select: none;
             pointer-events: none;
+            bottom: -50px;
         }
     }
 
