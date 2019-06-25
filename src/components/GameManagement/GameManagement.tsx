@@ -99,17 +99,23 @@ export default class GameManagement extends Component<
                 -1
             ) {
                 // If tools already contains a tool with the chosen name, generate a new one:
+                const isToolNameTaken = (
+                    toolList: IToolConfig[],
+                    toolName: string
+                ): boolean => {
+                    return (
+                        toolList.findIndex(tool => tool.name === toolName) != -1
+                    );
+                };
                 let index = 0;
-                let newName = tool.name;
+                let proposedToolName = tool.name;
                 while (
-                    previouslySelectedTools.findIndex(
-                        t => t.name === newName
-                    ) != -1
+                    isToolNameTaken(previouslySelectedTools, proposedToolName)
                 ) {
                     index++;
-                    newName = `${tool.name} (${index})`;
+                    proposedToolName = `${tool.name} (${index})`;
                 }
-                tool.name = newName;
+                tool.name = proposedToolName;
             }
             previouslySelectedTools.push(tool);
             return {

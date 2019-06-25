@@ -1,7 +1,5 @@
 import * as React from 'react';
 import './Editor.scss';
-import {AnyTxtRecord} from 'dns';
-import {types} from '@babel/core';
 
 interface IEditableProperty {
     propertyName: string;

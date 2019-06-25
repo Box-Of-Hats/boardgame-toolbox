@@ -16,7 +16,9 @@ export default class Dice extends Component<IDiceProps, IDiceState> {
     constructor(props: IDiceProps) {
         super(props);
         this.state = {
-            rollValues: Array(this.props.diceCount).fill(0),
+            rollValues: Array(this.props.diceCount)
+                .fill(0)
+                .map(i => this.getRandomNumber(props.maximumRoll)),
             isAnimating: false
         };
     }
@@ -29,16 +31,21 @@ export default class Dice extends Component<IDiceProps, IDiceState> {
         this.setState({isAnimating: true});
         setTimeout(() => {
             this.setState({isAnimating: false});
-            this.setState({});
+            this.setState(prevState => {
+                var prevRolls = prevState.rollValues;
+                for (let i = 0; i < this.props.diceCount; i++) {
+                    prevRolls[i] = this.getRandomNumber(this.props.maximumRoll);
+                }
+                return {
+                    rollValues: prevRolls
+                };
+            });
         }, 600);
     };
 
     render() {
         let dice: any = [];
         for (let i = 0; i < this.props.diceCount; i++) {
-            this.state.rollValues[i] = this.getRandomNumber(
-                this.props.maximumRoll
-            );
             dice.push(
                 <div
                     className={`dice-tool__dice ${

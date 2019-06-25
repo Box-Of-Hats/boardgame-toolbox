@@ -2,7 +2,6 @@ import * as React from 'react';
 import './Settings.scss';
 import Header from 'components/Header/Header';
 import GamesStore from 'utils/GamesStore';
-import {Tool} from 'types/Tool.interface';
 import {Game} from 'types/Game.interface';
 import * as serviceWorker from 'serviceWorker';
 

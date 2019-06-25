@@ -119,7 +119,7 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
                                         />
                                     );
                                 default:
-                                    return;
+                                    return null;
                             }
                         })}
                     </div>
