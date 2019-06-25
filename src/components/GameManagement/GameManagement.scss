@@ -51,8 +51,9 @@
         width: 100vw;
         display: flex;
         justify-content: space-between;
+        transition: $animation--slow;
         &--disabled {
-            opacity: 0.2;
+            opacity: 0;
             user-select: none;
             pointer-events: none;
             bottom: -50px;
