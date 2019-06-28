@@ -1,7 +1,5 @@
 {
     "recommendations": [
-        "robinbentley.sass-indented",
-        "glen-84.sass-lint",
         "mrmlnc.vscode-scss",
         "ms-vscode.vscode-typescript-tslint-plugin",
         "planbcoding.vscode-react-refactor",
