@@ -46,8 +46,8 @@
         font-size: 1.4em;
     }
     &__icon {
+        display: inline-block;
         &--loading {
-            display: inline-block;
             i {
                 animation: rotate 2s infinite linear;
             }

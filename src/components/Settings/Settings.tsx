@@ -61,55 +61,59 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
     }
 
     clearCache() {
-        if (!navigator.onLine) {
-            this.setState({
-                message: 'You need to be online to check for updates',
-                messageType: MessageType.Error
-            });
-            return;
-        }
-
-        if ('serviceWorker' in navigator) {
-            this.setState({
-                isLoading: true
-            });
-            caches.keys().then(cacheNames => {
-                cacheNames.forEach(cacheName => {
-                    caches.delete(cacheName);
+        this.setState({
+            isLoading: true
+        });
+        // Set a small pause to show that something is actually happening
+        setTimeout(() => {
+            if (!navigator.onLine) {
+                this.setState({
+                    isLoading: false,
+                    message: 'You need to be online to check for updates',
+                    messageType: MessageType.Error
                 });
-            });
-            serviceWorker.unregister();
-            serviceWorker.register();
-            fetch('./index.html')
-                .then(response => {
-                    console.log(response);
-                    if (response.ok) {
-                        this.setState({
-                            isLoading: false,
-                            message: 'Cleared cache!',
-                            messageType: MessageType.Success
-                        });
-                    } else {
-                        this.setState({
-                            isLoading: false,
-                            message: `Could not check for updates: Code ${response.status}`,
-                            messageType: MessageType.Error
-                        });
-                    }
-                })
-                .catch(e => {
-                    this.setState({
-                        isLoading: false,
-                        message: 'Could not clear cache: {e}'
+                return;
+            }
+
+            if ('serviceWorker' in navigator) {
+                caches.keys().then(cacheNames => {
+                    cacheNames.forEach(cacheName => {
+                        caches.delete(cacheName);
                     });
                 });
-            return;
-        }
-        this.setState({
-            message:
-                "Your browser does not support service workers so there's no cache to clear",
-            messageType: MessageType.Information
-        });
+                serviceWorker.unregister();
+                serviceWorker.register();
+                fetch('./index.html')
+                    .then(response => {
+                        console.log(response);
+                        if (response.ok) {
+                            this.setState({
+                                isLoading: false,
+                                message: 'You are up to date',
+                                messageType: MessageType.Success
+                            });
+                        } else {
+                            this.setState({
+                                isLoading: false,
+                                message: `Network error: Code ${response.status}`,
+                                messageType: MessageType.Error
+                            });
+                        }
+                    })
+                    .catch(e => {
+                        this.setState({
+                            isLoading: false,
+                            message: 'Could not update: {e}'
+                        });
+                    });
+                return;
+            }
+            this.setState({
+                message:
+                    "Your browser does not support service workers so there's no cache to clear",
+                messageType: MessageType.Information
+            });
+        }, 1000);
     }
 
     render() {
@@ -146,12 +150,15 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
                         <div
                             onClick={this.clearCache}
                             className='settings__button settings__button--white'>
-                            Clear cache
-                            {this.state.isLoading && (
-                                <div className='settings__icon settings__icon--loading'>
-                                    <i className='material-icons'>refresh</i>
-                                </div>
-                            )}
+                            Check for updates
+                            <div
+                                className={`settings__icon ${
+                                    this.state.isLoading
+                                        ? 'settings__icon--loading'
+                                        : ''
+                                }`}>
+                                <i className='material-icons'>refresh</i>
+                            </div>
                         </div>
                     </div>
                     <div className='settings__region'>
