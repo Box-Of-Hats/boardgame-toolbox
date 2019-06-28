@@ -5,6 +5,21 @@
     box-sizing: border-box;
     &__region {
         @include card;
+        &--error {
+            background-color: $color--red;
+            color: $color--white;
+            &::before {
+                content: '!';
+                margin: 0 6px;
+            }
+        }
+        &--info {
+            color: $color--black;
+        }
+        &--success {
+            background-color: $color--green;
+            color: $color--white;
+        }
     }
     &__button {
         @include forms--button;

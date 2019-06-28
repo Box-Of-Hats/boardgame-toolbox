@@ -2,17 +2,24 @@ import * as React from 'react';
 import './Settings.scss';
 import Header from 'components/Header/Header';
 import GamesStore from 'utils/GamesStore';
-import { Game } from 'types/Game.interface';
+import {Game} from 'types/Game.interface';
 import * as serviceWorker from 'serviceWorker';
+
+enum MessageType {
+    Error,
+    Information,
+    Success
+}
 
 interface ISettingsState {
     message: string;
     gameJson: string;
     gameStore: GamesStore;
     isLoading: boolean;
+    messageType: MessageType;
 }
 
-interface ISettingsProps { }
+interface ISettingsProps {}
 
 class Settings extends React.Component<ISettingsProps, ISettingsState> {
     constructor(props) {
@@ -22,7 +29,8 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
             message: '',
             gameStore: gamesStore,
             gameJson: JSON.stringify(gamesStore.getGames(), null, 2),
-            isLoading: false
+            isLoading: false,
+            messageType: MessageType.Information
         };
         this.handleConfigJsonChange = this.handleConfigJsonChange.bind(this);
         this.saveConfigJson = this.saveConfigJson.bind(this);
@@ -42,21 +50,29 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
         try {
             configObject = JSON.parse(this.state.gameJson);
         } catch {
-            this.setState({ message: 'Could not save config: Invalid JSON' });
+            this.setState({message: 'Could not save config: Invalid JSON'});
             return;
         }
         this.state.gameStore.deleteGames();
         configObject.forEach(game => {
             this.state.gameStore.addGame(game);
         });
-        this.setState({ message: 'Successfully saved config' });
+        this.setState({message: 'Successfully saved config'});
     }
 
     clearCache() {
-        this.setState({
-            isLoading: true
-        });
+        if (!navigator.onLine) {
+            this.setState({
+                message: 'You need to be online to check for updates',
+                messageType: MessageType.Error
+            });
+            return;
+        }
+
         if ('serviceWorker' in navigator) {
+            this.setState({
+                isLoading: true
+            });
             caches.keys().then(cacheNames => {
                 cacheNames.forEach(cacheName => {
                     caches.delete(cacheName);
@@ -64,24 +80,60 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
             });
             serviceWorker.unregister();
             serviceWorker.register();
-            this.setState({ message: 'Checking for updates...' });
-            setTimeout(() => {
-                this.setState({
-                    isLoading: false,
-                    message: 'Cleared cache!'
+            fetch('./index.html')
+                .then(response => {
+                    console.log(response);
+                    if (response.ok) {
+                        this.setState({
+                            isLoading: false,
+                            message: 'Cleared cache!',
+                            messageType: MessageType.Success
+                        });
+                    } else {
+                        this.setState({
+                            isLoading: false,
+                            message: `Could not check for updates: Code ${response.status}`,
+                            messageType: MessageType.Error
+                        });
+                    }
+                })
+                .catch(e => {
+                    this.setState({
+                        isLoading: false,
+                        message: 'Could not clear cache: {e}'
+                    });
                 });
-            }, 3000);
             return;
         }
-        this.setState({ message: 'Could not clear cache' });
+        this.setState({
+            message:
+                "Your browser does not support service workers so there's no cache to clear",
+            messageType: MessageType.Information
+        });
     }
+
     render() {
+        const getMessageClass = (messageType: MessageType): string => {
+            switch (messageType) {
+                case MessageType.Success:
+                    return 'settings__region--success';
+                case MessageType.Information:
+                    return 'settings__region--info';
+                case MessageType.Error:
+                    return 'settings__region--error';
+                default:
+                    return '';
+            }
+        };
         return (
             <>
                 <Header title='Settings' backLink='/' />
                 <div className='settings'>
                     {this.state.message != '' && (
-                        <div className='settings__region'>
+                        <div
+                            className={`settings__region ${getMessageClass(
+                                this.state.messageType
+                            )}`}>
                             {this.state.message}
                         </div>
                     )}
@@ -95,13 +147,11 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
                             onClick={this.clearCache}
                             className='settings__button settings__button--white'>
                             Clear cache
-                            {
-                                this.state.isLoading &&
-                                <div className="settings__icon settings__icon--loading">
-                                    <i className="material-icons">refresh</i>
+                            {this.state.isLoading && (
+                                <div className='settings__icon settings__icon--loading'>
+                                    <i className='material-icons'>refresh</i>
                                 </div>
-                            }
-
+                            )}
                         </div>
                     </div>
                     <div className='settings__region'>
