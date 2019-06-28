@@ -30,4 +30,12 @@
         flex: 1;
         font-size: 1.4em;
     }
+    &__icon {
+        &--loading {
+            display: inline-block;
+            i {
+                animation: rotate 2s infinite linear;
+            }
+        }
+    }
 }
