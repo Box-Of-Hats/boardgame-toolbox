@@ -2,16 +2,17 @@ import * as React from 'react';
 import './Settings.scss';
 import Header from 'components/Header/Header';
 import GamesStore from 'utils/GamesStore';
-import {Game} from 'types/Game.interface';
+import { Game } from 'types/Game.interface';
 import * as serviceWorker from 'serviceWorker';
 
 interface ISettingsState {
     message: string;
     gameJson: string;
     gameStore: GamesStore;
+    isLoading: boolean;
 }
 
-interface ISettingsProps {}
+interface ISettingsProps { }
 
 class Settings extends React.Component<ISettingsProps, ISettingsState> {
     constructor(props) {
@@ -20,7 +21,8 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
         this.state = {
             message: '',
             gameStore: gamesStore,
-            gameJson: JSON.stringify(gamesStore.getGames(), null, 2)
+            gameJson: JSON.stringify(gamesStore.getGames(), null, 2),
+            isLoading: false
         };
         this.handleConfigJsonChange = this.handleConfigJsonChange.bind(this);
         this.saveConfigJson = this.saveConfigJson.bind(this);
@@ -40,17 +42,20 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
         try {
             configObject = JSON.parse(this.state.gameJson);
         } catch {
-            this.setState({message: 'Could not save config: Invalid JSON'});
+            this.setState({ message: 'Could not save config: Invalid JSON' });
             return;
         }
         this.state.gameStore.deleteGames();
         configObject.forEach(game => {
             this.state.gameStore.addGame(game);
         });
-        this.setState({message: 'Successfully saved config'});
+        this.setState({ message: 'Successfully saved config' });
     }
 
     clearCache() {
+        this.setState({
+            isLoading: true
+        });
         if ('serviceWorker' in navigator) {
             caches.keys().then(cacheNames => {
                 cacheNames.forEach(cacheName => {
@@ -59,10 +64,16 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
             });
             serviceWorker.unregister();
             serviceWorker.register();
-            this.setState({message: 'Cleared cache!'});
+            this.setState({ message: 'Checking for updates...' });
+            setTimeout(() => {
+                this.setState({
+                    isLoading: false,
+                    message: 'Cleared cache!'
+                });
+            }, 3000);
             return;
         }
-        this.setState({message: 'Could not clear cache'});
+        this.setState({ message: 'Could not clear cache' });
     }
     render() {
         return (
@@ -84,6 +95,13 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
                             onClick={this.clearCache}
                             className='settings__button settings__button--white'>
                             Clear cache
+                            {
+                                this.state.isLoading &&
+                                <div className="settings__icon settings__icon--loading">
+                                    <i className="material-icons">refresh</i>
+                                </div>
+                            }
+
                         </div>
                     </div>
                     <div className='settings__region'>
