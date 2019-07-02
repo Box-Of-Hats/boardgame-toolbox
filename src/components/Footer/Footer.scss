@@ -1,0 +1,20 @@
+@import 'style/base.scss';
+
+.footer {
+    @include card;
+    display: flex;
+    justify-content: space-between;
+
+    &__link {
+        margin: 0 $padding-base * 3;
+        text-transform: lowercase;
+        font-size: 0.9em;
+        font-weight: 800;
+        font-family: $font--buttons;
+        color: $color--grey;
+        animation: $animation--slow;
+        &:hover {
+            color: darken($color--grey, 20%);
+        }
+    }
+}

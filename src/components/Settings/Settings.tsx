@@ -5,6 +5,9 @@ import GamesStore from 'utils/GamesStore';
 import {Game} from 'types/Game.interface';
 import * as serviceWorker from 'serviceWorker';
 
+import {Link} from 'types/Link.interface';
+import Footer from 'components/Footer/Footer';
+
 enum MessageType {
     Error,
     Information,
@@ -129,6 +132,16 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
                     return '';
             }
         };
+        const footerLinks: Link[] = [
+            {
+                text: 'Source',
+                href: 'https://github.com/Box-Of-Hats/boardgame-toolbox'
+            },
+            {
+                text: 'Follow me',
+                href: 'https://twitter.com/box_of_hats'
+            }
+        ];
         return (
             <>
                 <Header title='Settings' backLink='/' />
@@ -182,6 +195,7 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
                             </div>
                         </div>
                     </div>
+                    <Footer links={footerLinks}></Footer>
                 </div>
             </>
         );
