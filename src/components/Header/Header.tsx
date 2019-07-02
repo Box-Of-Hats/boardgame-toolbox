@@ -8,7 +8,7 @@ interface IHeaderProps {
     actionCallback?: Function;
     actionIcon?: string;
     actionCallbackRedirect?: string;
-    actionIconStyle?: object;
+    actionIconClass?: string;
 }
 
 class Header extends React.Component<IHeaderProps, any> {
@@ -33,8 +33,7 @@ class Header extends React.Component<IHeaderProps, any> {
                             className='header__link header__link--other'
                             onClick={() => this.props.actionCallback()}>
                             <i
-                                style={this.props.actionIconStyle}
-                                className='material-icons'>
+                                className={`material-icons ${this.props.actionIconClass}`}>
                                 {this.props.actionIcon
                                     ? this.props.actionIcon
                                     : 'touch_app'}

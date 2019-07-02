@@ -62,7 +62,7 @@ export class GamePage extends Component<IGamePageProps, IGamePageState> {
                     }}
                     actionCallbackRedirect='/'
                     actionIcon='delete'
-                    actionIconStyle={{color: '#cc0000', fontSize: '2em'}}
+                    actionIconClass='game-page__action-icon'
                 />
                 <div className='game-page'>
                     <div>

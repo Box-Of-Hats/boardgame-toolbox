@@ -4,7 +4,7 @@
     font-weight: 400;
     font-size: 1.4em;
     margin-bottom: $padding-base;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: $borderColor--standard;
     font-family: $font--title;
 }
 

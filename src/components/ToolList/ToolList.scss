@@ -4,34 +4,42 @@
     width: 100%;
 
     &__title {
-        font-size: 1.2em;
+        @include title;
+        border: none;
         display: flex;
         justify-content: space-between;
-        border: none;
     }
 
     &__listing {
         @include card;
+        cursor: pointer;
+        user-select: none;
         padding: $padding-base * 2 $padding-base * 2;
         display: flexs;
         justify-content: space-between;
         font-size: 0.9em;
         animation: expand $animation--slow;
     }
-
-    &__minus {
-        $height: 1em;
-        width: $height;
-        height: $height;
-        line-height: $height;
-        color: $color--red;
-        border: 2px solid $color--red;
-        border-radius: 50%;
-        text-align: center;
-        cursor: pointer;
-        font-weight: 800;
-        font-family: $font--code;
-        align-self: center;
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
     }
-
+    &__button {
+        margin-left: $padding-base * 2;
+        &--delete {
+            color: $color--red;
+        }
+        &--expand {
+            color: $color--grey;
+        }
+    }
+    &__properties {
+        border-top: $borderColor--standard;
+        margin: $padding-base 0;
+        padding: $padding-base;
+    }
+    &__group {
+        display: flex;
+        justify-content: space-between;
+    }
 }

@@ -7,6 +7,10 @@
     }
     &__error {
         @include card;
-        color: #b10404;
+        color: $color--red;
+    }
+    &__action-icon {
+        color: $color--red;
+        font-size: 1.8em;
     }
 }

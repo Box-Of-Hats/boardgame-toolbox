@@ -23,7 +23,7 @@ export class GamesList extends Component<GamesListProps, GamesListState> {
                     title='Boardgame Toolbox'
                     actionIcon='settings'
                     actionCallback={() => {}}
-                    actionIconStyle={{fontSize: '1.5em'}}
+                    actionIconClass={'settings__action-icon'}
                     actionCallbackRedirect='/settings'
                 />
                 <div className='games-list'>
