@@ -471,10 +471,12 @@ export default class GameManagement extends Component<
                     />
                 </div>
 
-                <div className='game-management__bottom-bar'>
-                    <Link to='/' onClick={this.handleSubmit}>
-                        <div className='game-management__button'>Save</div>
-                    </Link>
+                <div className='game-management__bottom-bar-container'>
+                    <div className='game-management__bottom-bar'>
+                        <Link to='/' onClick={this.handleSubmit}>
+                            <div className='game-management__button'>Save</div>
+                        </Link>
+                    </div>
                 </div>
             </>
         );

@@ -45,26 +45,32 @@
         @include card;
     }
 
-    &__bottom-bar {
-        @include card;
-        background-color: unset;
+    &__bottom-bar-container {
         box-sizing: border-box;
-        display: block;
+        overflow: hidden;
         position: absolute;
         bottom: 0;
         left: 0;
         margin: 0;
+        right: 0;
+    }
+
+    &__bottom-bar {
+        @include card;
+        margin-bottom: 0;
+        background-color: unset;
         width: 100vw;
         display: flex;
         justify-content: space-between;
         transition: $animation--slow;
+        position: relative;
+        bottom: 0;
 
         &--disabled {
             opacity: 0;
             user-select: none;
             pointer-events: none;
-            bottom: -50px;
+            bottom: -70px;
         }
     }
-
 }
