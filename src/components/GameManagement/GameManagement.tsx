@@ -3,6 +3,7 @@ import './GameManagement.scss';
 import {Link} from 'react-router-dom';
 import GamesStore from 'utils/GamesStore';
 import {Editor} from 'components/Editor/Editor';
+import {ToolList} from 'components/ToolList/ToolList';
 
 interface IToolConfig {
     id: number;
@@ -20,32 +21,6 @@ interface IGameManagementState {
     selectedTools: IToolConfig[];
     currentEditor: number;
 }
-
-const ToolList = props => {
-    let index = 0;
-    return (
-        <div className='game-management__tool-list'>
-            {props.tools.map(tool => {
-                index++;
-                return (
-                    <div
-                        className='game-management__tool-listing'
-                        key={`${tool.name}${index}`}>
-                        {`${tool.name}`}
-                        <div
-                            className='game-management__minus'
-                            role='button'
-                            onClick={e => {
-                                props.onDelete(tool.name);
-                            }}>
-                            -
-                        </div>
-                    </div>
-                );
-            })}
-        </div>
-    );
-};
 
 export default class GameManagement extends Component<
     IGameManagementProps,
@@ -158,7 +133,7 @@ export default class GameManagement extends Component<
         var editor;
         switch (this.state.currentEditor.toString()) {
             case '-1':
-                editor = <div></div>;
+                editor = <div />;
                 break;
             case '0': //Dice
                 editor = (
@@ -481,22 +456,22 @@ export default class GameManagement extends Component<
 
                     {editor}
                 </div>
+                <div className='game-management__group'>
+                    <ToolList
+                        tools={this.state.selectedTools}
+                        onDelete={(name: string) => {
+                            this.setState({
+                                selectedTools: this.state.selectedTools.filter(
+                                    tool => {
+                                        return tool.name != name;
+                                    }
+                                )
+                            });
+                        }}
+                    />
+                </div>
 
                 <div className='game-management__bottom-bar'>
-                    {
-                        <ToolList
-                            tools={this.state.selectedTools}
-                            onDelete={(name: string) => {
-                                this.setState({
-                                    selectedTools: this.state.selectedTools.filter(
-                                        tool => {
-                                            return tool.name != name;
-                                        }
-                                    )
-                                });
-                            }}></ToolList>
-                    }
-
                     <Link to='/' onClick={this.handleSubmit}>
                         <div className='game-management__button'>Save</div>
                     </Link>

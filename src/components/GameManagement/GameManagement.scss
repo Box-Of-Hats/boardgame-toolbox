@@ -6,6 +6,7 @@
     &__group {
         @include forms--group;
     }
+
     &__input {
         @include forms--input;
 
@@ -14,31 +15,36 @@
         &:focus {
             border: 1px solid $color--blue;
         }
+
         &--select {
             width: 100%;
             font-size: 1.1em;
         }
     }
+
     &__label {
         @include forms--label;
     }
+
     &__button {
         @include forms--button;
         background-color: $color--blue;
     }
+
     &__message {
         text-align: center;
         font-size: 0.8em;
         font-weight: 800;
+
         &--error {
             color: $color--red;
         }
     }
-    &__tool-list {
-    }
+
     &__region {
         @include card;
     }
+
     &__bottom-bar {
         @include card;
         background-color: unset;
@@ -52,6 +58,7 @@
         display: flex;
         justify-content: space-between;
         transition: $animation--slow;
+
         &--disabled {
             opacity: 0;
             user-select: none;
@@ -60,29 +67,4 @@
         }
     }
 
-    &__tool-listing {
-        background-color: $color--purple;
-        color: $color--white;
-        padding: 6px 8px;
-        margin: 2px 2px;
-        font-size: 0.9em;
-        font-weight: 800;
-        font-family: $font--code;
-        border-radius: $borderRadius--large;
-        display: inline-block;
-        animation: expand $animation--slow;
-    }
-    &__minus {
-        $height: 1em;
-        cursor: pointer;
-        width: $height;
-        height: $height;
-        line-height: $height;
-        border: 2px solid $color--red;
-        color: $color--red;
-        border-radius: 50%;
-        text-align: center;
-        display: inline-block;
-        margin-left: 6px;
-    }
 }

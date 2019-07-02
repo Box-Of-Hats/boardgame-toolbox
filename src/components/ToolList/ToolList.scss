@@ -1,0 +1,37 @@
+@import 'style/base.scss';
+
+.tool-list {
+    width: 100%;
+
+    &__title {
+        font-size: 1.2em;
+        display: flex;
+        justify-content: space-between;
+        border: none;
+    }
+
+    &__listing {
+        @include card;
+        padding: $padding-base * 2 $padding-base * 2;
+        display: flexs;
+        justify-content: space-between;
+        font-size: 0.9em;
+        animation: expand $animation--slow;
+    }
+
+    &__minus {
+        $height: 1em;
+        width: $height;
+        height: $height;
+        line-height: $height;
+        color: $color--red;
+        border: 2px solid $color--red;
+        border-radius: 50%;
+        text-align: center;
+        cursor: pointer;
+        font-weight: 800;
+        font-family: $font--code;
+        align-self: center;
+    }
+
+}
