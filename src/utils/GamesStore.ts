@@ -24,12 +24,16 @@ export default class GamesStore {
     };
 
     addGame = (game: Game) => {
+        let gamesList = this.getGames();
+        let nextGameId = this.generateNextId(gamesList);
+        if (game.name === '') {
+            game.name = `Game ${nextGameId}`;
+        }
         if (!localStorage.getItem(this.localStorageName)) {
             // Games were not found in local storage
             localStorage.setItem(this.localStorageName, JSON.stringify([game]));
         } else {
-            let gamesList = this.getGames();
-            game.id = this.generateNextId(gamesList);
+            game.id = nextGameId;
             gamesList.push(game);
             localStorage.setItem(
                 this.localStorageName,
