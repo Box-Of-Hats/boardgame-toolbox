@@ -143,7 +143,7 @@ class Settings extends React.Component<ISettingsProps, ISettingsState> {
                     )}
                     <div className='settings__region'>
                         <div className='settings__title'>About</div>
-                        Current version: 0.3
+                        Current version: 0.4
                     </div>
                     <div className='settings__region'>
                         <div className='settings__title'>Cache</div>
