@@ -55,16 +55,32 @@
         right: 0;
     }
 
+    &__bottom-bar-caret {
+        margin-bottom: $padding-base * 2;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        position: fixed;
+        bottom: 0;
+        z-index: 5;
+        cursor: pointer;
+        i {
+            font-size: 2em;
+        }
+        color: $color--grey;
+    }
+
     &__bottom-bar {
         @include card;
         margin-bottom: 0;
-        background-color: unset;
+        background-color: $color--white;
         width: 100vw;
         display: flex;
         justify-content: space-between;
         transition: $animation--slow;
         position: relative;
         bottom: 0;
+        z-index: 10;
 
         &--disabled {
             opacity: 0;

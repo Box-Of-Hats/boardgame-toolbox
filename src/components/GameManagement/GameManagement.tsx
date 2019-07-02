@@ -472,6 +472,9 @@ export default class GameManagement extends Component<
                 </div>
 
                 <div className='game-management__bottom-bar-container'>
+                    <div className='game-management__bottom-bar-caret'>
+                        <i className='material-icons'>expand_more</i>
+                    </div>
                     <div className='game-management__bottom-bar'>
                         <Link to='/' onClick={this.handleSubmit}>
                             <div className='game-management__button'>Save</div>
